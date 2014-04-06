@@ -79,10 +79,17 @@
     <ClCompile Include="SceneNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Behavior.hpp" />
+    <ClInclude Include="Composite.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />
     <ClInclude Include="SceneNode.hpp" />
+    <ClInclude Include="Selector.hpp" />
+    <ClInclude Include="Sequence.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Radium.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
