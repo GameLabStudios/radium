@@ -4,6 +4,14 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
+enum Layer
+{
+	Background,
+	Foreground,
+	GUI,
+	LayerCount
+};
+
 class SceneNode : public Transformable, public Drawable, private NonCopyable
 {
 public:
