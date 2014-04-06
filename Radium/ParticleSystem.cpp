@@ -49,7 +49,7 @@ void ParticleSystem::ResetParticles(std::size_t index)
 	// Give a random velocity and lifetime to the particle
 	float angle = (std::rand() % 360) * 3.14f / 180.0f;
 	float speed = (std::rand() % 50) + 50.0f;
-	m_particles[index].velocity = Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
+	m_particles[index].velocity = Vector2f(cos(angle) * speed, sin(angle) * speed);
 	m_particles[index].lifetime = milliseconds((std::rand() % 2000) + 1000);
 	
 	// Random Color

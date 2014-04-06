@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <math.h>
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
