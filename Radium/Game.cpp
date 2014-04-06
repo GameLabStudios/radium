@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include <string>
+#include <assert.h>
 
 const Time Game::TimePerFrame = seconds(1.f / 60.f);
 
@@ -68,4 +69,15 @@ void Game::updateStatistics(Time deltaTime)
 		mStatisticsUpdateTime -= seconds(1.0f);
 		mStatisticsNumFrames = 0;
 	}
+}
+
+Game& Game::getInstance()
+{
+	static Game instance;
+	return instance;
+}
+
+const World& Game::getWorld() const
+{
+	return mWorld;
 }

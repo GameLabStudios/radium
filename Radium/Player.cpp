@@ -1,8 +1,15 @@
 #include "Player.hpp"
+#include "Game.hpp"
+#include <iostream>
+#include <string>
+
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 Player::Player()
 {
 	circle = CircleShape(20, 30);
+	circle.setOrigin(20.f, 20.f);
 	playerSpeed = 200.0f;
 }
 
@@ -13,6 +20,11 @@ void Player::drawCurrent(RenderTarget& target, RenderStates states) const
 
 void Player::updateCurrent(Time dt)
 {
+	Vector2f mousePos = Game::getInstance().getWorld().getMousePosition();
+
+	float angle = atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x);
+	setRotation(((angle * 180) / M_PI) - 45.f);
+
 	//direction of movement
 	Vector2f direction = Vector2f(0.0f, 0.0f);
 

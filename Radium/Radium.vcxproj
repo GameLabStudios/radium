@@ -76,14 +76,18 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneNode.cpp" />
+    <ClCompile Include="Square.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />
+    <ClInclude Include="Player.hpp" />
     <ClInclude Include="SceneNode.hpp" />
+    <ClInclude Include="Square.hpp" />
     <ClInclude Include="World.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

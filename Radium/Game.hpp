@@ -4,13 +4,16 @@
 #include "World.hpp"
 using namespace sf;
 
-class Game
+class Game : private NonCopyable
 {
 public:
-	Game();
+	static Game& getInstance();
+
 	void run();
+	const World& getWorld() const;
 
 private:
+	Game();
 	void processEvents();
 	void update(Time);
 	void render();
