@@ -21,13 +21,6 @@ bool GameState::update(Time dt)
 
 bool GameState::handleEvent(const Event& event)
 {
-    // Game input handling
-    //CommandQueue& commands = mWorld.getCommandQueue();
-    //mPlayer.handleEvent(event, commands);
-
-    // Escape Pressed, trigger the pause screen
-    //if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape)
-    //    requestStackPush(States::Pause);
-
+    mWorld.getPlayer()->handleEvent(event);
     return true;
 }

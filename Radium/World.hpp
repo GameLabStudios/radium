@@ -2,7 +2,7 @@
 #include "ResourceHolder.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "SceneNode.hpp"
-#include "MouseTest.hpp"
+#include "Player.hpp"
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -24,6 +24,7 @@ public:
     void                                draw();
     RenderWindow&                       getWindow() const;
     const Vector2f                      getMousePosition() const;
+    Player*                             getPlayer() const;
 
 private:
     void                                loadTextures();
@@ -47,5 +48,5 @@ private:
 
     FloatRect                           mWorldBounds;
     Vector2f                            mSpawnPosition;
-    MouseTest*                          mMouseTest;
+    Player*                             mPlayer;
 };

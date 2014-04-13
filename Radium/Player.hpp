@@ -9,18 +9,19 @@ class Player : public Entity
 {
 public:
 	Player();
-    void takeDamage(float damage);
-    void heal(float health);
-    void changeAbility();
+    void            handleEvent(const sf::Event& event);
+    void            takeDamage(float damage);
+    void            heal(float health);
+    void            changeAbility();
 
 private:
-	virtual void drawCurrent(RenderTarget& target, RenderStates states) const;	
-	virtual void updateCurrent(Time dt);
+	virtual void    drawCurrent(RenderTarget& target, RenderStates states) const;	
+	virtual void    updateCurrent(Time dt);
 
 private:
-	CircleShape circle;
-    float health;
-	float playerSpeed;
-    Ability *abilities[3];
-    int abilityEquipped;
+	CircleShape     circle;
+    float           health;
+	float           playerSpeed;
+    Ability         *abilities[3];
+    int             abilityEquipped;
 };
