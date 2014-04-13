@@ -8,9 +8,13 @@
 
 Player::Player()
 {
+	health = 100.0f;
 	circle = CircleShape(20, 30);
 	circle.setOrigin(20.f, 20.f);
 	playerSpeed = 200.0f;
+    abilityEquipped = 0;
+
+    abilities[0] = new Teleport();
 }
 
 void Player::drawCurrent(RenderTarget& target, RenderStates states) const
@@ -46,6 +50,26 @@ void Player::updateCurrent(Time dt)
 		direction.y -= 1.0f;
 	}
 
+    if (Keyboard::isKeyPressed(Keyboard::Num1))
+    {
+
+    }
+
+    abilities[abilityEquipped]->update(dt);
+
+    if (Mouse::isButtonPressed(Mouse::Right))
+    {
+        switch (abilityEquipped)
+        {
+        case 0:
+            abilities[abilityEquipped]->useAbility();
+            break;
+        default:
+            break;
+        }
+        
+    }
+
 	//normalize the direction
 	if (direction.x != 0.0f)
 	{
@@ -58,6 +82,4 @@ void Player::updateCurrent(Time dt)
 	
 	//move the player
 	move(direction * playerSpeed * dt.asSeconds());
-	
-
 }
