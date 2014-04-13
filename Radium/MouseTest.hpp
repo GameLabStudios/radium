@@ -4,15 +4,16 @@
 
 using namespace sf;
 
-class Square : public Entity
+class MouseTest : public Entity
 {
 public:
-    Square();
+    MouseTest();
 
 private:
     virtual void drawCurrent(RenderTarget& target, RenderStates states) const;
     virtual void updateCurrent(Time dt);
 
 private:
-    RectangleShape square;
+    CircleShape circle;
+    float playerSpeed;
 };

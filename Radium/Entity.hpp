@@ -6,10 +6,10 @@ using namespace sf;
 class Entity : public SceneNode
 {
 public:
-	void setVelocity(Vector2f velocity);
-	void setVelocity(float vx, float vy);
-	Vector2f getVelocity() const;
+    void setVelocity(Vector2f velocity);
+    void setVelocity(float vx, float vy);
+    Vector2f getVelocity() const;
 
 private:
-	Vector2f mVelocity;
+    Vector2f mVelocity;
 };
