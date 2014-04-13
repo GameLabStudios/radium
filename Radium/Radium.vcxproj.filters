@@ -3,7 +3,7 @@
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>inl;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
@@ -12,24 +12,6 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\AI">
-      <UniqueIdentifier>{53fb9b5f-95b4-43e0-9541-424626af186c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\AI">
-      <UniqueIdentifier>{44d1e9ba-2419-4ba5-b440-b4c6dfc47d9e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\AI\Actions">
-      <UniqueIdentifier>{d3856021-6fa6-451b-ba11-4a0399ee5fba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\AI\Conditions">
-      <UniqueIdentifier>{d8d61d23-f90f-4f4d-9265-624a81d20231}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\AI\Conditions">
-      <UniqueIdentifier>{88441c32-4c68-41c8-b17c-8cc3c83553aa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\AI\Actions">
-      <UniqueIdentifier>{d3731ae9-8ea4-47a3-a409-f9f9e0439528}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,26 +30,35 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Square.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BehaviorTree.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="StateStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestAction.cpp">
-      <Filter>Source Files\AI\Actions</Filter>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Test.Condition.cpp">
-      <Filter>Source Files\AI\Conditions</Filter>
+    <ClCompile Include="MouseTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ability.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Teleport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWorld.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,38 +74,49 @@
     <ClInclude Include="Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player.hpp">
+    <ClInclude Include="World.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Square.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="World.hpp">
+    <ClInclude Include="StateStack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BehaviorTree.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="BehaviorNode.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Composite.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Selector.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.hpp">
+    <ClInclude Include="ResourceHolder.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestCondition.hpp">
-      <Filter>Header Files\AI\Conditions</Filter>
+    <ClInclude Include="StateIdentifiers.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestAction.hpp">
-      <Filter>Header Files\AI\Actions</Filter>
+    <ClInclude Include="ResourceIdentifiers.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MouseTest.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ability.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Teleport.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ResourceHolder.inl">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

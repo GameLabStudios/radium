@@ -44,7 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;C:\Program Files %28x86%29\SFML\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -60,7 +60,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;C:\Program Files %28x86%29\SFML\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -72,35 +72,43 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BehaviorTree.cpp" />
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Ability.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="MouseTest.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="Square.cpp" />
-    <ClCompile Include="Test.Condition.cpp" />
-    <ClCompile Include="TestAction.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateStack.cpp" />
+    <ClCompile Include="Teleport.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BehaviorNode.hpp" />
-    <ClInclude Include="BehaviorTree.hpp" />
-    <ClInclude Include="Composite.hpp" />
-    <ClInclude Include="Enemy.hpp" />
+    <ClInclude Include="Ability.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="GameWorld.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />
+    <ClInclude Include="MouseTest.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="ResourceHolder.hpp" />
+    <ClInclude Include="ResourceIdentifiers.hpp" />
     <ClInclude Include="SceneNode.hpp" />
-    <ClInclude Include="Selector.hpp" />
-    <ClInclude Include="Sequence.hpp" />
     <ClInclude Include="Square.hpp" />
-    <ClInclude Include="TestAction.hpp" />
-    <ClInclude Include="TestCondition.hpp" />
+    <ClInclude Include="State.hpp" />
+    <ClInclude Include="StateIdentifiers.hpp" />
+    <ClInclude Include="StateStack.hpp" />
+    <ClInclude Include="Teleport.hpp" />
     <ClInclude Include="World.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ResourceHolder.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

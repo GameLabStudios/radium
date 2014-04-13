@@ -7,12 +7,12 @@ using namespace sf;
 class Square : public Entity
 {
 public:
-	Square();
+    Square();
 
 private:
-	virtual void drawCurrent(RenderTarget& target, RenderStates states) const;
-	virtual void updateCurrent(Time dt);
+    virtual void drawCurrent(RenderTarget& target, RenderStates states) const;
+    virtual void updateCurrent(Time dt);
 
 private:
-	RectangleShape square;
+    RectangleShape square;
 };
