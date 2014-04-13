@@ -1,6 +1,6 @@
 #pragma once
 #include "State.hpp"
-#include "World.hpp"
+#include "GameWorld.hpp"
 using namespace sf;
 
 class GameState : public State
@@ -12,5 +12,5 @@ public:
     virtual bool    handleEvent(const Event& event);
 
 private:
-    World           mWorld;
+    GameWorld*      mWorld;
 };

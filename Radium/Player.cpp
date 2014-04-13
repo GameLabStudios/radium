@@ -1,5 +1,5 @@
 #include "Player.hpp"
-#include "Game.hpp"
+#include "GameWorld.hpp"
 #include <iostream>
 #include <string>
 
@@ -25,10 +25,10 @@ void Player::drawCurrent(RenderTarget& target, RenderStates states) const
 void Player::updateCurrent(Time dt)
 {
 
-	//Vector2f mousePos = Game::getInstance().getWorld().getMousePosition();
+	Vector2f mousePos = GameWorld::getInstance()->getMousePosition();
 
-	//float angle = atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x);
-	//setRotation(((angle * 180) / M_PI) - 45.f);
+	float angle = atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x);
+	setRotation(((angle * 180) / M_PI) - 45.f);
 
 	//direction of movement
 	Vector2f direction = Vector2f(0.0f, 0.0f);

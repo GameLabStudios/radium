@@ -1,4 +1,5 @@
 #include "Square.hpp"
+#include <iostream>
 
 Square::Square()
 {
@@ -12,5 +13,5 @@ void Square::drawCurrent(RenderTarget& target, RenderStates states) const
 
 void Square::updateCurrent(Time dt)
 {
-
+    std::cout << "Square updated..\n";
 }

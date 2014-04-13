@@ -20,17 +20,16 @@ class World : private NonCopyable
 {
 public:
     explicit                            World(RenderWindow& window);
-    void                                update(Time dT);
-    void                                draw();
+    virtual void                        update(Time dT);
+    virtual void                        draw();
     RenderWindow&                       getWindow() const;
     const Vector2f                      getMousePosition() const;
-    Player*                             getPlayer() const;
 
-private:
-    void                                loadTextures();
-    void                                buildScene();
+protected:
+    virtual void                        loadTextures();
+    virtual void                        buildScene();
 
-private:
+protected:
     enum Layer
     {
         Background,
@@ -38,7 +37,7 @@ private:
         LayerCount
     };
 
-private:
+protected:
     RenderWindow&                       mWindow;
     View                                mWorldView;
     TextureHolder                       mTextures;
@@ -48,5 +47,4 @@ private:
 
     FloatRect                           mWorldBounds;
     Vector2f                            mSpawnPosition;
-    Player*                             mPlayer;
 };
