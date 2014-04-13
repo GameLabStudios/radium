@@ -1,12 +1,18 @@
 #pragma once
-#include <vector>
-#include "Behavior.hpp"
+#include "BehaviorNode.hpp"
 
-class Composite : public Behavior
+namespace AI
 {
-public:
-	void addChild(Behavior*);
-protected:
-	typedef std::vector<Behavior*> Behaviors;
-	Behaviors m_children;
-};
+    class Composite : public BehaviorNode
+    {
+    public:
+        void addChild(BehaviorNode* child)
+        {
+            children.push_back(child);
+        }
+
+    protected:
+        typedef std::vector<BehaviorNode*> Behaviors;
+        Behaviors children;
+    };
+}
