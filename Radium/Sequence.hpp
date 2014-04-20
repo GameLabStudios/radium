@@ -7,7 +7,7 @@ namespace AI
     {
         BNodeStatus run() override
         {
-            BNodeStatus status;
+            BNodeStatus status = NONE;
             for (BehaviorNode* child : children)
             {
                 status = child->run();
@@ -25,7 +25,7 @@ namespace AI
                 return status;
             }
             // Unexpected break out of loop.
-            return NONE;
+            return status;
         }
     };
 }

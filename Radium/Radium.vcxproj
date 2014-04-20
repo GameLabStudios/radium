@@ -73,14 +73,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ability.cpp" />
+    <ClCompile Include="AttackPlayerAction.cpp" />
+    <ClCompile Include="BehaviorTree.cpp" />
+    <ClCompile Include="DodgeShotsAction.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoveAction.cpp" />
+    <ClCompile Include="NearPlayerCondition.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="MouseTest.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerShootingCondition.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="State.cpp" />
@@ -90,16 +97,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ability.hpp" />
+    <ClInclude Include="AttackPlayerAction.hpp" />
+    <ClInclude Include="BehaviorNode.hpp" />
+    <ClInclude Include="BehaviorTree.hpp" />
+    <ClInclude Include="Composite.hpp" />
+    <ClInclude Include="DodgeShotsAction.hpp" />
+    <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameWorld.hpp" />
+    <ClInclude Include="MoveAction.hpp" />
+    <ClInclude Include="NearPlayerCondition.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />
     <ClInclude Include="MouseTest.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="PlayerShootingCondition.hpp" />
     <ClInclude Include="ResourceHolder.hpp" />
     <ClInclude Include="ResourceIdentifiers.hpp" />
     <ClInclude Include="SceneNode.hpp" />
+    <ClInclude Include="Selector.hpp" />
+    <ClInclude Include="Sequence.hpp" />
     <ClInclude Include="Square.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateIdentifiers.hpp" />

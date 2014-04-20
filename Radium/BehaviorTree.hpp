@@ -3,18 +3,17 @@
 
 namespace AI
 {
-    class BehaviorTree : public BehaviorNode
+    class BehaviorTree
     {
     public:
         BehaviorTree();
         ~BehaviorTree();
-        void update();
-        void setRootNode(BehaviorNode*);
-        BNodeStatus run();
+        void              update();
+        void              setRootNode(BehaviorNode*);
 
     public:
-        BehaviorNode* rootNode;
-        BNodeStatus treeStatus;
+        BehaviorNode*     rootNode;
+        BNodeStatus       treeStatus;
     };
 }
 

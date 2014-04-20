@@ -8,9 +8,9 @@ namespace AI
     class BehaviorNode
     {
     public:
-        virtual BNodeStatus run() = 0;
+        virtual BNodeStatus  run() = 0;
 
     private:
-        BNodeStatus status;
+        BNodeStatus          status;
     };
 }

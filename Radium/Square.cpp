@@ -13,5 +13,5 @@ void Square::drawCurrent(RenderTarget& target, RenderStates states) const
 
 void Square::updateCurrent(Time dt)
 {
-    std::cout << "Square updated..\n";
+    //std::cout << "Square updated..\n";
 }

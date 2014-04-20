@@ -1,5 +1,6 @@
 #include "GameWorld.hpp"
 #include "Square.hpp"
+#include "Enemy.hpp"
 
 GameWorld* GameWorld::sGameWorld = nullptr;
 
@@ -57,6 +58,10 @@ void GameWorld::buildScene()
     std::unique_ptr<Square> square(new Square());
     square->setPosition(mSpawnPosition);
     mSceneLayers[Foreground]->attachChild(std::move(square));
+
+    std::unique_ptr<Enemy> enemy(new Enemy());
+    enemy->setPosition(Vector2f(mSpawnPosition.x + 10, mSpawnPosition.y + 10));
+    mSceneLayers[Background]->attachChild(std::move(enemy));
 }
 
 Player* GameWorld::getPlayer() const

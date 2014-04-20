@@ -14,6 +14,9 @@ public:
     void            heal(float health);
     void            changeAbility();
 
+public:
+    bool            isShooting; //Guerra authored for enemy testing
+
 private:
 	virtual void    drawCurrent(RenderTarget& target, RenderStates states) const;	
 	virtual void    updateCurrent(Time dt);

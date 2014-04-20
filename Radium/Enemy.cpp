@@ -10,6 +10,7 @@ Enemy::Enemy()
     rectangle.setOutlineColor(Color::Green);
     rectangle.setOutlineThickness(5.0f);
     BuildBehaviorTree();
+    setSpeed(enemySpeed);
 }
 
 void Enemy::drawCurrent(RenderTarget& target, RenderStates states) const
@@ -19,18 +20,44 @@ void Enemy::drawCurrent(RenderTarget& target, RenderStates states) const
 
 void Enemy::updateCurrent(Time dt)
 {
-    std::cout << "in update" << std::endl;
     bTree->update();
 }
 
 void Enemy::BuildBehaviorTree()
 {
     bTree = new BehaviorTree();
-    root = new Sequence();
-    condition = new TestCondition();
-    action = new TestAction();
-    root->addChild(condition);
-    root->addChild(action);
+    rootSequence = new Sequence();
+    moving = new MoveAction(this);
+    selection = new Selector();
+    dodgeSequence = new Sequence();
+    shooting = new PlayerShootingCondition();
+    dodge = new DodgeShotsAction(this);
+    attackSequence = new Sequence();
+    nearby = new NearPlayerCondition(this);
+    attacking = new AttackPlayerAction();
 
-    bTree->setRootNode(root);
+    rootSequence->addChild(moving);
+    rootSequence->addChild(selection);
+
+    selection->addChild(dodgeSequence);
+    
+    dodgeSequence->addChild(shooting);
+    dodgeSequence->addChild(nearby);
+    dodgeSequence->addChild(dodge);
+    
+    selection->addChild(attackSequence);
+    attackSequence->addChild(nearby);
+    attackSequence->addChild(attacking);
+
+    bTree->setRootNode(rootSequence);
+}
+
+inline void Enemy::setSpeed(float speed)
+{
+    enemySpeed = speed;
+}
+
+inline float Enemy::getSpeed() const
+{
+    return enemySpeed;
 }
