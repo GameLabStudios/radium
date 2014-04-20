@@ -9,6 +9,7 @@ public:
                     GameState(StateStack& stack, Context context);
     virtual void    draw();
     virtual bool    update(Time dt);
+    virtual bool    fixedUpdate(Time dt);
     virtual bool    handleEvent(const Event& event);
 
 private:

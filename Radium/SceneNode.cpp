@@ -48,7 +48,7 @@ void SceneNode::update(Time dt)
 }
 
 // Must be override in derived class. Should be remain empty here.
-void SceneNode::updateCurrent(Time)
+void SceneNode::updateCurrent(Time dt)
 {
     // This function intentionally left blank.
 }
@@ -58,6 +58,25 @@ void SceneNode::updateChildren(Time dt)
     for (Ptr& child : mChildren)
     {
         child->update(dt);
+    }
+}
+
+void SceneNode::fixedUpdate(Time dt)
+{
+    fixedUpdateCurrent(dt);
+    fixedUpdateChildren(dt);
+}
+
+void SceneNode::fixedUpdateCurrent(Time dT)
+{
+    // This function intentionally left blank.
+}
+
+void SceneNode::fixedUpdateChildren(Time dt)
+{
+    for (Ptr& child : mChildren)
+    {
+        child->fixedUpdate(dt);
     }
 }
 

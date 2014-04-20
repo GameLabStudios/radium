@@ -16,6 +16,12 @@ bool GameState::update(Time dt)
     return true;
 }
 
+bool GameState::fixedUpdate(Time dt)
+{
+    mWorld->fixedUpdate(dt);
+    return true;
+}
+
 bool GameState::handleEvent(const Event& event)
 {
     mWorld->getPlayer()->handleEvent(event);

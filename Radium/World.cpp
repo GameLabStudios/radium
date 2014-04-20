@@ -7,7 +7,7 @@
 World::World(RenderWindow& window) : mWindow(window),
 mWorldView(window.getDefaultView()),
 mWorldBounds(0.f, 0.f, mWorldView.getSize().x * 2, mWorldView.getSize().y * 2),
-mSpawnPosition(mWorldView.getSize().x / 2.f, mWorldBounds.height - mWorldView.getSize().y / 2.f)
+mSpawnPosition(mWorldView.getSize().x / 2.f, mWorldView.getSize().y / 2.f)
 {
     loadTextures();
     buildScene();
@@ -16,9 +16,14 @@ mSpawnPosition(mWorldView.getSize().x / 2.f, mWorldBounds.height - mWorldView.ge
     mWorldView.setCenter(mSpawnPosition);
 }
 
-void World::update(sf::Time dt)
+void World::update(Time dt)
 {
     mSceneGraph.update(dt);
+}
+
+void World::fixedUpdate(Time dt)
+{
+    mSceneGraph.fixedUpdate(dt);
 }
 
 void World::draw()

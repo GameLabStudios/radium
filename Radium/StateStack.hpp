@@ -33,6 +33,7 @@ public:
     void registerState(States::ID stateID);
 
     void update(sf::Time dt);
+    void fixedUpdate(Time dt);
     void draw();
     void handleEvent(const sf::Event& event);
     void pushState(States::ID stateID);
@@ -53,11 +54,11 @@ private:
     };
 
 private:
-    std::vector<State::Ptr>								mStack;
-    std::vector<PendingChange>							mPendingList;
+    std::vector<State::Ptr>	mStack;
+    std::vector<PendingChange> mPendingList;
 
-    State::Context										mContext;
-    std::map<States::ID, std::function<State::Ptr()>>	mFactories;
+    State::Context mContext;
+    std::map<States::ID, std::function<State::Ptr()>> mFactories;
 
 };
 

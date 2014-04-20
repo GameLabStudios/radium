@@ -8,12 +8,24 @@ mFactories()
 {
 }
 
-void StateStack::update(sf::Time dt)
+void StateStack::update(Time dt)
 {
     // Iterate from top to bottom, stop as soon as update() returns false
     for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
     {
         if (!(*itr)->update(dt))
+            break;
+    }
+
+    applyPendingChanges();
+}
+
+void StateStack::fixedUpdate(Time dt)
+{
+    // Iterate from top to bottom, stop as soon as update() returns false
+    for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
+    {
+        if (!(*itr)->fixedUpdate(dt))
             break;
     }
 
@@ -92,8 +104,7 @@ void StateStack::applyPendingChanges()
     mPendingList.clear();
 }
 
-StateStack::PendingChange::PendingChange(Action action, States::ID stateID)
-: action(action)
-, stateID(stateID)
+StateStack::PendingChange::PendingChange(Action action, States::ID stateID) : action(action),
+stateID(stateID)
 {
 }

@@ -32,7 +32,8 @@ public:
     virtual				~State();
 
     virtual void		draw() = 0;
-    virtual bool		update(sf::Time dt) = 0;
+    virtual bool		update(Time dt) = 0;
+    virtual bool        fixedUpdate(Time dt) = 0;
     virtual bool		handleEvent(const sf::Event& event) = 0;
 
 

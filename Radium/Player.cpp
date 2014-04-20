@@ -1,6 +1,5 @@
 #include "Player.hpp"
 #include "GameWorld.hpp"
-#include <iostream>
 #include <string>
 
 #define _USE_MATH_DEFINES
@@ -24,7 +23,6 @@ void Player::drawCurrent(RenderTarget& target, RenderStates states) const
 
 void Player::updateCurrent(Time dt)
 {
-
 	Vector2f mousePos = GameWorld::getInstance()->getMousePosition();
 
 	float angle = atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x);
@@ -91,14 +89,12 @@ void Player::handleEvent(const Event& event)
     {
         if (event.key.code == Keyboard::A)
         {
-            std::cout << "a pressed.\n";
         }
     }
     else if (event.type == Event::KeyReleased)
     {
         if (event.key.code == Keyboard::A)
         {
-            std::cout << "a released.\n";
         }
     }
 }

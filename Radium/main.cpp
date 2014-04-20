@@ -1,8 +1,10 @@
 #include "Game.hpp"
 #include <stdexcept>
-#if _DEBUG
+#ifdef _DEBUG
 #include <iostream>
 #endif
+
+#include <Box2D/Box2D.h>
 
 int main()
 {

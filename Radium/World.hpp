@@ -21,6 +21,7 @@ class World : private NonCopyable
 public:
     explicit                            World(RenderWindow& window);
     virtual void                        update(Time dT);
+    virtual void                        fixedUpdate(Time dt);
     virtual void                        draw();
     RenderWindow&                       getWindow() const;
     const Vector2f                      getMousePosition() const;

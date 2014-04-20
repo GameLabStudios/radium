@@ -5,7 +5,7 @@ using namespace sf;
 
 class Entity : public SceneNode
 {
-public:
+public: 
     void setVelocity(Vector2f velocity);
     void setVelocity(float vx, float vy);
     Vector2f getVelocity() const;

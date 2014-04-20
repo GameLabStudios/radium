@@ -6,7 +6,12 @@
 
 const Time Game::TimePerFrame = seconds(1.f / 60.f);
 
-Game::Game() : mWindow(VideoMode(640, 480), "Radium"),
+const int Game::xResolution = 1280;
+const int Game::yResolution = 720;
+const float Game::m2p = 30.0f;
+const float Game::p2m = 1.0f / 30.0f;
+
+Game::Game() : mWindow(VideoMode(xResolution, yResolution), "Radium"),
 mTextures(),
 mFonts(),
 mStateStack(State::Context(mWindow, mTextures, mFonts))
@@ -35,7 +40,7 @@ void Game::run()
         {
             timeSinceLastUpdate -= TimePerFrame;
             processEvents();
-            update(TimePerFrame);
+            fixedUpdate(TimePerFrame);
 
             // Check inside this loop, because stack might be empty before update() call
             if (mStateStack.isEmpty())
@@ -43,6 +48,7 @@ void Game::run()
                 mWindow.close();
             }
         }
+        update(deltaTime);
         updateStatistics(deltaTime);
         render();
     }
@@ -64,6 +70,11 @@ void Game::processEvents()
 void Game::update(Time dt)
 {
     mStateStack.update(dt);
+}
+
+void Game::fixedUpdate(Time dt)
+{
+    mStateStack.fixedUpdate(dt);
 }
 
 void Game::render()

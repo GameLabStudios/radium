@@ -12,11 +12,16 @@ class Game : private NonCopyable
 public:
     static Game&        getInstance();
     void                run();
+    static const int    xResolution;
+    static const int    yResolution;
+    static const float  m2p;
+    static const float  p2m;
 
 private:
                         Game();
     void                processEvents();
     void                update(Time);
+    void                fixedUpdate(Time dt);
     void                render();
     void                updateStatistics(Time dt);
     void                registerStates();
