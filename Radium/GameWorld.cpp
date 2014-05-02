@@ -62,7 +62,7 @@ void GameWorld::buildScene()
     }
 
     // Add player to scene
-    std::unique_ptr<Player> player(new Player());
+    std::unique_ptr<Player> player(new Player(mSpawnPosition));
     mPlayer = player.get();
     player->setPosition(mSpawnPosition);
     mSceneLayers[Background]->attachChild(std::move(player));
@@ -72,7 +72,7 @@ void GameWorld::buildScene()
     //mPlayer->attachChild(std::move(square2));
 
     // Add Square to scene
-    std::unique_ptr<Square> square(new Square(mSpawnPosition));
+    std::unique_ptr<Square> square(new Square(mSpawnPosition + Vector2f(150.0f , 20.0f)));
     mSceneLayers[Foreground]->attachChild(std::move(square));
 }
 

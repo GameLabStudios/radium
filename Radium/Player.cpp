@@ -1,24 +1,81 @@
 #include "Player.hpp"
 #include "GameWorld.hpp"
+#include <iostream>
 #include <string>
+#include "Game.hpp"
 
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-Player::Player()
+Player::Player(Vector2f position)
 {
 	health = 100.0f;
-	circle = CircleShape(20, 30);
-	circle.setOrigin(20.f, 20.f);
-	playerSpeed = 200.0f;
-    abilityEquipped = 0;
 
+    // SFML circle object
+    circle = CircleShape(20.f, 30.f);
+    circle.setOrigin(20.0f, 20.0f);
+    circle.setFillColor(Color::Red);
+
+    // player speed
+	playerSpeed = 10.0f;
+
+    // Ability variables
+    abilityEquipped = 0;
     abilities[0] = new Teleport();
+
+    // Set Position
+    setPosition(position);
+
+    // Create Box2D body
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_dynamicBody;
+    bodyDef.position.Set(position.x * Game::p2m, position.y * Game::p2m);
+    mBody = GameWorld::getInstance()->getb2World()->CreateBody(&bodyDef);
+
+    // Setup Box2D body shape
+    b2CircleShape dynamicCircle;
+    dynamicCircle.m_radius = 20.0f * Game::p2m;
+
+    // Setup Box2D body fixture
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &dynamicCircle;
+    fixtureDef.density = 1.0f;
+    mBody->CreateFixture(&fixtureDef);
+
+    // Set Fixture to Box2D body
+    mBody->CreateFixture(&fixtureDef);
 }
 
 void Player::drawCurrent(RenderTarget& target, RenderStates states) const
 {
 	target.draw(circle, states);
+}
+
+void Player::fixedUpdateCurrent(Time dt)
+{
+    b2Vec2 position = mBody->GetPosition();
+
+    // move player
+    b2Vec2 pushDirection = b2Vec2(direction.x * playerSpeed, direction.y * -1.f * playerSpeed);
+    if (pushDirection == b2Vec2_zero)
+    {
+        mBody->SetLinearVelocity(b2Vec2_zero);
+    }
+    else
+    {
+        mBody->SetLinearVelocity(pushDirection);
+
+    }
+
+    
+
+    // debug movement push
+    //std::cout << " push X: " << pushDirection.x << " push Y: " << pushDirection.y << std::endl;
+    
+    float angle = mBody->GetAngle();
+    Vector2f sPosition(position.x * Game::m2p, Game::yResolution - position.y * Game::m2p);
+    setPosition(sPosition);
+    setRotation(angle);
 }
 
 void Player::updateCurrent(Time dt)
@@ -29,7 +86,7 @@ void Player::updateCurrent(Time dt)
 	setRotation(((angle * 180) / M_PI) - 45.f);
 
 	//direction of movement
-	Vector2f direction = Vector2f(0.0f, 0.0f);
+	direction = Vector2f(0.0f, 0.0f);
 
 	//input
 	if (Keyboard::isKeyPressed(Keyboard::A))
@@ -61,12 +118,10 @@ void Player::updateCurrent(Time dt)
         switch (abilityEquipped)
         {
         case 0:
-            abilities[abilityEquipped]->useAbility();
+            dynamic_cast<Teleport*>(abilities[abilityEquipped])->useAbility(mBody, angle);
             break;
-        default:
-            break;
-        }
         
+        }
     }
 
 	//normalize the direction
@@ -80,7 +135,7 @@ void Player::updateCurrent(Time dt)
 	}
 	
 	//move the player
-	move(direction * playerSpeed * dt.asSeconds());
+	//move(direction * playerSpeed * dt.asSeconds());
 }
 
 void Player::handleEvent(const Event& event)

@@ -4,7 +4,7 @@
 #include "GameState.hpp"
 #include <string>
 
-const Time Game::TimePerFrame = seconds(1.f / 60.f);
+const Time Game::TimePerFrame = seconds(1.f / 60.0f);
 
 const int Game::xResolution = 1280;
 const int Game::yResolution = 720;
