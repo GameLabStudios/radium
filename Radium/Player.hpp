@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include "Ability.hpp"
 #include "Teleport.hpp"
+#include "ShieldAbility.hpp"
 using namespace sf;
 
 class Player : public Entity
@@ -22,6 +23,7 @@ private:
 
 private:
 	CircleShape     circle;
+    RectangleShape  line;
     b2Body*         mBody;
     float           health;
 	float           playerSpeed;

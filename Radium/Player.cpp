@@ -16,12 +16,17 @@ Player::Player(Vector2f position)
     circle.setOrigin(20.0f, 20.0f);
     circle.setFillColor(Color::Red);
 
+    line = RectangleShape(Vector2f(20.0f, 5.0f));
+    line.setOrigin(10.0f, 2.5f);
+    line.setPosition(line.getPosition() + Vector2f(10.0f, 0.0));
+
     // player speed
 	playerSpeed = 10.0f;
 
     // Ability variables
     abilityEquipped = 0;
     abilities[0] = new Teleport();
+    abilities[1] = new ShieldAbility();
 
     // Set Position
     setPosition(position);
@@ -49,6 +54,7 @@ Player::Player(Vector2f position)
 void Player::drawCurrent(RenderTarget& target, RenderStates states) const
 {
 	target.draw(circle, states);
+    target.draw(line, states);
 }
 
 void Player::fixedUpdateCurrent(Time dt)
@@ -64,10 +70,7 @@ void Player::fixedUpdateCurrent(Time dt)
     else
     {
         mBody->SetLinearVelocity(pushDirection);
-
     }
-
-    
 
     // debug movement push
     //std::cout << " push X: " << pushDirection.x << " push Y: " << pushDirection.y << std::endl;
@@ -83,7 +86,7 @@ void Player::updateCurrent(Time dt)
 	Vector2f mousePos = GameWorld::getInstance()->getMousePosition();
 
 	float angle = atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x);
-	setRotation(((angle * 180) / M_PI) - 45.f);
+	setRotation(((angle * 180) / M_PI));
 
 	//direction of movement
 	direction = Vector2f(0.0f, 0.0f);
@@ -120,7 +123,13 @@ void Player::updateCurrent(Time dt)
         case 0:
             dynamic_cast<Teleport*>(abilities[abilityEquipped])->useAbility(mBody, angle);
             break;
-        
+        case 1:
+            dynamic_cast<ShieldAbility*>(abilities[abilityEquipped])->useAbility(mBody, angle);
+            break;
+        case 2:
+            break;
+        default:
+            break;
         }
     }
 

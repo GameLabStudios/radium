@@ -82,6 +82,8 @@
     <ClCompile Include="MouseTest.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneNode.cpp" />
+    <ClCompile Include="Shield.cpp" />
+    <ClCompile Include="ShieldAbility.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateStack.cpp" />
@@ -100,6 +102,8 @@
     <ClInclude Include="ResourceHolder.hpp" />
     <ClInclude Include="ResourceIdentifiers.hpp" />
     <ClInclude Include="SceneNode.hpp" />
+    <ClInclude Include="Shield.hpp" />
+    <ClInclude Include="ShieldAbility.hpp" />
     <ClInclude Include="Square.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateIdentifiers.hpp" />

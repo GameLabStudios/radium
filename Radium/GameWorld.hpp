@@ -7,11 +7,12 @@ class GameWorld : public World
 public:
     void                                update(Time dt);
     void                                fixedUpdate(Time dt);
+    void                                addEntityToWorld(Entity *entity);
     Player*                             getPlayer() const;
     b2World*                            getb2World();
     static GameWorld*                   getInstance();
     static GameWorld*                   createInstance(RenderWindow& window);
-
+    
 private:
     GameWorld(RenderWindow& window);
     static GameWorld*                   sGameWorld;

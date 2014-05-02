@@ -85,3 +85,11 @@ b2World* GameWorld::getb2World()
 {
     return mb2World;
 }
+
+void GameWorld::addEntityToWorld(Entity *entity)
+{
+    std::cout << "created shield" << std::endl;
+    std::unique_ptr<Entity> newEntity(entity);
+    mSceneLayers[Foreground]->attachChild(std::move(newEntity));
+}
+

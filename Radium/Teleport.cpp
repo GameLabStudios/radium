@@ -1,5 +1,9 @@
+#define _USE_MATH_DEFINES
+
 #include "Teleport.hpp"
 #include <iostream>
+#include <math.h>
+
 
 Teleport::Teleport()
 {
@@ -7,27 +11,19 @@ Teleport::Teleport()
     timer = 0.0f;
 }
 
-Vector2f Teleport::useAbility()
+void Teleport::useAbility()
 {
-    if (timer <= 0)
-    {
-        std::cout << "teleport" << std::endl;
-        timer = cooldown;
-    }
-    return Vector2f(0, 0);
+    //should not use this one
 }
 
-Vector2f Teleport::useAbility(b2Body *mBody, float angle)
+void Teleport::useAbility(b2Body *mBody, float rad)
 {
     if (timer <= 0)
     {
-        std::cout << "teleport2" << std::endl;
         timer = cooldown;
-
-        mBody->SetTransform(mBody->GetPosition() + b2Vec2(10, 0), 0.f);
-        return Vector2f(10, 0);
+        b2Vec2 jump = b2Vec2((cos(rad) * 10.0f), (sin(rad) * -10.0f));
+        mBody->SetTransform(mBody->GetPosition() + jump, 0.0f);
     }
-    return Vector2f(0, 0);
 }
 
 
