@@ -18,7 +18,10 @@ mSpawnPosition(mWorldView.getSize().x / 2.f, mWorldView.getSize().y / 2.f)
 
 void World::update(Time dt)
 {
+    // Update the scene graph heirarchy
     mSceneGraph.update(dt);
+    // Check for destruction flags after update completes
+    mSceneGraph.handleDestruction();
 }
 
 void World::fixedUpdate(Time dt)

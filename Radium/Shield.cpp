@@ -36,17 +36,17 @@ Shield::Shield(Vector2f position, float lTime)
     mBody->CreateFixture(&fixtureDef);
 }
 
-void Shield::updateCurrent(Time dt)
+void Shield::onUpdate(Time dt)
 {
 
 }
 
-void Shield::drawCurrent(RenderTarget& target, RenderStates states) const
+void Shield::onDraw(RenderTarget& target, RenderStates states) const
 {
     target.draw(shieldObj, states);
 }
 
-void Shield::fixedUpdateCurrent(Time dt)
+void Shield::onFixedUpdate(Time dt)
 {
     b2Vec2 position = mBody->GetPosition();
     float angle = mBody->GetAngle();

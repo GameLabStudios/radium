@@ -2,6 +2,8 @@
 #include "GameWorld.hpp"
 #include "Game.hpp"
 #include <iostream>
+#include <typeinfo>
+#include <string>
 
 Square::Square(Vector2f position)
 {
@@ -31,16 +33,20 @@ Square::Square(Vector2f position)
     mBody->CreateFixture(&fixtureDef);
 }
 
-void Square::drawCurrent(RenderTarget& target, RenderStates states) const
+void Square::onDraw(RenderTarget& target, RenderStates states) const
 {
     target.draw(square, states);
 }
 
-void Square::updateCurrent(Time dt)
+void Square::onUpdate(Time dt)
 {
+    //if (Keyboard::isKeyPressed(Keyboard::Num1))
+    //{
+    //    destroy();
+    //}
 }
 
-void Square::fixedUpdateCurrent(Time dt)
+void Square::onFixedUpdate(Time dt)
 {
     b2Vec2 position = mBody->GetPosition();
     float angle = mBody->GetAngle();

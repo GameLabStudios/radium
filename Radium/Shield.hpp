@@ -10,11 +10,9 @@ public:
     Shield(Vector2f position, float lTime);
 
 private:
-    virtual void    drawCurrent(RenderTarget& target, RenderStates states) const;
-    virtual void    updateCurrent(Time dt);
-    virtual void    fixedUpdateCurrent(Time dt);
-
-public:
+    virtual void    onDraw(RenderTarget& target, RenderStates states) const;
+    virtual void    onUpdate(Time dt);
+    virtual void    onFixedUpdate(Time dt);
 
 private:
     RectangleShape shieldObj;

@@ -7,11 +7,11 @@ Enemy::Enemy()
 {
 }
 
-void Enemy::drawCurrent(RenderTarget& target, RenderStates states) const
+void Enemy::onDraw(RenderTarget& target, RenderStates states) const
 {
 }
 
-void Enemy::updateCurrent(Time dt)
+void Enemy::onUpdate(Time dt)
 {
 }
 
@@ -33,10 +33,10 @@ Vector2f Enemy::getVelocity() const
     return velocity;
 }
 
-Vector2f Enemy::getPosition() const
-{
-    return position;
-}
+//Vector2f Enemy::getPosition() const
+//{
+//    return position;
+//}
 
 Color Enemy::getColor() const
 {
@@ -72,10 +72,10 @@ void Enemy::setVelocity(Vector2f velocity)
     this->velocity = velocity;
 }
 
-void Enemy::setPosition(Vector2f position)
-{
-    this->position = position;
-}
+//void Enemy::setPosition(Vector2f position)
+//{
+//    this->position = position;
+//}
 
 void Enemy::setColor(Color color)
 {

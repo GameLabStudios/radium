@@ -12,12 +12,12 @@ MouseTest::MouseTest()
     playerSpeed = 200.0f;
 }
 
-void MouseTest::drawCurrent(RenderTarget& target, RenderStates states) const
+void MouseTest::onDraw(RenderTarget& target, RenderStates states) const
 {
     target.draw(circle, states);
 }
 
-void MouseTest::updateCurrent(Time dt)
+void MouseTest::onUpdate(Time dt)
 {
     //Vector2f mousePos = Game::getInstance().getWorld().getMousePosition();
 

@@ -10,8 +10,8 @@ public:
     MouseTest();
 
 private:
-    virtual void drawCurrent(RenderTarget& target, RenderStates states) const;
-    virtual void updateCurrent(Time dt);
+    virtual void onDraw(RenderTarget& target, RenderStates states) const;
+    virtual void onUpdate(Time dt);
 
 private:
     CircleShape circle;

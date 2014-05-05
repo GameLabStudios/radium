@@ -6,6 +6,18 @@ SceneNode::SceneNode()
     mParent = nullptr;
 }
 
+SceneNode::~SceneNode()
+{
+    // Delete all children
+    for (Ptr& child : mChildren)
+    {
+        delete &child;
+    }
+    
+    // Detach self from parent
+    mParent->detachChild(*this);
+}
+
 void SceneNode::attachChild(Ptr child)
 {
     child->mParent = this;
@@ -78,6 +90,25 @@ void SceneNode::fixedUpdateChildren(Time dt)
     {
         child->fixedUpdate(dt);
     }
+}
+
+void SceneNode::handleDestruction()
+{
+    handleDestructionCurrent();
+    handleDestructionChildren();
+}
+
+void SceneNode::handleDestructionChildren()
+{
+    for (Ptr& child : mChildren)
+    {
+        child->handleDestruction();
+    }
+}
+
+void SceneNode::handleDestructionCurrent()
+{
+
 }
 
 Transform SceneNode::getWorldTransform() const
