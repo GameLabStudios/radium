@@ -133,6 +133,18 @@ void Player::updateCurrent(Time dt)
         }
     }
 
+    // Guerra authored for enemy testing...will take out eventually
+    if (Mouse::isButtonPressed(Mouse::Left))
+    {
+        isShooting = true;
+        std::cout << "shooting" << std::endl;
+    }
+    else
+    {
+        std::cout << "not shooting" << std::endl;
+        isShooting = false;
+    }
+
 	//normalize the direction
 	if (direction.x != 0.0f)
 	{
