@@ -5,59 +5,92 @@
 
 Enemy::Enemy()
 {
-    rectangle.setSize(Vector2f(50, 50));
-    rectangle.setFillColor(Color::Red);
-    rectangle.setOutlineColor(Color::Green);
-    rectangle.setOutlineThickness(5.0f);
-    BuildBehaviorTree();
-    setSpeed(enemySpeed);
 }
 
 void Enemy::drawCurrent(RenderTarget& target, RenderStates states) const
 {
-    target.draw(rectangle, states);
 }
 
 void Enemy::updateCurrent(Time dt)
 {
-    bTree->update();
 }
 
-void Enemy::BuildBehaviorTree()
+/******Public Functions******/
+
+#pragma region
+float Enemy::getHealth() const
 {
-    bTree = new BehaviorTree();
-    rootSequence = new Sequence();
-    moving = new MoveAction(this);
-    selection = new Selector();
-    dodgeSequence = new Sequence();
-    shooting = new PlayerShootingCondition();
-    dodge = new DodgeShotsAction(this);
-    attackSequence = new Sequence();
-    nearby = new NearPlayerCondition(this);
-    attacking = new AttackPlayerAction();
-
-    rootSequence->addChild(moving);
-    rootSequence->addChild(selection);
-
-    selection->addChild(dodgeSequence);
-    
-    dodgeSequence->addChild(shooting);
-    dodgeSequence->addChild(nearby);
-    dodgeSequence->addChild(dodge);
-    
-    selection->addChild(attackSequence);
-    attackSequence->addChild(nearby);
-    attackSequence->addChild(attacking);
-
-    bTree->setRootNode(rootSequence);
+    return health;
 }
 
-inline void Enemy::setSpeed(float speed)
+int Enemy::getNumSides() const
 {
-    enemySpeed = speed;
+    return numSides;
 }
 
-inline float Enemy::getSpeed() const
+Vector2f Enemy::getVelocity() const
 {
-    return enemySpeed;
+    return velocity;
 }
+
+Vector2f Enemy::getPosition() const
+{
+    return position;
+}
+
+Color Enemy::getColor() const
+{
+    return color;
+}
+
+float Enemy::getAlpha() const
+{
+    return alpha;
+}
+
+BehaviorTree* Enemy::getBTreeRoot() const
+{
+    return bTree;
+}
+#pragma endregion Getters
+
+/******Protected Functions******/
+
+#pragma region
+void Enemy::setHealth(float health)
+{
+    this->health = health;
+}
+
+void Enemy::setNumSides(int numSides)
+{
+    this->numSides = numSides;
+}
+
+void Enemy::setVelocity(Vector2f velocity)
+{
+    this->velocity = velocity;
+}
+
+void Enemy::setPosition(Vector2f position)
+{
+    this->position = position;
+}
+
+void Enemy::setColor(Color color)
+{
+    this->color = color;
+}
+
+void Enemy::setAlpha(float alpha)
+{
+    this->alpha = alpha;
+}
+
+void Enemy::setBTreeRoot(BehaviorTree* bTree)
+{
+    this->bTree = bTree;
+}
+#pragma endregion Setters
+
+/******Private Functions******/
