@@ -7,7 +7,7 @@ class GameWorld : public World
 public:
     void                                update(Time dt);
     void                                fixedUpdate(Time dt);
-    void                                addEntityToWorld(Entity *entity);
+    void                                addEntityToWorld(std::unique_ptr<Entity> entity);
     Player*                             getPlayer() const;
     b2World*                            getb2World();
     static GameWorld*                   getInstance();

@@ -24,7 +24,7 @@ Player::Player(Vector2f position)
 	playerSpeed = 10.0f;
 
     // Ability variables
-    abilityEquipped = 0;
+    abilityEquipped = 1;
     abilities[0] = new Teleport();
     abilities[1] = new ShieldAbility();
 

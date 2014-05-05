@@ -12,6 +12,7 @@ Shield::Shield(Vector2f position, float lTime)
 
     shieldObj = RectangleShape(Vector2f(20.f, 20.f));
     shieldObj.setOrigin(10.0f, 10.0f);
+    shieldObj.setFillColor(Color::Blue);
 
     // Set Position
     setPosition(position + Vector2f(20.0f, 0.0f));
@@ -38,7 +39,14 @@ Shield::Shield(Vector2f position, float lTime)
 
 void Shield::updateCurrent(Time dt)
 {
-
+    /*if (lifeTime > 0)
+    {
+        lifeTime -= dt.asSeconds();
+    }
+    else{
+        std::cout << "deleted shield" << std::endl;
+        delete this;
+    }*/
 }
 
 void Shield::drawCurrent(RenderTarget& target, RenderStates states) const

@@ -1,5 +1,6 @@
 #include "GameWorld.hpp"
 #include "Square.hpp"
+#include "Shield.hpp"
 #include <iostream>
 
 GameWorld* GameWorld::sGameWorld = nullptr;
@@ -74,6 +75,10 @@ void GameWorld::buildScene()
     // Add Square to scene
     std::unique_ptr<Square> square(new Square(mSpawnPosition + Vector2f(150.0f , 20.0f)));
     mSceneLayers[Foreground]->attachChild(std::move(square));
+
+    // add shield testing
+    //std::unique_ptr<Shield> shield(new Shield(mSpawnPosition + Vector2f(-150.0f, 20.0f), 10.0f));
+    //mSceneLayers[Foreground]->attachChild(std::move(shield));
 }
 
 Player* GameWorld::getPlayer() const
@@ -86,10 +91,11 @@ b2World* GameWorld::getb2World()
     return mb2World;
 }
 
-void GameWorld::addEntityToWorld(Entity *entity)
+void GameWorld::addEntityToWorld(std::unique_ptr<Entity> newEntity)
 {
     std::cout << "created shield" << std::endl;
-    std::unique_ptr<Entity> newEntity(entity);
     mSceneLayers[Foreground]->attachChild(std::move(newEntity));
 }
+
+
 
