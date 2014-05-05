@@ -28,7 +28,7 @@ BNodeStatus DodgeShotsAction::run()
         direction.y = direction.y / sqrt((direction.x*direction.x) + (direction.y*direction.y));
     }
 
-    enemy->move(direction * enemy->getSpeed());
+    //enemy->move(direction * enemy->getSpeed());
 
     return SUCCESS;
 }
