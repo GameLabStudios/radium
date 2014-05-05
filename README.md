@@ -7,7 +7,7 @@ Currently being developed as an independent studies project at UCSC, Radium is a
 
 ### Team Members
 
-* Marco Ancheta
-* Leland Dawson
-* Brian Gabin
-* Andrew Guerra
+* Marco Ancheta - Gameplay/UI Programmer
+* Leland Dawson - Procedural Programmer
+* Brian Gabin - Engine/Particles Programmer
+* Andrew Guerra - AI Programmer
