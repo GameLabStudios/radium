@@ -7,6 +7,7 @@
 #include "Entity.hpp"
 #include "GameWorld.hpp"
 #include "Game.hpp"
+#include "Rigidbody.hpp"
 
 
 ShieldAbility::ShieldAbility(Entity* entity) : Ability(entity)
@@ -16,21 +17,16 @@ ShieldAbility::ShieldAbility(Entity* entity) : Ability(entity)
     shieldLife = 2.0f;
 }
 
-void ShieldAbility::useAbility()
-{
-    //should not use this one
-}
-
-void ShieldAbility::useAbility(b2Body *mBody, float rad)
+void ShieldAbility::useAbility(float rad)
 {
     if (timer <= 0)
     {
         timer = cooldown;
         Vector2f shieldPosOffset = Vector2f((cos(rad) * 40.0f), (sin(rad) * -40.0f));
-        Vector2f shieldPos = Vector2f((mBody->GetPosition().x * Game::m2p) + shieldPosOffset.x, (mBody->GetPosition().y * Game::m2p) + shieldPosOffset.y);
-        std::cout << " new position: " << shieldPos.x << " " << shieldPos.y << std::endl;
+        Vector2f shieldPos = Vector2f((mEntity->rigidbody->body->GetPosition().x * Game::m2p) + shieldPosOffset.x, (mEntity->rigidbody->body->GetPosition().y * Game::m2p) + shieldPosOffset.y);
         std::unique_ptr<Entity> newShield(new Shield(shieldPos, shieldLife));
         GameWorld::getInstance()->addEntityToWorld(std::move(newShield));
+        //mEntity->attachChild(std::move(newShield));
     }
 }
 

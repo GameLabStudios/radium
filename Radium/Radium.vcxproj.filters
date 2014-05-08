@@ -135,6 +135,9 @@
     <ClCompile Include="SquareRigidbody.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerMovement.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.hpp">
@@ -249,6 +252,9 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="CircleRigidbody.hpp">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMovement.hpp">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

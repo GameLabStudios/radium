@@ -4,6 +4,7 @@
 #include "GameWorld.hpp"
 #include "Game.hpp"
 #include "CircleRigidbody.hpp"
+#include "PlayerMovement.hpp"
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -21,20 +22,21 @@ Player::Player(Vector2f position)
     line.setOrigin(10.0f, 2.5f);
     line.setPosition(line.getPosition() + Vector2f(10.0f, 0.0));
 
-    // player speed
-	playerSpeed = 10.0f;
+    // Set Position
+    setPosition(position);
 
-    // Ability variables
+    // Ability components
     abilityEquipped = 1;
     abilities[0] = addComponent<TeleportAbility>();
     abilities[1] = addComponent<ShieldAbility>();
 
-    // Set Position
-    setPosition(position);
-
+    // rigidbody component
     CircleRigidbody* rigidbody = addComponent<CircleRigidbody>();
     rigidbody->createBody(Rigidbody::dynamicBody);
     rigidbody->setShape(circle);
+
+    // player movement component
+    addComponent<PlayerMovement>();
 }
 
 void Player::onDraw(RenderTarget& target, RenderStates states) const
@@ -45,21 +47,6 @@ void Player::onDraw(RenderTarget& target, RenderStates states) const
 
 void Player::onFixedUpdate(Time dt)
 {
-    b2Vec2 position = rigidbody->body->GetPosition();
-    
-    // move player
-    b2Vec2 pushDirection = b2Vec2(direction.x * playerSpeed, direction.y * -1.f * playerSpeed);
-    if (pushDirection == b2Vec2_zero)
-    {
-        rigidbody->body->SetLinearVelocity(b2Vec2_zero);
-    }
-    else
-    {
-        rigidbody->body->SetLinearVelocity(pushDirection);
-    }
-    
-    // debug movement push
-    //std::cout << " push X: " << pushDirection.x << " push Y: " << pushDirection.y << std::endl;
 }
 
 void Player::onUpdate(Time dt)
@@ -68,37 +55,16 @@ void Player::onUpdate(Time dt)
 
 	float angle = atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x);
 	setRotation((float)((angle * 180.0f) / M_PI));
-
-	//direction of movement
-	direction = Vector2f(0.0f, 0.0f);
-
-	//input
-	if (Keyboard::isKeyPressed(Keyboard::A))
-	{
-		direction.x -= 1.0f;
-	}
-	if (Keyboard::isKeyPressed(Keyboard::D))
-	{
-		direction.x += 1.0f;
-	}
-	if (Keyboard::isKeyPressed(Keyboard::S))
-	{
-		direction.y += 1.0f;
-	}
-	if (Keyboard::isKeyPressed(Keyboard::W))
-	{
-		direction.y -= 1.0f;
-	}
-
+	
     if (Mouse::isButtonPressed(Mouse::Right))
     {
         switch (abilityEquipped)
         {
         case 0:
-            dynamic_cast<TeleportAbility*>(abilities[abilityEquipped])->useAbility(rigidbody->body, angle);
+            dynamic_cast<TeleportAbility*>(abilities[abilityEquipped])->useAbility(angle);
             break;
         case 1:
-            dynamic_cast<ShieldAbility*>(abilities[abilityEquipped])->useAbility(rigidbody->body, angle);
+            dynamic_cast<ShieldAbility*>(abilities[abilityEquipped])->useAbility(angle);
             break;
         case 2:
             break;
@@ -119,19 +85,6 @@ void Player::onUpdate(Time dt)
         //std::cout << "not shooting" << std::endl;
         isShooting = false;
     }
-
-	//normalize the direction
-	if (direction.x != 0.0f)
-	{
-		direction.x = direction.x / sqrt((direction.x*direction.x) + (direction.y*direction.y));
-	}
-	if (direction.y != 0.0f)
-	{
-		direction.y = direction.y / sqrt((direction.x*direction.x) + (direction.y*direction.y));
-	}
-	
-	//move the player
-	//move(direction * playerSpeed * dt.asSeconds());
 }
 
 void Player::handleEvent(const Event& event)
@@ -144,10 +97,7 @@ void Player::handleEvent(const Event& event)
     }
     else if (event.type == Event::KeyReleased)
     {
-        if (event.key.code == Keyboard::A)
-        {
-        }
-        else if (event.key.code == Keyboard::Num1)
+        if (event.key.code == Keyboard::Num1)
         {
             changeAbility(0);
         }

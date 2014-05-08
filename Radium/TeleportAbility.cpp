@@ -1,4 +1,5 @@
 #include "TeleportAbility.hpp"
+#include "Rigidbody.hpp"
 #include <iostream>
 
 
@@ -8,18 +9,13 @@ TeleportAbility::TeleportAbility(Entity* entity) : Ability(entity)
     timer = 0.0f;
 }
 
-void TeleportAbility::useAbility()
-{
-    //should not use this one
-}
-
-void TeleportAbility::useAbility(b2Body *mBody, float rad)
+void TeleportAbility::useAbility(float rad)
 {
     if (timer <= 0)
     {
         timer = cooldown;
         b2Vec2 jump = b2Vec2((cos(rad) * 10.0f), (sin(rad) * -10.0f));
-        mBody->SetTransform(mBody->GetPosition() + jump, 0.0f);
+        mEntity->rigidbody->body->SetTransform(mEntity->rigidbody->body->GetPosition() + jump, 0.0f);
     }
 }
 

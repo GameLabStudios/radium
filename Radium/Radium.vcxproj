@@ -86,6 +86,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MeleeEnemy.cpp" />
     <ClCompile Include="MoveAction.cpp" />
+    <ClCompile Include="PlayerMovement.cpp" />
     <ClCompile Include="NearPlayerCondition.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="MouseTest.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="GameWorld.hpp" />
     <ClInclude Include="MeleeEnemy.hpp" />
     <ClInclude Include="MoveAction.hpp" />
+    <ClInclude Include="PlayerMovement.hpp" />
     <ClInclude Include="NearPlayerCondition.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />
     <ClInclude Include="MouseTest.hpp" />

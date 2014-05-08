@@ -8,14 +8,8 @@ class TeleportAbility: public Ability
 {
 public:
     TeleportAbility(Entity* entity);
-    virtual void useAbility();
-    virtual void useAbility(b2Body *mBody, float angle);
+    virtual void useAbility(float angle);
     virtual void onUpdate(Time dt);
-    
-
-private:
-
-public:
 
 private:
     float timer;
