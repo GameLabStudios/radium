@@ -6,11 +6,6 @@
 class MeleeEnemy : public Enemy
 {
 public:
-    MeleeEnemy();
-
-protected:
-    //virtual void buildBehaviorTree();
-    //virtual void drawCurrent(RenderTarget& target, RenderStates states) const;
-    //virtual void updateCurrent(Time dt);
+    MeleeEnemy(Vector2f position);
 };
 

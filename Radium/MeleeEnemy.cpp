@@ -1,6 +1,7 @@
 #include "MeleeEnemy.hpp"
 
-MeleeEnemy::MeleeEnemy() : Enemy()
+MeleeEnemy::MeleeEnemy(Vector2f position) : Enemy()
 {
-    
+    // set position
+    setPosition(position);
 }
