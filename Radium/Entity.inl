@@ -13,7 +13,7 @@ T* Entity::addComponent()
     }
 
     // If component is not found, return a new component
-    T* component = new T();
+    T* component = new T(this);
     components.push_back(component);
     return component;
 }

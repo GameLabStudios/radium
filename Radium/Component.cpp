@@ -1,7 +1,8 @@
 #include "Component.hpp"
 
-Component::Component()
+Component::Component(Entity* entity)
 {
+    mEntity = entity;
     mDestructionFlag = false;
 }
 

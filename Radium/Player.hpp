@@ -27,7 +27,6 @@ private:
 private:
 	CircleShape     circle;
     RectangleShape  line;
-    b2Body*         mBody;
     float           health;
 	float           playerSpeed;
     Ability*        abilities[3];

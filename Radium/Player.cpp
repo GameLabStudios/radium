@@ -1,8 +1,9 @@
-#include "Player.hpp"
-#include "GameWorld.hpp"
 #include <iostream>
 #include <string>
+#include "Player.hpp"
+#include "GameWorld.hpp"
 #include "Game.hpp"
+#include "CircleRigidbody.hpp"
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -31,24 +32,9 @@ Player::Player(Vector2f position)
     // Set Position
     setPosition(position);
 
-    // Create Box2D body
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(position.x * Game::p2m, position.y * Game::p2m);
-    mBody = GameWorld::getInstance()->getb2World()->CreateBody(&bodyDef);
-
-    // Setup Box2D body shape
-    b2CircleShape dynamicCircle;
-    dynamicCircle.m_radius = 20.0f * Game::p2m;
-
-    // Setup Box2D body fixture
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicCircle;
-    fixtureDef.density = 1.0f;
-    mBody->CreateFixture(&fixtureDef);
-
-    // Set Fixture to Box2D body
-    mBody->CreateFixture(&fixtureDef);
+    CircleRigidbody* rigidbody = addComponent<CircleRigidbody>();
+    rigidbody->createBody(Rigidbody::dynamicBody);
+    rigidbody->setShape(circle);
 }
 
 void Player::onDraw(RenderTarget& target, RenderStates states) const
@@ -59,26 +45,21 @@ void Player::onDraw(RenderTarget& target, RenderStates states) const
 
 void Player::onFixedUpdate(Time dt)
 {
-    b2Vec2 position = mBody->GetPosition();
-
+    b2Vec2 position = rigidbody->body->GetPosition();
+    
     // move player
     b2Vec2 pushDirection = b2Vec2(direction.x * playerSpeed, direction.y * -1.f * playerSpeed);
     if (pushDirection == b2Vec2_zero)
     {
-        mBody->SetLinearVelocity(b2Vec2_zero);
+        rigidbody->body->SetLinearVelocity(b2Vec2_zero);
     }
     else
     {
-        mBody->SetLinearVelocity(pushDirection);
+        rigidbody->body->SetLinearVelocity(pushDirection);
     }
-
+    
     // debug movement push
     //std::cout << " push X: " << pushDirection.x << " push Y: " << pushDirection.y << std::endl;
-    
-    float angle = mBody->GetAngle();
-    Vector2f sPosition(position.x * Game::m2p, Game::yResolution - position.y * Game::m2p);
-    setPosition(sPosition);
-    setRotation(angle);
 }
 
 void Player::onUpdate(Time dt)
@@ -114,10 +95,10 @@ void Player::onUpdate(Time dt)
         switch (abilityEquipped)
         {
         case 0:
-            dynamic_cast<TeleportAbility*>(abilities[abilityEquipped])->useAbility(mBody, angle);
+            dynamic_cast<TeleportAbility*>(abilities[abilityEquipped])->useAbility(rigidbody->body, angle);
             break;
         case 1:
-            dynamic_cast<ShieldAbility*>(abilities[abilityEquipped])->useAbility(mBody, angle);
+            dynamic_cast<ShieldAbility*>(abilities[abilityEquipped])->useAbility(rigidbody->body, angle);
             break;
         case 2:
             break;

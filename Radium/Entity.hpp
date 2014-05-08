@@ -5,7 +5,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "SceneNode.hpp"
-#include "Component.hpp"
+
+class Component;
+class Rigidbody;
 
 class Entity : public SceneNode
 {
@@ -22,6 +24,10 @@ public:
 
     template<typename T>
     std::vector<T*>         getComponents();
+
+public:
+    // Helpful pointers to components
+    Rigidbody*              rigidbody;
 
 private:
     virtual void            drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;

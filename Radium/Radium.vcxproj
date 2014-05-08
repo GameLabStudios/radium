@@ -75,6 +75,7 @@
     <ClCompile Include="Ability.cpp" />
     <ClCompile Include="AttackPlayerAction.cpp" />
     <ClCompile Include="BehaviorTree.cpp" />
+    <ClCompile Include="CircleRigidbody.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DodgeShotsAction.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -90,10 +91,12 @@
     <ClCompile Include="MouseTest.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerShootingCondition.cpp" />
+    <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShieldAbility.cpp" />
     <ClCompile Include="Square.cpp" />
+    <ClCompile Include="SquareRigidbody.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateStack.cpp" />
     <ClCompile Include="TeleportAbility.cpp" />
@@ -105,6 +108,7 @@
     <ClInclude Include="AttackPlayerAction.hpp" />
     <ClInclude Include="BehaviorNode.hpp" />
     <ClInclude Include="BehaviorTree.hpp" />
+    <ClInclude Include="CircleRigidbody.hpp" />
     <ClInclude Include="Component.hpp" />
     <ClInclude Include="Composite.hpp" />
     <ClInclude Include="DodgeShotsAction.hpp" />
@@ -122,12 +126,14 @@
     <ClInclude Include="PlayerShootingCondition.hpp" />
     <ClInclude Include="ResourceHolder.hpp" />
     <ClInclude Include="ResourceIdentifiers.hpp" />
+    <ClInclude Include="Rigidbody.hpp" />
     <ClInclude Include="SceneNode.hpp" />
     <ClInclude Include="Selector.hpp" />
     <ClInclude Include="Sequence.hpp" />
     <ClInclude Include="Shield.hpp" />
     <ClInclude Include="ShieldAbility.hpp" />
     <ClInclude Include="Square.hpp" />
+    <ClInclude Include="SquareRigidbody.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateIdentifiers.hpp" />
     <ClInclude Include="StateStack.hpp" />

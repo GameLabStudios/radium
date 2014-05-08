@@ -7,12 +7,8 @@ using namespace sf;
 class Ability : public Component
 {
 public:
-    Ability();
+    Ability(Entity* entity);
     void useAbility();
-
-private:
-
-public:
 
 private:
     float timer;

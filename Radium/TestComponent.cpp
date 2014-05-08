@@ -1,7 +1,7 @@
 #include "TestComponent.hpp"
 #include <iostream>
 
-TestComponent::TestComponent()
+TestComponent::TestComponent(Entity* entity) : Component(entity)
 {
 
 }

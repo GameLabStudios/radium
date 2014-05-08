@@ -7,7 +7,7 @@ using namespace sf;
 class ShieldAbility : public Ability
 {
 public:
-    ShieldAbility();
+    ShieldAbility(Entity* entity);
     virtual void useAbility();
     virtual void useAbility(b2Body *mBody, float angle);
     virtual void onUpdate(Time dt);

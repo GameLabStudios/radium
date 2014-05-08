@@ -25,7 +25,5 @@ BNodeStatus MoveAction::run()
         direction.y = direction.y / sqrt((direction.x*direction.x) + (direction.y*direction.y));
     }
 
-    //enemy->move(direction * enemy->getSpeed());
-
     return SUCCESS;
 }

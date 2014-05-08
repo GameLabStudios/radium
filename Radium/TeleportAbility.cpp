@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-TeleportAbility::TeleportAbility()
+TeleportAbility::TeleportAbility(Entity* entity) : Ability(entity)
 {
     cooldown = 5.0f;
     timer = 0.0f;

@@ -9,7 +9,7 @@
 #include "Game.hpp"
 
 
-ShieldAbility::ShieldAbility()
+ShieldAbility::ShieldAbility(Entity* entity) : Ability(entity)
 {
     cooldown = 5.0f;
     timer = 0.0f;

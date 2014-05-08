@@ -1,11 +1,12 @@
 #pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
+#include "Entity.hpp"
 
 class Component
 {
 public:
-                        Component();
+                        Component(Entity* entity);
 
     void                destroy();
 
@@ -18,7 +19,8 @@ public:
     //static bool         getUniqueFlag();
     bool                getDestructionFlag() const;
 
-private:
+protected:
     //static bool         mUniqueFlag;
+    Entity*             mEntity;
     bool                mDestructionFlag;
 };

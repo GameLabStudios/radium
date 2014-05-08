@@ -4,6 +4,6 @@
 class TestComponent : public Component
 {
 public:
-    TestComponent();
-    virtual void onDestroy();
+                    TestComponent(Entity* entity);
+    virtual void    onDestroy();
 };
