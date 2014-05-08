@@ -12,7 +12,7 @@ Player::Player(Vector2f position)
 	health = 100.0f;
 
     // SFML circle object
-    circle = CircleShape(20.f, 30.f);
+    circle = CircleShape(20, 30);
     circle.setOrigin(20.0f, 20.0f);
     circle.setFillColor(Color::Red);
 
@@ -25,8 +25,8 @@ Player::Player(Vector2f position)
 
     // Ability variables
     abilityEquipped = 1;
-    abilities[0] = new Teleport();
-    abilities[1] = new ShieldAbility();
+    abilities[0] = addComponent<TeleportAbility>();
+    abilities[1] = addComponent<ShieldAbility>();
 
     // Set Position
     setPosition(position);
@@ -51,13 +51,13 @@ Player::Player(Vector2f position)
     mBody->CreateFixture(&fixtureDef);
 }
 
-void Player::drawCurrent(RenderTarget& target, RenderStates states) const
+void Player::onDraw(RenderTarget& target, RenderStates states) const
 {
 	target.draw(circle, states);
     target.draw(line, states);
 }
 
-void Player::fixedUpdateCurrent(Time dt)
+void Player::onFixedUpdate(Time dt)
 {
     b2Vec2 position = mBody->GetPosition();
 
@@ -81,12 +81,12 @@ void Player::fixedUpdateCurrent(Time dt)
     setRotation(angle);
 }
 
-void Player::updateCurrent(Time dt)
+void Player::onUpdate(Time dt)
 {
 	Vector2f mousePos = GameWorld::getInstance()->getMousePosition();
 
 	float angle = atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x);
-	setRotation(((angle * 180) / M_PI));
+	setRotation((float)((angle * 180.0f) / M_PI));
 
 	//direction of movement
 	direction = Vector2f(0.0f, 0.0f);
@@ -109,19 +109,12 @@ void Player::updateCurrent(Time dt)
 		direction.y -= 1.0f;
 	}
 
-    if (Keyboard::isKeyPressed(Keyboard::Num1))
-    {
-
-    }
-
-    abilities[abilityEquipped]->update(dt);
-
     if (Mouse::isButtonPressed(Mouse::Right))
     {
         switch (abilityEquipped)
         {
         case 0:
-            dynamic_cast<Teleport*>(abilities[abilityEquipped])->useAbility(mBody, angle);
+            dynamic_cast<TeleportAbility*>(abilities[abilityEquipped])->useAbility(mBody, angle);
             break;
         case 1:
             dynamic_cast<ShieldAbility*>(abilities[abilityEquipped])->useAbility(mBody, angle);
@@ -131,6 +124,19 @@ void Player::updateCurrent(Time dt)
         default:
             break;
         }
+    }
+
+    // Guerra authored for enemy testing...will take out eventually
+    // TODO: Take this shit out.
+    if (Mouse::isButtonPressed(Mouse::Left))
+    {
+        isShooting = true;
+        //std::cout << "shooting" << std::endl;
+    }
+    else
+    {
+        //std::cout << "not shooting" << std::endl;
+        isShooting = false;
     }
 
 	//normalize the direction
@@ -160,5 +166,19 @@ void Player::handleEvent(const Event& event)
         if (event.key.code == Keyboard::A)
         {
         }
+        else if (event.key.code == Keyboard::Num1)
+        {
+            changeAbility(0);
+        }
+        else if (event.key.code == Keyboard::Num2)
+        {
+            changeAbility(1);
+        }
     }
+}
+
+void Player::changeAbility(int num)
+{
+    std::cout << "changed ability to " << num << std::endl;
+    abilityEquipped = num;
 }

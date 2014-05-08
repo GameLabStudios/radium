@@ -73,45 +73,72 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ability.cpp" />
+    <ClCompile Include="AttackPlayerAction.cpp" />
+    <ClCompile Include="BehaviorTree.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="DodgeShotsAction.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MeleeEnemy.cpp" />
+    <ClCompile Include="MoveAction.cpp" />
+    <ClCompile Include="NearPlayerCondition.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="MouseTest.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerShootingCondition.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShieldAbility.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateStack.cpp" />
-    <ClCompile Include="Teleport.cpp" />
+    <ClCompile Include="TeleportAbility.cpp" />
+    <ClCompile Include="TestComponent.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ability.hpp" />
+    <ClInclude Include="AttackPlayerAction.hpp" />
+    <ClInclude Include="BehaviorNode.hpp" />
+    <ClInclude Include="BehaviorTree.hpp" />
+    <ClInclude Include="Component.hpp" />
+    <ClInclude Include="Composite.hpp" />
+    <ClInclude Include="DodgeShotsAction.hpp" />
+    <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameWorld.hpp" />
+    <ClInclude Include="MeleeEnemy.hpp" />
+    <ClInclude Include="MoveAction.hpp" />
+    <ClInclude Include="NearPlayerCondition.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />
     <ClInclude Include="MouseTest.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="PlayerShootingCondition.hpp" />
     <ClInclude Include="ResourceHolder.hpp" />
     <ClInclude Include="ResourceIdentifiers.hpp" />
     <ClInclude Include="SceneNode.hpp" />
+    <ClInclude Include="Selector.hpp" />
+    <ClInclude Include="Sequence.hpp" />
     <ClInclude Include="Shield.hpp" />
     <ClInclude Include="ShieldAbility.hpp" />
     <ClInclude Include="Square.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateIdentifiers.hpp" />
     <ClInclude Include="StateStack.hpp" />
-    <ClInclude Include="Teleport.hpp" />
+    <ClInclude Include="TeleportAbility.hpp" />
+    <ClInclude Include="TestAction.hpp" />
+    <ClInclude Include="TestComponent.hpp" />
+    <ClInclude Include="TestCondition.hpp" />
     <ClInclude Include="World.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Entity.inl" />
     <None Include="ResourceHolder.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

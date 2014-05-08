@@ -20,11 +20,13 @@ public:
     typedef std::unique_ptr<SceneNode> Ptr;
 
 public:
-    SceneNode();
+                            SceneNode();
+                            ~SceneNode();
     void                    attachChild(Ptr child);
     Ptr                     detachChild(const SceneNode& node);
     void                    update(Time dt);
     void                    fixedUpdate(Time dt);
+    void                    handleDestruction();
     Transform               getWorldTransform() const;	// If absolution position is needed over
     Vector2f                getWorldPosition() const;   //  relative posiiton use these two functions.
 
@@ -35,6 +37,8 @@ private:
     virtual void            updateCurrent(Time dt);										    // Must override in derived class. Optional update logic goes here.
     void                    fixedUpdateChildren(Time dt);
     virtual void            fixedUpdateCurrent(Time dt);
+    void                    handleDestructionChildren();
+    virtual void            handleDestructionCurrent();
 
 private:
     std::vector<Ptr>        mChildren;

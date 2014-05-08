@@ -1,14 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <Box2D\Box2D.h>
+#include "Component.hpp"
 using namespace sf;
 
-class Ability
+class Ability : public Component
 {
 public:
     Ability();
     void useAbility();
-    virtual void update(Time dt);
 
 private:
 

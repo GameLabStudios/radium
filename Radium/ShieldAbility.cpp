@@ -26,14 +26,15 @@ void ShieldAbility::useAbility(b2Body *mBody, float rad)
     if (timer <= 0)
     {
         timer = cooldown;
-        Vector2f shieldPos = Vector2f((mBody->GetPosition().x * Game::m2p) + 50.0f, (mBody->GetPosition().y * Game::m2p));
+        Vector2f shieldPosOffset = Vector2f((cos(rad) * 40.0f), (sin(rad) * -40.0f));
+        Vector2f shieldPos = Vector2f((mBody->GetPosition().x * Game::m2p) + shieldPosOffset.x, (mBody->GetPosition().y * Game::m2p) + shieldPosOffset.y);
         std::cout << " new position: " << shieldPos.x << " " << shieldPos.y << std::endl;
         std::unique_ptr<Entity> newShield(new Shield(shieldPos, shieldLife));
         GameWorld::getInstance()->addEntityToWorld(std::move(newShield));
     }
 }
 
-void ShieldAbility::update(Time dt)
+void ShieldAbility::onUpdate(Time dt)
 {
     if (timer > 0)
     {

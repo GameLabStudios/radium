@@ -8,13 +8,9 @@ Ability::Ability()
 
 void Ability::useAbility()
 {
-    std::cout << "virtual" << std::endl;
+    //not used
 }
 
-void Ability::update(Time dt)
-{
-
-}
 
 
 

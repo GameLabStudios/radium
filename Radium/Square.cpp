@@ -2,6 +2,8 @@
 #include "GameWorld.hpp"
 #include "Game.hpp"
 #include <iostream>
+#include <typeinfo>
+#include <string>
 
 Square::Square(Vector2f position)
 {
@@ -13,7 +15,7 @@ Square::Square(Vector2f position)
 
     // Create Box2D body
     b2BodyDef bodyDef;
-    bodyDef.type = b2_staticBody;
+    bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(position.x * Game::p2m, position.y * Game::p2m);
     mBody = GameWorld::getInstance()->getb2World()->CreateBody(&bodyDef);
 
@@ -24,23 +26,27 @@ Square::Square(Vector2f position)
     // Setup Box2D body fixture
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &dynamicBox;
-    fixtureDef.density = 1.0f;
+    fixtureDef.density = 100.0f;
     fixtureDef.friction = 0.3f;
 
     // Set Fixture to Box2D body
     mBody->CreateFixture(&fixtureDef);
 }
 
-void Square::drawCurrent(RenderTarget& target, RenderStates states) const
+void Square::onDraw(RenderTarget& target, RenderStates states) const
 {
     target.draw(square, states);
 }
 
-void Square::updateCurrent(Time dt)
+void Square::onUpdate(Time dt)
 {
+    //if (Keyboard::isKeyPressed(Keyboard::Num1))
+    //{
+    //    destroy();
+    //}
 }
 
-void Square::fixedUpdateCurrent(Time dt)
+void Square::onFixedUpdate(Time dt)
 {
     b2Vec2 position = mBody->GetPosition();
     float angle = mBody->GetAngle();

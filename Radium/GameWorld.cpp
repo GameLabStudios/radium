@@ -2,6 +2,7 @@
 #include "Square.hpp"
 #include "Shield.hpp"
 #include <iostream>
+#include "Enemy.hpp"
 
 GameWorld* GameWorld::sGameWorld = nullptr;
 
@@ -33,11 +34,12 @@ GameWorld* GameWorld::createInstance(RenderWindow& window)
 
 void GameWorld::update(Time dt)
 {
+    // Camera tracks player
+    // TODO: Detach this code from the GameWorld and set-up Camera class possibly, or at least have code within the update loop do this.
+    mWorldView.setCenter(mPlayer->getPosition());
+
     // Call Base update(dt)
     World::update(dt);
-
-    // Camera tracks player
-    mWorldView.setCenter(mPlayer->getPosition());
 }
 
 void GameWorld::fixedUpdate(Time dt)
@@ -76,9 +78,10 @@ void GameWorld::buildScene()
     std::unique_ptr<Square> square(new Square(mSpawnPosition + Vector2f(150.0f , 20.0f)));
     mSceneLayers[Foreground]->attachChild(std::move(square));
 
-    // add shield testing
-    //std::unique_ptr<Shield> shield(new Shield(mSpawnPosition + Vector2f(-150.0f, 20.0f), 10.0f));
-    //mSceneLayers[Foreground]->attachChild(std::move(shield));
+    //std::unique_ptr<Enemy> enemy(new Enemy(mSpawnPosition.x + 10, mSpawnPosition.y + 10));
+    //enemy->setPosition(Vector2f(mSpawnPosition.x + 10, mSpawnPosition.y + 10));
+    //mSceneLayers[Background]->attachChild(std::move(enemy));
+
 }
 
 Player* GameWorld::getPlayer() const

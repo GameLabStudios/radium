@@ -1,22 +1,19 @@
-#define _USE_MATH_DEFINES
-
-#include "Teleport.hpp"
+#include "TeleportAbility.hpp"
 #include <iostream>
-#include <math.h>
 
 
-Teleport::Teleport()
+TeleportAbility::TeleportAbility()
 {
     cooldown = 5.0f;
     timer = 0.0f;
 }
 
-void Teleport::useAbility()
+void TeleportAbility::useAbility()
 {
     //should not use this one
 }
 
-void Teleport::useAbility(b2Body *mBody, float rad)
+void TeleportAbility::useAbility(b2Body *mBody, float rad)
 {
     if (timer <= 0)
     {
@@ -27,7 +24,7 @@ void Teleport::useAbility(b2Body *mBody, float rad)
 }
 
 
-void Teleport::update(Time dt)
+void TeleportAbility::onUpdate(Time dt)
 {
     if (timer > 0)
     {

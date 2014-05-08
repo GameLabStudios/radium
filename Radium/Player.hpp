@@ -3,7 +3,7 @@
 #include <Box2D/Box2D.h>
 #include "Entity.hpp"
 #include "Ability.hpp"
-#include "Teleport.hpp"
+#include "TeleportAbility.hpp"
 #include "ShieldAbility.hpp"
 using namespace sf;
 
@@ -14,12 +14,15 @@ public:
     void            handleEvent(const sf::Event& event);
     void            takeDamage(float damage);
     void            heal(float health);
-    void            changeAbility();
+
+public:
+    bool            isShooting; //Guerra authored for enemy testing
 
 private:
-	virtual void    drawCurrent(RenderTarget& target, RenderStates states) const;	
-	virtual void    updateCurrent(Time dt);
-    virtual void    fixedUpdateCurrent(Time dt);
+	virtual void    onDraw(RenderTarget& target, RenderStates states) const;	
+	virtual void    onUpdate(Time dt);
+    virtual void    onFixedUpdate(Time dt);
+    void            changeAbility(int num);
 
 private:
 	CircleShape     circle;
@@ -27,7 +30,7 @@ private:
     b2Body*         mBody;
     float           health;
 	float           playerSpeed;
-    Ability         *abilities[3];
+    Ability*        abilities[3];
     int             abilityEquipped;
     Vector2f        direction;
 };
