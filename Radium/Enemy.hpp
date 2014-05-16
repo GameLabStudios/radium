@@ -11,7 +11,7 @@ class Enemy : public Entity
 {
 // Functions
 public:
-    Enemy();
+    Enemy(Vector2f position);
 
     // Getters
     inline virtual float            getHealth() const;                // returns the health
@@ -19,10 +19,10 @@ public:
     inline virtual Vector2f         getVelocity() const;              // returns the velocity
     inline virtual Color            getColor() const;                 // returns the color
     inline virtual float            getAlpha() const;                 // returns the alpha transparency
-    inline virtual BehaviorTree*    getBTreeRoot() const;             // returns the root node of the behavior tree
+    inline virtual BehaviorTree*    getBTree() const;                 // returns the root node of the behavior tree
 
 protected:
-    virtual void                    buildBehaviorTree(){};            // builds the behavior tree
+    virtual void                    buildBehaviorTree();            // builds the behavior tree
 
     // Setters
     virtual void                    setHealth(float health);          // sets the health
@@ -30,7 +30,7 @@ protected:
     virtual void                    setVelocity(Vector2f velocity);   // sets the velocity
     virtual void                    setColor(Color color);            // sets the color
     virtual void                    setAlpha(float alpha);            // sets the alpha transparency
-    virtual void                    setBTreeRoot(BehaviorTree* bTree);// sets the root node of the behavior tree
+    virtual void                    setBTree(BehaviorTree* bTree);    // sets the behavior tree
 
 private:
     virtual void                    onDraw(RenderTarget& target, RenderStates states) const;
@@ -46,5 +46,8 @@ protected:
     float                           alpha;                            // the transparency of the enemy
     BehaviorTree*                   bTree;                            // the behavior tree of the enemy
     b2Body*                         mBody;                            // the physics body of the enemy
+
+    // temporary so Guerra can write behaviors
+    RectangleShape                  rectShape;                        // the shape of the enemy
 };
 

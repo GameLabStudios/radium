@@ -43,6 +43,21 @@
     <Filter Include="Source Files\Components">
       <UniqueIdentifier>{e93dcccc-8f0e-4e18-8446-55e291cc3763}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AI\Actions">
+      <UniqueIdentifier>{bae15858-e19e-438d-9429-b7492e135710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AI\Conditions">
+      <UniqueIdentifier>{a608a9f9-8031-475e-8c3b-fb022d337c36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI\Actions">
+      <UniqueIdentifier>{b4540d78-ca83-4e9f-aa61-8a7bf9865efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI\BehaviorTree">
+      <UniqueIdentifier>{f482e981-8d0f-4fee-af8c-26a07ea837ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI\Conditions">
+      <UniqueIdentifier>{9fd97a90-6109-4db7-ae99-e0fec25d363d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp">
@@ -96,22 +111,7 @@
     <ClCompile Include="World.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="AttackPlayerAction.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
     <ClCompile Include="BehaviorTree.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="DodgeShotsAction.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveAction.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="NearPlayerCondition.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerShootingCondition.cpp">
       <Filter>Source Files\AI</Filter>
     </ClCompile>
     <ClCompile Include="ParticleSystem.cpp">
@@ -137,6 +137,9 @@
     </ClCompile>
     <ClCompile Include="PlayerMovement.cpp">
       <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ChasePlayer.cpp">
+      <Filter>Source Files\AI\Actions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,42 +200,6 @@
     <ClInclude Include="StateStack.hpp">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="AttackPlayerAction.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="BehaviorNode.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="BehaviorTree.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Composite.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="DodgeShotsAction.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveAction.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="NearPlayerCondition.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerShootingCondition.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Selector.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="TestAction.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="TestCondition.hpp">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
     <ClInclude Include="ParticleSystem.hpp">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
@@ -256,6 +223,27 @@
     </ClInclude>
     <ClInclude Include="PlayerMovement.hpp">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorNode.hpp">
+      <Filter>Header Files\AI\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree.hpp">
+      <Filter>Header Files\AI\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Composite.hpp">
+      <Filter>Header Files\AI\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Selector.hpp">
+      <Filter>Header Files\AI\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence.hpp">
+      <Filter>Header Files\AI\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.hpp">
+      <Filter>Header Files\AI\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ChasePlayer.hpp">
+      <Filter>Header Files\AI\Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
