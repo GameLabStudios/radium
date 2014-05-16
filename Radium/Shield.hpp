@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
 #include "Entity.hpp"
+#include "Player.hpp"
+
 using namespace sf;
 
 class Shield : public Entity
@@ -20,5 +22,4 @@ private:
     float lifeTime;
     float timer;
     float cooldown;
-
 };

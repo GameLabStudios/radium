@@ -23,3 +23,19 @@ void Square::onDraw(RenderTarget& target, RenderStates states) const
 {
     target.draw(square, states);
 }
+
+void Square::onUpdate(Time dt)
+{
+    if (Keyboard::isKeyPressed(Keyboard::B))
+    {
+        std::cout << "change dynamic" << std::endl;
+        SquareRigidbody* sq = getComponent<SquareRigidbody>();
+        sq->bodyDef.type = b2_dynamicBody;
+    }
+    if (Keyboard::isKeyPressed(Keyboard::N))
+    {
+        std::cout << "change static" << std::endl;
+        SquareRigidbody* sq = getComponent<SquareRigidbody>();
+        sq->bodyDef.type = b2_staticBody;
+    }
+}

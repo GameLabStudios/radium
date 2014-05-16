@@ -13,7 +13,7 @@ void SquareRigidbody::setShape(RectangleShape shape)
 
     // Setup Bod2D body shape
     b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(size.x / 2.0f * Game::p2m, size.y / 2.0f * Game::p2m);
+    dynamicBox.SetAsBox((size.x * Game::p2m) / 2.0f, (size.y * Game::p2m) / 2.0f);
 
     // Setup Box2D body fixture
     b2FixtureDef fixtureDef;
@@ -24,3 +24,4 @@ void SquareRigidbody::setShape(RectangleShape shape)
     // Set Fixture to Box2D body
     body->CreateFixture(&fixtureDef);
 }
+

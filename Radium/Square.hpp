@@ -11,7 +11,8 @@ public:
     Square(Vector2f position);
 
 private:
-    virtual void onDraw(RenderTarget& target, RenderStates states) const;
+    virtual void    onDraw(RenderTarget& target, RenderStates states) const;
+    virtual void    onUpdate(Time dt);
 
 private:
     RectangleShape square;

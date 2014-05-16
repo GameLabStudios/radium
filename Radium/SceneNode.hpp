@@ -29,6 +29,7 @@ public:
     void                    handleDestruction();
     Transform               getWorldTransform() const;	// If absolution position is needed over
     Vector2f                getWorldPosition() const;   //  relative posiiton use these two functions.
+    SceneNode*              getParent();
 
 private:
     virtual void            draw(RenderTarget& target, RenderStates states) const;

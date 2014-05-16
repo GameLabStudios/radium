@@ -125,3 +125,8 @@ Vector2f SceneNode::getWorldPosition() const
 {
     return getWorldTransform() * Vector2f();
 }
+
+SceneNode* SceneNode::getParent()
+{
+    return mParent;
+}

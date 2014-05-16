@@ -21,10 +21,12 @@ void ShieldAbility::useAbility(float rad)
 {
     if (timer <= 0)
     {
+        std::cout << "created shield at " << (mEntity->rigidbody->body->GetPosition().x)  << std::endl;
         timer = cooldown;
-        Vector2f shieldPosOffset = Vector2f((cos(rad) * 40.0f), (sin(rad) * -40.0f));
-        Vector2f shieldPos = Vector2f((mEntity->rigidbody->body->GetPosition().x * Game::m2p) + shieldPosOffset.x, (mEntity->rigidbody->body->GetPosition().y * Game::m2p) + shieldPosOffset.y);
+        Vector2f shieldPos = Vector2f(40.0f, 0.0f) * Game::p2m;
+
         std::unique_ptr<Entity> newShield(new Shield(shieldPos, shieldLife));
+        std::cout << "shield at " << newShield->getPosition().x << std::endl;
         GameWorld::getInstance()->addEntityToWorld(std::move(newShield));
         //mEntity->attachChild(std::move(newShield));
     }

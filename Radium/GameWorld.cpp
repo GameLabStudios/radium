@@ -97,7 +97,7 @@ b2World* GameWorld::getb2World()
 void GameWorld::addEntityToWorld(std::unique_ptr<Entity> newEntity)
 {
     std::cout << "created shield" << std::endl;
-    mSceneLayers[Foreground]->attachChild(std::move(newEntity));
+    mPlayer->attachChild(std::move(newEntity));
 }
 
 

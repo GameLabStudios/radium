@@ -41,6 +41,7 @@ Player::Player(Vector2f position)
 
 void Player::onDraw(RenderTarget& target, RenderStates states) const
 {
+
 	target.draw(circle, states);
     target.draw(line, states);
 }

@@ -4,7 +4,7 @@
 #include <iostream>
 #include "GameWorld.hpp"
 #include "Game.hpp"
-#include "SquareRigidbody.hpp"
+#include "ShieldRigidbody.hpp"
 
 Shield::Shield(Vector2f position, float lTime)
 {
@@ -15,19 +15,25 @@ Shield::Shield(Vector2f position, float lTime)
     shieldObj.setFillColor(Color::Blue);
 
     // Set Position
-    setPosition(position);
+    setPosition(position * Game::m2p);
 
-    SquareRigidbody* rigidbody = addComponent<SquareRigidbody>();
-    rigidbody->createBody(Rigidbody::staticBody);
+    ShieldRigidbody* rigidbody = addComponent<ShieldRigidbody>();
     rigidbody->setShape(shieldObj);
+
 }
 
 void Shield::onUpdate(Time dt)
 {
+    //std::cout << "World pos: " << getWorldPosition().x << ", " << getWorldPosition().y << std::endl;
+    //std::cout << "rot: " << GameWorld::getInstance()->getPlayer()->getRotation() << std::endl;
+    ShieldRigidbody* shield = getComponent<ShieldRigidbody>();
+    b2Vec2 physicsPosition = b2Vec2(getWorldPosition().x * Game::p2m, (Game::yResolution - getWorldPosition().y) * Game::p2m);
+    shield->body->SetTransform(physicsPosition, (M_PI * GameWorld::getInstance()->getPlayer()->getRotation()) / 180.0f );//GameWorld::getInstance()->getPlayer()->getRotation());
 }
 
 void Shield::onDraw(RenderTarget& target, RenderStates states) const
 {
+    //std::cout << "pos: " << getPosition().x << ", "<< getPosition().y <<std::endl;
     target.draw(shieldObj, states);
 }
 
