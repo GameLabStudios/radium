@@ -5,19 +5,26 @@
 class GameWorld : public World
 {
 public:
-    void                                update(Time dt);
-    void                                fixedUpdate(Time dt);
-    void                                addEntityToWorld(std::unique_ptr<Entity> entity);
-    Player*                             getPlayer() const;
-    b2World*                            getb2World();
+    virtual void                        update(Time dt);
+    virtual void                        draw();
+    virtual void                        fixedUpdate(Time dt);
+
     static GameWorld*                   getInstance();
     static GameWorld*                   createInstance(RenderWindow& window);
-    
+
+    Player*                             getPlayer() const;
+    b2World*                            getb2World();
+    void                                toggleDebugDraw();
+    void                                addEntityToWorld(std::unique_ptr<Entity> entity);
+
 private:
-    GameWorld(RenderWindow& window);
-    static GameWorld*                   sGameWorld;
+                                        GameWorld(RenderWindow& window);
     void                                buildScene();
+
+private:
+    static GameWorld*                   sGameWorld;
     Player*                             mPlayer;
     MeleeEnemy*                         mMeleeEnemy;
     b2World*                            mb2World;
+    bool                                mDrawDebug;
 };

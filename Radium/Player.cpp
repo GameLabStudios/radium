@@ -92,6 +92,10 @@ void Player::handleEvent(const Event& event)
 {
     if (event.type == Event::KeyPressed)
     {
+        if (event.key.code == Keyboard::O)
+        {
+            GameWorld::getInstance()->toggleDebugDraw();
+        }
         if (event.key.code == Keyboard::A)
         {
         }

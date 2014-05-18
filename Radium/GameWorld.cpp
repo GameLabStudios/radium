@@ -3,6 +3,7 @@
 #include "Shield.hpp"
 #include <iostream>
 #include "Enemy.hpp"
+#include "SFMLDebugDraw.hpp"
 
 GameWorld* GameWorld::sGameWorld = nullptr;
 
@@ -10,6 +11,10 @@ GameWorld::GameWorld(RenderWindow& window) : World(window)
 {
     sGameWorld = this;
     mb2World = new b2World(b2Vec2(0.0f, 0.0f));
+    
+    SFMLDebugDraw* debugDrawInstance = new SFMLDebugDraw(mWindow);
+    debugDrawInstance->SetFlags(b2Draw::e_shapeBit);
+    mb2World->SetDebugDraw(debugDrawInstance);
 
     loadTextures();
     buildScene();
@@ -42,6 +47,20 @@ void GameWorld::update(Time dt)
     World::update(dt);
 }
 
+void GameWorld::draw()
+{
+    
+    if (mDrawDebug)
+    {
+        mb2World->DrawDebugData();
+    }
+    else
+    {
+        mWindow.setView(mWorldView);
+        mWindow.draw(mSceneGraph);
+    }
+}
+
 void GameWorld::fixedUpdate(Time dt)
 {
     // Call Base fixedUpdate(dt)
@@ -51,6 +70,27 @@ void GameWorld::fixedUpdate(Time dt)
     int32 velocityIterations = 8;
     int32 positionIterations = 3;
     mb2World->Step(dt.asSeconds(), velocityIterations, positionIterations);
+}
+
+Player* GameWorld::getPlayer() const
+{
+    return mPlayer;
+}
+
+b2World* GameWorld::getb2World()
+{
+    return mb2World;
+}
+
+void GameWorld::toggleDebugDraw()
+{
+    mDrawDebug = !mDrawDebug;
+}
+
+void GameWorld::addEntityToWorld(std::unique_ptr<Entity> newEntity)
+{
+    std::cout << "created shield" << std::endl;
+    mPlayer->attachChild(std::move(newEntity));
 }
 
 void GameWorld::buildScene()
@@ -82,7 +122,7 @@ void GameWorld::buildScene()
     //mPlayer->attachChild(std::move(square2));
 
     // Add Square to scene
-    std::unique_ptr<Square> square(new Square(mSpawnPosition + Vector2f(150.0f , 20.0f)));
+    std::unique_ptr<Square> square(new Square(mSpawnPosition + Vector2f(150.0f, 20.0f)));
     mSceneLayers[Foreground]->attachChild(std::move(square));
 
     //std::unique_ptr<Enemy> enemy(new Enemy(mSpawnPosition.x + 10, mSpawnPosition.y + 10));
@@ -90,22 +130,3 @@ void GameWorld::buildScene()
     //mSceneLayers[Background]->attachChild(std::move(enemy));
 
 }
-
-Player* GameWorld::getPlayer() const
-{
-    return mPlayer;
-}
-
-b2World* GameWorld::getb2World()
-{
-    return mb2World;
-}
-
-void GameWorld::addEntityToWorld(std::unique_ptr<Entity> newEntity)
-{
-    std::cout << "created shield" << std::endl;
-    mPlayer->attachChild(std::move(newEntity));
-}
-
-
-

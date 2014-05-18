@@ -90,6 +90,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="SceneNode.cpp" />
+    <ClCompile Include="SFMLDebugDraw.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShieldAbility.cpp" />
     <ClCompile Include="ShieldRigidbody.cpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="SceneNode.hpp" />
     <ClInclude Include="Selector.hpp" />
     <ClInclude Include="Sequence.hpp" />
+    <ClInclude Include="SFMLDebugDraw.hpp" />
     <ClInclude Include="Shield.hpp" />
     <ClInclude Include="ShieldAbility.hpp" />
     <ClInclude Include="ShieldRigidbody.hpp" />

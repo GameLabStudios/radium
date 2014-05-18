@@ -144,6 +144,9 @@
     <ClCompile Include="BehaviorTree.cpp">
       <Filter>Source Files\AI</Filter>
     </ClCompile>
+    <ClCompile Include="SFMLDebugDraw.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.hpp">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="ChasePlayer.hpp">
       <Filter>Header Files\AI\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="SFMLDebugDraw.hpp">
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

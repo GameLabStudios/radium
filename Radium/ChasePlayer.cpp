@@ -30,10 +30,10 @@ void Action::doAction()
 {
     if (nodeStatus == SUCCESS)
     {
-        cout << "caught player" << endl;
+        //cout << "caught player" << endl;
     }
     else if (nodeStatus == RUNNING)
     {
-        cout << "still chasing player" << endl;
+        //cout << "still chasing player" << endl;
     }
 }

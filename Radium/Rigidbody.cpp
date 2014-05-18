@@ -54,8 +54,6 @@ void Rigidbody::onFixedUpdate(sf::Time dt)
     }
     //std::cout << "physics: " << body->GetPosition().x << ", " << body->GetPosition().y << std::endl;
 
-
-
     // setPosition using pixel coordinates
     // since pPosition is local, must add parent's position
     mEntity->setPosition(pPhysicsPosition);
