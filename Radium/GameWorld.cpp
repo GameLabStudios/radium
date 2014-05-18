@@ -4,17 +4,29 @@
 #include <iostream>
 #include "Enemy.hpp"
 #include "SFMLDebugDraw.hpp"
+#include "Box2DCallbackManager.hpp"
 
 GameWorld* GameWorld::sGameWorld = nullptr;
 
 GameWorld::GameWorld(RenderWindow& window) : World(window)
 {
     sGameWorld = this;
+
+    // Create Box2D World
     mb2World = new b2World(b2Vec2(0.0f, 0.0f));
     
+    // Set-up Box2D Debug Drawing and Options
     SFMLDebugDraw* debugDrawInstance = new SFMLDebugDraw(mWindow);
+    // Draw Shapes:                             b2Draw::e_shapeBit
+    // Draw Joint Connections:                  b2Draw::e_jointBit 
+    // Draw Axis-Aligned Bounding Boxes:        b2Draw::e_aabbBit         
+    // Draw Broad-Phase Pairs:                  b2Draw::e_pairBit
+    // Draw a marker at body Center of Mass:    b2Draw::e_centerOfMassBit
     debugDrawInstance->SetFlags(b2Draw::e_shapeBit);
     mb2World->SetDebugDraw(debugDrawInstance);
+
+    // Set-up Box2D Callbacks
+    mb2World->SetContactListener(new Box2DCallbackManager());
 
     loadTextures();
     buildScene();
@@ -49,14 +61,13 @@ void GameWorld::update(Time dt)
 
 void GameWorld::draw()
 {
-    
+    mWindow.setView(mWorldView);
     if (mDrawDebug)
     {
         mb2World->DrawDebugData();
     }
     else
     {
-        mWindow.setView(mWorldView);
         mWindow.draw(mSceneGraph);
     }
 }

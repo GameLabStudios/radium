@@ -26,6 +26,16 @@ void Component::onFixedUpdate(sf::Time dt)
     // This function is intentionally left blank
 }
 
+void Component::onBeginContact(b2Fixture* other, b2Contact* contact)
+{
+    // This function is intentionally left blank
+}
+
+void Component::onEndContact(b2Fixture* other, b2Contact* contact)
+{
+    // This function is intentionally left blank
+}
+
 void Component::onDestroy()
 {
     // This function is intentionally left blank

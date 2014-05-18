@@ -147,6 +147,9 @@
     <ClCompile Include="SFMLDebugDraw.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Box2DCallbackManager.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.hpp">
@@ -255,6 +258,9 @@
       <Filter>Header Files\AI\Actions</Filter>
     </ClInclude>
     <ClInclude Include="SFMLDebugDraw.hpp">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Box2DCallbackManager.hpp">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>

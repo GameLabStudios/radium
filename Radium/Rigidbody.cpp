@@ -31,6 +31,9 @@ void Rigidbody::createBody(type bodyType)
     std::cout << "world pos: " << position.x << ", " << position.y << std::endl;
     bodyDef.position.Set(position.x * Game::p2m, position.y * Game::p2m);
     body = GameWorld::getInstance()->getb2World()->CreateBody(&bodyDef);
+
+    // Store reference to entity in body
+    body->SetUserData(mEntity);
 }
 
 void Rigidbody::onFixedUpdate(sf::Time dt)
@@ -43,7 +46,7 @@ void Rigidbody::onFixedUpdate(sf::Time dt)
     b2Vec2 mPosition = body->GetPosition();
 
     // pPosition holds the world pixel coordinates of this
-    Vector2f pPhysicsPosition(mPosition.x * Game::m2p, Game::yResolution - mPosition.y * Game::m2p);
+    Vector2f pPhysicsPosition(mPosition.x * Game::m2p, mPosition.y * Game::m2p);
 
     SceneNode* parent = mEntity->getParent();
     if (parent != nullptr && pPhysicsPosition.x != 640)

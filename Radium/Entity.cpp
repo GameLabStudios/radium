@@ -1,5 +1,5 @@
 #include "Entity.hpp"
-#include "TestComponent.hpp"
+#include "Component.hpp"
 #include <iostream>
 
 Entity::Entity()
@@ -10,6 +10,24 @@ Entity::Entity()
 void Entity::destroy()
 {
     mDestuctionFlag = true;
+}
+
+void Entity::receiveBeginContact(b2Fixture* other, b2Contact* contact)
+{
+    onBeginContact(other, contact);
+    for (Component* component : components)
+    {
+        component->onBeginContact(other, contact);
+    }
+}
+
+void Entity::receiveEndContact(b2Fixture* other, b2Contact* contact)
+{
+    onEndContact(other, contact);
+    for (Component* component : components)
+    {
+        component->onEndContact(other, contact);
+    }
 }
 
 void Entity::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
@@ -101,6 +119,16 @@ void Entity::onUpdate(sf::Time dt)
 }
 
 void Entity::onFixedUpdate(sf::Time dt)
+{
+    // This function is intentionally left blank
+}
+
+void Entity::onBeginContact(b2Fixture* other, b2Contact* contact)
+{
+    // This function is intentionally left blank
+}
+
+void Entity::onEndContact(b2Fixture* other, b2Contact* contact)
 {
     // This function is intentionally left blank
 }

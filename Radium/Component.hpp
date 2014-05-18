@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <Box2D/Box2D.h>
 #include <SFML/Graphics.hpp>
 #include "Entity.hpp"
 
@@ -15,6 +16,8 @@ public:
     virtual void        onUpdate(sf::Time dt);
     virtual void        onFixedUpdate(sf::Time dt);
     virtual void        onDestroy();
+    virtual void        onBeginContact(b2Fixture* other, b2Contact* contact);
+    virtual void        onEndContact(b2Fixture* other, b2Contact* contact);
 
     //static bool         getUniqueFlag();
     bool                getDestructionFlag() const;

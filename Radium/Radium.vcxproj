@@ -74,6 +74,7 @@
   <ItemGroup>
     <ClCompile Include="Ability.cpp" />
     <ClCompile Include="BehaviorTree.cpp" />
+    <ClCompile Include="Box2DCallbackManager.cpp" />
     <ClCompile Include="ChasePlayer.cpp" />
     <ClCompile Include="CircleRigidbody.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -107,6 +108,7 @@
     <ClInclude Include="Action.hpp" />
     <ClInclude Include="BehaviorNode.hpp" />
     <ClInclude Include="BehaviorTree.hpp" />
+    <ClInclude Include="Box2DCallbackManager.hpp" />
     <ClInclude Include="ChasePlayer.hpp" />
     <ClInclude Include="CircleRigidbody.hpp" />
     <ClInclude Include="Component.hpp" />

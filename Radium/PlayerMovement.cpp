@@ -8,10 +8,10 @@ PlayerMovement::PlayerMovement(Entity* entity) : Component(entity)
 
 void PlayerMovement::onUpdate(sf::Time dt)
 {
-    //direction of movement
+    // Direction of movement
     direction = Vector2f(0.0f, 0.0f);
 
-    //input
+    // Input
     if (Keyboard::isKeyPressed(Keyboard::A))
     {
         direction.x -= 1.0f;
@@ -22,14 +22,14 @@ void PlayerMovement::onUpdate(sf::Time dt)
     }
     if (Keyboard::isKeyPressed(Keyboard::S))
     {
-        direction.y += 1.0f;
+        direction.y -= 1.0f;
     }
     if (Keyboard::isKeyPressed(Keyboard::W))
     {
-        direction.y -= 1.0f;
+        direction.y += 1.0f;
     }
 
-    //normalize the direction
+    // Normalize the direction
     if (direction.x != 0.0f)
     {
         direction.x = direction.x / sqrt((direction.x*direction.x) + (direction.y*direction.y));
@@ -42,7 +42,7 @@ void PlayerMovement::onUpdate(sf::Time dt)
 
 void PlayerMovement::onFixedUpdate(sf::Time dt)
 {
-    // move player
+    // Move player
     b2Vec2 pushDirection = b2Vec2(direction.x * playerSpeed, direction.y * -1.f * playerSpeed);
     if (pushDirection == b2Vec2_zero)
     {

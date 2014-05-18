@@ -17,7 +17,4 @@ public:
 public:
     b2Body* body;
     b2BodyDef bodyDef;
-
-private:
-    
 };
