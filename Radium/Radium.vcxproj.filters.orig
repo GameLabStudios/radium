@@ -111,6 +111,9 @@
     <ClCompile Include="World.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="BehaviorTree.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
     <ClCompile Include="ParticleSystem.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
@@ -135,14 +138,13 @@
     <ClCompile Include="PlayerMovement.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="ShieldRigidbody.cpp">
       <Filter>Source Files\Components</Filter>
-    </ClCompile>
+=======
     <ClCompile Include="ChasePlayer.cpp">
       <Filter>Source Files\AI\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="BehaviorTree.cpp">
-      <Filter>Source Files\AI</Filter>
+>>>>>>> AI
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +229,10 @@
     <ClInclude Include="PlayerMovement.hpp">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="ShieldRigidbody.hpp">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
+=======
     <ClInclude Include="BehaviorNode.hpp">
       <Filter>Header Files\AI\BehaviorTree</Filter>
     </ClInclude>
@@ -250,6 +253,7 @@
     </ClInclude>
     <ClInclude Include="ChasePlayer.hpp">
       <Filter>Header Files\AI\Actions</Filter>
+>>>>>>> AI
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

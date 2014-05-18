@@ -44,7 +44,7 @@ void Entity::fixedUpdateCurrent(sf::Time dt)
 
 void Entity::handleDestructionCurrent()
 {
-    // If marked for destruction, mark all ccomponents for destruction
+    // If marked for destruction, mark all components for destruction
     if (mDestuctionFlag)
     {
         // Flag all children for destruction
@@ -81,7 +81,7 @@ void Entity::handleDestructionCurrent()
     // Destroy self
     if (mDestuctionFlag)
     {
-        delete this;
+        removeFromScene();
     }
 }
 

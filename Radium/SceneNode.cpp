@@ -1,21 +1,10 @@
 #include "SceneNode.hpp"
 #include <cassert>
+#include <iostream>
 
 SceneNode::SceneNode()
 {
     mParent = nullptr;
-}
-
-SceneNode::~SceneNode()
-{
-    // Delete all children
-    for (Ptr& child : mChildren)
-    {
-        delete &child;
-    }
-    
-    // Detach self from parent
-    mParent->detachChild(*this);
 }
 
 void SceneNode::attachChild(Ptr child)
@@ -94,15 +83,20 @@ void SceneNode::fixedUpdateChildren(Time dt)
 
 void SceneNode::handleDestruction()
 {
-    handleDestructionCurrent();
     handleDestructionChildren();
+    handleDestructionCurrent();
 }
 
 void SceneNode::handleDestructionChildren()
 {
-    for (Ptr& child : mChildren)
+    for (unsigned i = 0; i < mChildren.size(); i++)
     {
-        child->handleDestruction();
+        unsigned currentSize = mChildren.size();
+        mChildren[i]->handleDestruction();
+        if (mChildren.size() != currentSize)
+        {
+            i--;
+        }
     }
 }
 
@@ -129,4 +123,16 @@ Vector2f SceneNode::getWorldPosition() const
 SceneNode* SceneNode::getParent()
 {
     return mParent;
+}
+
+void SceneNode::removeFromScene()
+{
+    // Delete all children
+    for (Ptr& child : mChildren)
+    {
+        child->removeFromScene();
+    }
+
+    // Detach self from parent
+    mParent->detachChild(*this);
 }
