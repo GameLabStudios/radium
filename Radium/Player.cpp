@@ -16,7 +16,7 @@ Player::Player(Vector2f position)
     // SFML circle object
     circle = CircleShape(20, 30);
     circle.setOrigin(20.0f, 20.0f);
-    circle.setFillColor(Color::Red);
+    circle.setFillColor(Color::Green);
 
     line = RectangleShape(Vector2f(20.0f, 5.0f));
     line.setOrigin(10.0f, 2.5f);

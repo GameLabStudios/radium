@@ -73,11 +73,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ability.cpp" />
-    <ClCompile Include="AttackPlayerAction.cpp" />
     <ClCompile Include="BehaviorTree.cpp" />
+    <ClCompile Include="ChasePlayer.cpp" />
     <ClCompile Include="CircleRigidbody.cpp" />
     <ClCompile Include="Component.cpp" />
-    <ClCompile Include="DodgeShotsAction.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -85,13 +84,10 @@
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MeleeEnemy.cpp" />
-    <ClCompile Include="MoveAction.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
-    <ClCompile Include="NearPlayerCondition.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="MouseTest.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerShootingCondition.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="Shield.cpp" />
@@ -107,26 +103,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ability.hpp" />
-    <ClInclude Include="AttackPlayerAction.hpp" />
+    <ClInclude Include="Action.hpp" />
     <ClInclude Include="BehaviorNode.hpp" />
     <ClInclude Include="BehaviorTree.hpp" />
+    <ClInclude Include="ChasePlayer.hpp" />
     <ClInclude Include="CircleRigidbody.hpp" />
     <ClInclude Include="Component.hpp" />
     <ClInclude Include="Composite.hpp" />
-    <ClInclude Include="DodgeShotsAction.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameWorld.hpp" />
     <ClInclude Include="MeleeEnemy.hpp" />
-    <ClInclude Include="MoveAction.hpp" />
     <ClInclude Include="PlayerMovement.hpp" />
-    <ClInclude Include="NearPlayerCondition.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />
     <ClInclude Include="MouseTest.hpp" />
     <ClInclude Include="Player.hpp" />
-    <ClInclude Include="PlayerShootingCondition.hpp" />
     <ClInclude Include="ResourceHolder.hpp" />
     <ClInclude Include="ResourceIdentifiers.hpp" />
     <ClInclude Include="Rigidbody.hpp" />
@@ -142,9 +135,7 @@
     <ClInclude Include="StateIdentifiers.hpp" />
     <ClInclude Include="StateStack.hpp" />
     <ClInclude Include="TeleportAbility.hpp" />
-    <ClInclude Include="TestAction.hpp" />
     <ClInclude Include="TestComponent.hpp" />
-    <ClInclude Include="TestCondition.hpp" />
     <ClInclude Include="World.hpp" />
   </ItemGroup>
   <ItemGroup>

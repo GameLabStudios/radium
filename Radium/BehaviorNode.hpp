@@ -3,7 +3,7 @@
 
 namespace AI
 {
-    enum BNodeStatus { SUCCESS, FAILURE, NONE };
+    enum BNodeStatus { SUCCESS, RUNNING, FAILURE, NONE };
 
     class BehaviorNode
     {

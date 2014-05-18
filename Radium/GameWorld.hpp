@@ -18,5 +18,6 @@ private:
     static GameWorld*                   sGameWorld;
     void                                buildScene();
     Player*                             mPlayer;
+    MeleeEnemy*                         mMeleeEnemy;
     b2World*                            mb2World;
 };

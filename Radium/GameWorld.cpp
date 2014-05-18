@@ -70,6 +70,13 @@ void GameWorld::buildScene()
     player->setPosition(mSpawnPosition);
     mSceneLayers[Background]->attachChild(std::move(player));
 
+    // Add enemy to scene (temporary)
+    Vector2f enemySpawnPos = mSpawnPosition + Vector2f(300.0f, 40.0f);
+    std::unique_ptr<MeleeEnemy> meleeEnemy(new MeleeEnemy(enemySpawnPos));
+    mMeleeEnemy = meleeEnemy.get();
+    meleeEnemy->setPosition(enemySpawnPos);
+    mSceneLayers[Background]->attachChild(std::move(meleeEnemy));
+
     // Add Square to scene on mouseTest
     //std::unique_ptr<Square> square2(new Square());
     //mPlayer->attachChild(std::move(square2));
