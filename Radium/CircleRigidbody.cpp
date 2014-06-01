@@ -20,7 +20,4 @@ void CircleRigidbody::setShape(CircleShape shape)
     fixtureDef.shape = &dynamicCircle;
     fixtureDef.density = 1.0f;
     body->CreateFixture(&fixtureDef);
-
-    // Set Fixture to Box2D body
-    body->CreateFixture(&fixtureDef);
 }

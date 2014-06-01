@@ -15,7 +15,7 @@ Square::Square(Vector2f position)
     setPosition(position);
 
     SquareRigidbody* rigidbody = addComponent<SquareRigidbody>();
-    rigidbody->createBody(Rigidbody::staticBody);
+    rigidbody->createBody(Rigidbody::dynamicBody);
     rigidbody->setShape(square);
 }
 
@@ -38,4 +38,9 @@ void Square::onUpdate(Time dt)
         SquareRigidbody* sq = getComponent<SquareRigidbody>();
         sq->bodyDef.type = b2_staticBody;
     }
+}
+
+void Square::onFixedUpdate(Time dt)
+{
+
 }

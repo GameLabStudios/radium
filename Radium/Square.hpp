@@ -13,8 +13,8 @@ public:
 private:
     virtual void    onDraw(RenderTarget& target, RenderStates states) const;
     virtual void    onUpdate(Time dt);
+    virtual void    onFixedUpdate(Time dt);
 
 private:
     RectangleShape square;
-    b2Body* mBody;
 };

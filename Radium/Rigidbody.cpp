@@ -1,7 +1,6 @@
-#include <math.h>
-
 #define _USE_MATH_DEFINES
-
+#include <cmath>
+#include <iostream>
 #include "Rigidbody.hpp"
 #include "Game.hpp"
 #include "GameWorld.hpp"
@@ -10,6 +9,11 @@ Rigidbody::Rigidbody(Entity* entity) : Component(entity)
 {
     // Set entity pointer shortcut
     mEntity->rigidbody = this;
+}
+
+Rigidbody::~Rigidbody()
+{
+    GameWorld::getInstance()->getb2World()->DestroyBody(body);
 }
 
 void Rigidbody::createBody(type bodyType)

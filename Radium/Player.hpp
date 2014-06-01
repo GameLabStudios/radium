@@ -22,10 +22,11 @@ private:
 	virtual void    onDraw(RenderTarget& target, RenderStates states) const;	
 	virtual void    onUpdate(Time dt);
     virtual void    onFixedUpdate(Time dt);
+    virtual void    onBeginContact(b2Fixture* other, b2Contact* contact);
     void            changeAbility(int num);
 
 private:
-	CircleShape     circle;
+    CircleShape     circle;
     RectangleShape  line;
     float           health;
 	float           playerSpeed;

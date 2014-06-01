@@ -1,8 +1,13 @@
 #include "Box2DCallbackManager.hpp"
 #include "Entity.hpp"
+#include <iostream>
+
+Box2DCallbackManager::Box2DCallbackManager()
+{
+}
 
 void Box2DCallbackManager::BeginContact(b2Contact* contact)
-{
+{ 
     b2Fixture* fixtureA = contact->GetFixtureA();
     b2Fixture* fixtureB = contact->GetFixtureB();
     Entity* entityA = static_cast<Entity*>(fixtureA->GetBody()->GetUserData());

@@ -15,7 +15,6 @@ public:
     Player*                             getPlayer() const;
     b2World*                            getb2World();
     void                                toggleDebugDraw();
-    void                                addEntityToWorld(std::unique_ptr<Entity> entity);
 
 private:
                                         GameWorld(RenderWindow& window);

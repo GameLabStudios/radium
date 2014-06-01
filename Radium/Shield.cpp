@@ -27,7 +27,7 @@ void Shield::onUpdate(Time dt)
     //std::cout << "World pos: " << getWorldPosition().x << ", " << getWorldPosition().y << std::endl;
     //std::cout << "rot: " << GameWorld::getInstance()->getPlayer()->getRotation() << std::endl;
     ShieldRigidbody* shield = getComponent<ShieldRigidbody>();
-    b2Vec2 physicsPosition = b2Vec2(getWorldPosition().x * Game::p2m, (Game::yResolution - getWorldPosition().y) * Game::p2m);
+    b2Vec2 physicsPosition = b2Vec2(getWorldPosition().x * Game::p2m, getWorldPosition().y * Game::p2m);
     shield->body->SetTransform(physicsPosition, (M_PI * GameWorld::getInstance()->getPlayer()->getRotation()) / 180.0f );//GameWorld::getInstance()->getPlayer()->getRotation());
 }
 
@@ -37,6 +37,7 @@ void Shield::onDraw(RenderTarget& target, RenderStates states) const
     target.draw(shieldObj, states);
 }
 
-void Shield::onFixedUpdate(Time dt)
+void Shield::onBeginContact(b2Contact* contact)
 {
+
 }

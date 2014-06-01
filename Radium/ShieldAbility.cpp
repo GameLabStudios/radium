@@ -27,8 +27,7 @@ void ShieldAbility::useAbility(float rad)
 
         std::unique_ptr<Entity> newShield(new Shield(shieldPos, shieldLife));
         std::cout << "shield at " << newShield->getPosition().x << std::endl;
-        GameWorld::getInstance()->addEntityToWorld(std::move(newShield));
-        //mEntity->attachChild(std::move(newShield));
+        GameWorld::getInstance()->getPlayer()->attachChild(std::move(newShield));
     }
 }
 

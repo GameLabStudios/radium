@@ -98,12 +98,6 @@ void GameWorld::toggleDebugDraw()
     mDrawDebug = !mDrawDebug;
 }
 
-void GameWorld::addEntityToWorld(std::unique_ptr<Entity> newEntity)
-{
-    std::cout << "created shield" << std::endl;
-    mPlayer->attachChild(std::move(newEntity));
-}
-
 void GameWorld::buildScene()
 {
     // Initialize the different layers

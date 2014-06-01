@@ -15,3 +15,13 @@ void Enemy::buildBehaviorTree()
     ChasePlayer* chase = new ChasePlayer(bTree);
     bTree->setRootNode(chase);
 }
+
+void MeleeEnemy::onBeginContact(b2Fixture* other, b2Contact* contact)
+{
+
+}
+
+void MeleeEnemy::onEndContact(b2Fixture* other, b2Contact* contact)
+{
+
+}

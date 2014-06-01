@@ -118,3 +118,8 @@ void Player::changeAbility(int num)
     std::cout << "changed ability to " << num << std::endl;
     abilityEquipped = num;
 }
+
+void Player::onBeginContact(b2Fixture* other, b2Contact* contact)
+{
+
+}

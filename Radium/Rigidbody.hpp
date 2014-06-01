@@ -11,6 +11,7 @@ public:
 
 public:
                     Rigidbody(Entity* entity);
+                    ~Rigidbody();
     void            createBody(type bodyType);
     virtual void    onFixedUpdate(sf::Time dt);
 

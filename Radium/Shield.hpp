@@ -14,7 +14,7 @@ public:
 private:
     virtual void    onDraw(RenderTarget& target, RenderStates states) const;
     virtual void    onUpdate(Time dt);
-    virtual void    onFixedUpdate(Time dt);
+    virtual void    onBeginContact(b2Contact* contact);
 
 private:
     RectangleShape shieldObj;

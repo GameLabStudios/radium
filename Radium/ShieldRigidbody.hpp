@@ -11,7 +11,6 @@ class ShieldRigidbody : public Component
 public:
                     ShieldRigidbody(Entity* entity);
     void            setShape(RectangleShape shape);
-    virtual void    onFixedUpdate(sf::Time dt);
 
 public:
     b2Body* body;

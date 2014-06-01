@@ -33,13 +33,3 @@ void ShieldRigidbody::setShape(RectangleShape shape)
     // Set Fixture to Box2D body
     body->CreateFixture(&fixtureDef);
 }
-
-void ShieldRigidbody::onFixedUpdate(sf::Time dt)
-{
-    //std::cout << "Phyics World in pixels: " << body->GetPosition().x * Game::m2p << ", " << body->GetPosition().y * Game::m2p << std::endl;
-}
-
-
-
-
-
