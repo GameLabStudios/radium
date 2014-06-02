@@ -2,7 +2,7 @@
 
 GameState::GameState(StateStack& stack, Context context) : State(stack, context)
 {
-    mWorld = GameWorld::createInstance(*context.window);
+    mWorld = GameWorld::createInstance(*context.window, *this);
 }
 
 void GameState::draw()

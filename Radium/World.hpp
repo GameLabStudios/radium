@@ -24,6 +24,7 @@ public:
     virtual void                        update(Time dT);
     virtual void                        fixedUpdate(Time dt);
     virtual void                        draw();
+
     RenderWindow&                       getWindow() const;
     const Vector2f                      getMousePosition() const;
 

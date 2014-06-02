@@ -83,8 +83,10 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="InventoryState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MeleeEnemy.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="MouseTest.cpp" />
@@ -101,6 +103,7 @@
     <ClCompile Include="StateStack.cpp" />
     <ClCompile Include="TeleportAbility.cpp" />
     <ClCompile Include="TestComponent.cpp" />
+    <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -118,7 +121,10 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameWorld.hpp" />
+    <ClInclude Include="Inventory.hpp" />
+    <ClInclude Include="InventoryState.hpp" />
     <ClInclude Include="MeleeEnemy.hpp" />
+    <ClInclude Include="PauseState.hpp" />
     <ClInclude Include="PlayerMovement.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />
     <ClInclude Include="MouseTest.hpp" />
@@ -140,6 +146,7 @@
     <ClInclude Include="StateStack.hpp" />
     <ClInclude Include="TeleportAbility.hpp" />
     <ClInclude Include="TestComponent.hpp" />
+    <ClInclude Include="TextComponent.hpp" />
     <ClInclude Include="World.hpp" />
   </ItemGroup>
   <ItemGroup>

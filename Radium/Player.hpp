@@ -33,4 +33,5 @@ private:
     Ability*        abilities[3];
     int             abilityEquipped;
     Vector2f        direction;
+    Text            text;
 };

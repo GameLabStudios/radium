@@ -8,7 +8,7 @@
 
 GameWorld* GameWorld::sGameWorld = nullptr;
 
-GameWorld::GameWorld(RenderWindow& window) : World(window)
+GameWorld::GameWorld(RenderWindow& window, State& state) : World(window), mState(state)
 {
     sGameWorld = this;
 
@@ -39,11 +39,11 @@ GameWorld* GameWorld::getInstance()
     return sGameWorld;
 }
 
-GameWorld* GameWorld::createInstance(RenderWindow& window)
+GameWorld* GameWorld::createInstance(RenderWindow& window, State& state)
 {
     if (sGameWorld == nullptr)
     {
-        new GameWorld(window);
+        new GameWorld(window, state);
     }
 
     return sGameWorld;
@@ -88,9 +88,14 @@ Player* GameWorld::getPlayer() const
     return mPlayer;
 }
 
-b2World* GameWorld::getb2World()
+b2World* GameWorld::getb2World() const
 {
     return mb2World;
+}
+
+State& GameWorld::getState() const
+{
+    return mState;
 }
 
 void GameWorld::toggleDebugDraw()

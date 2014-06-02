@@ -58,6 +58,15 @@
     <Filter Include="Header Files\AI\Conditions">
       <UniqueIdentifier>{9fd97a90-6109-4db7-ae99-e0fec25d363d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{28f93f5a-7ed1-441b-85bc-1c845ca53887}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{cd793250-e1ea-4fb1-bbcd-1ea1ba1034d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameMechanics">
+      <UniqueIdentifier>{cc8bf96b-b68f-4ca2-9b76-cf78ed68211f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp">
@@ -149,6 +158,15 @@
     </ClCompile>
     <ClCompile Include="Box2DCallbackManager.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryState.cpp">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +280,18 @@
     </ClInclude>
     <ClInclude Include="Box2DCallbackManager.hpp">
       <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.hpp">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.hpp">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryState.hpp">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.hpp">
+      <Filter>Header Files\GameMechanics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@
 #include <typeinfo>
 #include <string>
 #include "SquareRigidbody.hpp"
+#include "TextComponent.hpp"
 
 Square::Square(Vector2f position)
 {
@@ -17,6 +18,11 @@ Square::Square(Vector2f position)
     SquareRigidbody* rigidbody = addComponent<SquareRigidbody>();
     rigidbody->createBody(Rigidbody::staticBody);
     rigidbody->setShape(square);
+
+    TextComponent* text = addComponent<TextComponent>();
+    text->setSize(Vector2f(20, 20));
+    text->setText("square");
+
 }
 
 void Square::onDraw(RenderTarget& target, RenderStates states) const
