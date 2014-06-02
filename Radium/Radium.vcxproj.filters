@@ -58,6 +58,18 @@
     <Filter Include="Header Files\AI\Conditions">
       <UniqueIdentifier>{9fd97a90-6109-4db7-ae99-e0fec25d363d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Components\Guns">
+      <UniqueIdentifier>{38c49958-643e-44a5-befc-2d24bef089b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\Rigidbodies">
+      <UniqueIdentifier>{5b63a097-11ad-4c54-870f-a66c41fd0f48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Bullets">
+      <UniqueIdentifier>{4bb09e30-b7c5-46d0-a3ea-62284aa8fec8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Enemies">
+      <UniqueIdentifier>{25b3bdc3-4d29-4e58-a65f-455ea975930f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp">
@@ -150,6 +162,12 @@
     <ClCompile Include="Box2DCallbackManager.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TestGun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.hpp">
@@ -158,13 +176,7 @@
     <ClInclude Include="TestComponent.hpp">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.hpp">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.hpp">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="MeleeEnemy.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="MouseTest.hpp">
@@ -221,19 +233,7 @@
     <ClInclude Include="TeleportAbility.hpp">
       <Filter>Header Files\Abilities</Filter>
     </ClInclude>
-    <ClInclude Include="Rigidbody.hpp">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SquareRigidbody.hpp">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleRigidbody.hpp">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerMovement.hpp">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="ShieldRigidbody.hpp">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="BehaviorNode.hpp">
@@ -262,6 +262,33 @@
     </ClInclude>
     <ClInclude Include="Box2DCallbackManager.hpp">
       <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.hpp">
+      <Filter>Header Files\Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="TestGun.hpp">
+      <Filter>Header Files\Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleRigidbody.hpp">
+      <Filter>Header Files\Components\Rigidbodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Rigidbody.hpp">
+      <Filter>Header Files\Components\Rigidbodies</Filter>
+    </ClInclude>
+    <ClInclude Include="ShieldRigidbody.hpp">
+      <Filter>Header Files\Components\Rigidbodies</Filter>
+    </ClInclude>
+    <ClInclude Include="SquareRigidbody.hpp">
+      <Filter>Header Files\Components\Rigidbodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.hpp">
+      <Filter>Header Files\Entities\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.hpp">
+      <Filter>Header Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="MeleeEnemy.hpp">
+      <Filter>Header Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

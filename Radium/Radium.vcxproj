@@ -83,6 +83,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MeleeEnemy.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
@@ -101,6 +102,7 @@
     <ClCompile Include="StateStack.cpp" />
     <ClCompile Include="TeleportAbility.cpp" />
     <ClCompile Include="TestComponent.cpp" />
+    <ClCompile Include="TestGun.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +111,7 @@
     <ClInclude Include="BehaviorNode.hpp" />
     <ClInclude Include="BehaviorTree.hpp" />
     <ClInclude Include="Box2DCallbackManager.hpp" />
+    <ClInclude Include="Bullet.hpp" />
     <ClInclude Include="ChasePlayer.hpp" />
     <ClInclude Include="CircleRigidbody.hpp" />
     <ClInclude Include="Component.hpp" />
@@ -118,6 +121,7 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameWorld.hpp" />
+    <ClInclude Include="Gun.hpp" />
     <ClInclude Include="MeleeEnemy.hpp" />
     <ClInclude Include="PlayerMovement.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />
@@ -140,6 +144,7 @@
     <ClInclude Include="StateStack.hpp" />
     <ClInclude Include="TeleportAbility.hpp" />
     <ClInclude Include="TestComponent.hpp" />
+    <ClInclude Include="TestGun.hpp" />
     <ClInclude Include="World.hpp" />
   </ItemGroup>
   <ItemGroup>

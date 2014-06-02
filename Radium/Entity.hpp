@@ -34,10 +34,10 @@ public:
     Rigidbody*              rigidbody;
 
 private:
-    virtual void            drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
-    virtual void            updateCurrent(sf::Time dt);
-    virtual void            fixedUpdateCurrent(sf::Time dt);
-    virtual void            handleDestructionCurrent();
+    void                    drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+    void                    updateCurrent(sf::Time dt);
+    void                    fixedUpdateCurrent(sf::Time dt);
+    void                    handleDestructionCurrent();
 
     virtual void            onDraw(sf::RenderTarget& target, sf::RenderStates states) const;
     virtual void            onUpdate(sf::Time dt);

@@ -36,8 +36,3 @@ void Shield::onDraw(RenderTarget& target, RenderStates states) const
     //std::cout << "pos: " << getPosition().x << ", "<< getPosition().y <<std::endl;
     target.draw(shieldObj, states);
 }
-
-void Shield::onBeginContact(b2Contact* contact)
-{
-    std::cout << "shield hit!\n";
-}

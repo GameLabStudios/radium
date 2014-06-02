@@ -8,7 +8,7 @@ class Component
 {
 public:
                         Component(Entity* entity);
-
+    virtual             ~Component();
     void                destroy();
 
     // Events
