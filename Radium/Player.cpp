@@ -77,6 +77,15 @@ void Player::onUpdate(Time dt)
         }
     }
 
+    if (Mouse::isButtonPressed(Mouse::Left))
+    {
+        isShooting = true;
+    }
+    else
+    {
+        isShooting = false;
+    }
+
     if (health <= 0)
     {
         destroy();
@@ -121,4 +130,9 @@ void Player::onBeginContact(b2Fixture* other, b2Contact* contact)
 void Player::takeDamage(float damage)
 {
     health -= damage;
+}
+
+bool Player::getIsShooting()
+{
+    return isShooting;
 }

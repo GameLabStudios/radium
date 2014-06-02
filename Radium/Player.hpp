@@ -14,6 +14,7 @@ public:
     void            handleEvent(const sf::Event& event);
     void            takeDamage(float damage);
     void            heal(float health);
+    bool            getIsShooting();
 
 private:
 	virtual void    onDraw(RenderTarget& target, RenderStates states) const;	
@@ -30,4 +31,5 @@ private:
     Ability*        abilities[3];
     int             abilityEquipped;
     Vector2f        direction;
+    bool            isShooting;
 };

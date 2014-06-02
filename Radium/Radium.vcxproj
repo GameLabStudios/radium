@@ -78,6 +78,7 @@
     <ClCompile Include="ChasePlayer.cpp" />
     <ClCompile Include="CircleRigidbody.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="DodgeBullets.cpp" />
     <ClCompile Include="DodgingEnemy.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -85,6 +86,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="IsPlayerShooting.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MeleeEnemy.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
@@ -117,6 +119,7 @@
     <ClInclude Include="CircleRigidbody.hpp" />
     <ClInclude Include="Component.hpp" />
     <ClInclude Include="Composite.hpp" />
+    <ClInclude Include="DodgeBullets.hpp" />
     <ClInclude Include="DodgingEnemy.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
@@ -124,6 +127,7 @@
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameWorld.hpp" />
     <ClInclude Include="Gun.hpp" />
+    <ClInclude Include="IsPlayerShooting.hpp" />
     <ClInclude Include="MeleeEnemy.hpp" />
     <ClInclude Include="PlayerMovement.hpp" />
     <ClInclude Include="ParticleSystem.hpp" />

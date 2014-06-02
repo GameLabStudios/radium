@@ -9,14 +9,17 @@ ChasePlayer::ChasePlayer(BehaviorTree* bTree, Enemy* enemy) : Action(bTree)
     mPlayer = GameWorld::getInstance()->getPlayer();
 }
 
-
-ChasePlayer::~ChasePlayer()
+BNodeStatus ChasePlayer::run()
 {
-}
-
-BNodeStatus Action::run()
-{
-    nodeStatus = SUCCESS;
+    if (b2Distance(b2Vec2(mPlayer->getPosition().x, mPlayer->getPosition().y),
+        b2Vec2(enemy->getPosition().x, enemy->getPosition().y)) < 1.0f)
+    {
+        nodeStatus = SUCCESS;
+    }
+    else
+    {
+        nodeStatus = RUNNING;
+    }
     bTree->currentNode = this;
     return nodeStatus;
 }

@@ -11,8 +11,8 @@ class ChasePlayer : public Action
 {
 public:
     ChasePlayer(BehaviorTree* bTree, Enemy* enemy);
-    ~ChasePlayer();
-    void            doAction(); // inherited from Action
+    virtual BNodeStatus run();  // inherited from BehaviorNode
+    virtual void   doAction(); // inherited from Action
 
 private:
     float           angle;      // angle towards the player

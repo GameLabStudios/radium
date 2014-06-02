@@ -9,7 +9,7 @@ namespace AI
     {
     public:
         Action(BehaviorTree* bTree) { this->bTree = bTree; }
-        virtual BNodeStatus run();      // inherited from BehaviorNode
+        virtual BNodeStatus run() = 0;  // inherited from BehaviorNode
         virtual void doAction() = 0;    // performs the action associated with this action node
 
     protected:
