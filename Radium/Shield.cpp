@@ -29,6 +29,7 @@ void Shield::onUpdate(Time dt)
     ShieldRigidbody* shield = getComponent<ShieldRigidbody>();
     b2Vec2 physicsPosition = b2Vec2(getWorldPosition().x * Game::p2m, getWorldPosition().y * Game::p2m);
     shield->body->SetTransform(physicsPosition, (M_PI * GameWorld::getInstance()->getPlayer()->getRotation()) / 180.0f );//GameWorld::getInstance()->getPlayer()->getRotation());
+    shield->body->SetActive(true);
 }
 
 void Shield::onDraw(RenderTarget& target, RenderStates states) const
