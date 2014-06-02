@@ -1,5 +1,7 @@
 #include "MeleeEnemy.hpp"
 #include "ChasePlayer.hpp"
+#include "Player.hpp"
+#include "Box2D\Box2D.h"
 
 MeleeEnemy::MeleeEnemy(Vector2f position) : Enemy(position)
 {
@@ -12,13 +14,18 @@ MeleeEnemy::MeleeEnemy(Vector2f position) : Enemy(position)
 
 void Enemy::buildBehaviorTree()
 {
-    ChasePlayer* chase = new ChasePlayer(bTree);
+    ChasePlayer* chase = new ChasePlayer(bTree, this);
     bTree->setRootNode(chase);
 }
 
 void MeleeEnemy::onBeginContact(b2Fixture* other, b2Contact* contact)
 {
-
+    Entity* entityPtr = static_cast<Entity*>(other->GetBody()->GetUserData());
+    Player* playerPtr = dynamic_cast<Player*>(entityPtr);
+    if (playerPtr != nullptr)
+    {
+        destroy();
+    }
 }
 
 void MeleeEnemy::onEndContact(b2Fixture* other, b2Contact* contact)
