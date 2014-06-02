@@ -183,6 +183,9 @@
     <ClCompile Include="DodgeBullets.cpp">
       <Filter>Source Files\AI\Actions</Filter>
     </ClCompile>
+    <ClCompile Include="IsNearPlayer.cpp">
+      <Filter>Source Files\AI\Conditions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.hpp">
@@ -313,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="DodgeBullets.hpp">
       <Filter>Header Files\AI\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="IsNearPlayer.hpp">
+      <Filter>Header Files\AI\Conditions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

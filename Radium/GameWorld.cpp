@@ -143,11 +143,11 @@ void GameWorld::buildScene()
     mSceneLayers[Background]->attachChild(std::move(meleeEnemy));
 
     // Add dodging enemy to scene (temporary)
-    //Vector2f dodgeSpawnPos = mSpawnPosition + Vector2f(250.0f, 80.0f);
-    //std::unique_ptr<DodgingEnemy> dodgingEnemy(new DodgingEnemy(dodgeSpawnPos));
-    //mDodgingEnemy = dodgingEnemy.get();
-    //dodgingEnemy->setPosition(dodgeSpawnPos);
-    //mSceneLayers[Background]->attachChild(std::move(dodgingEnemy));
+    Vector2f dodgeSpawnPos = mSpawnPosition + Vector2f(250.0f, 80.0f);
+    std::unique_ptr<DodgingEnemy> dodgingEnemy(new DodgingEnemy(dodgeSpawnPos));
+    mDodgingEnemy = dodgingEnemy.get();
+    dodgingEnemy->setPosition(dodgeSpawnPos);
+    mSceneLayers[Background]->attachChild(std::move(dodgingEnemy));
 
     // Add Square to scene on mouseTest
     //std::unique_ptr<Square> square2(new Square());

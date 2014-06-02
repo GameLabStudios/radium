@@ -132,6 +132,7 @@ void Player::onBeginContact(b2Fixture* other, b2Contact* contact)
 void Player::takeDamage(float damage)
 {
     health -= damage;
+    std::cout << "health: " << health << std::endl;
 }
 
 bool Player::getIsShooting()

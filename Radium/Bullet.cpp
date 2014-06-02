@@ -1,4 +1,5 @@
 #include "Bullet.hpp"
+#include "Enemy.hpp"
 #include "CircleRigidbody.hpp"
 
 Bullet::Bullet(sf::Vector2f position, sf::Vector2f velocity) : Entity(), mLifetime(1.0f)
@@ -39,5 +40,11 @@ void Bullet::onUpdate(sf::Time dt)
 
 void Bullet::onBeginContact(b2Fixture* other, b2Contact* contact)
 {
+    Entity* entityPtr = static_cast<Entity*>(other->GetBody()->GetUserData());
+    Enemy* enemyPtr = dynamic_cast<Enemy*>(entityPtr);
+    if (enemyPtr != nullptr)
+    {
+        enemyPtr->takeDamage(10.0f);
+    }
     destroy();
 }

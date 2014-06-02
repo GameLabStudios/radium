@@ -6,6 +6,7 @@ MeleeEnemy::MeleeEnemy(Vector2f position) : Enemy(position)
 {
     health = 100.0f;
     damage = 20.0f;
+    bTreeFrequency = 4.0f;
     velocity = Vector2f(12.0f, 12.0f);
     color = Color::Red;
     rectShape.setOrigin(20.0f, 20.0f);
@@ -19,6 +20,7 @@ void MeleeEnemy::buildBehaviorTree()
 {
     ChasePlayer* chase = new ChasePlayer(bTree, this);
     bTree->setRootNode(chase);
+    bTree->setUpdateFrequency(bTreeFrequency);
 }
 
 void MeleeEnemy::onBeginContact(b2Fixture* other, b2Contact* contact)

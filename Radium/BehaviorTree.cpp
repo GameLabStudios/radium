@@ -6,6 +6,7 @@ namespace AI
     BehaviorTree::BehaviorTree()
     {
         currentNode = NULL;
+        updateTimer = nextUpdate / 2.0f;
     }
 
 
@@ -36,5 +37,10 @@ namespace AI
     void BehaviorTree::setRootNode(BehaviorNode* root)
     {
         rootNode = root;
+    }
+
+    void BehaviorTree::setUpdateFrequency(float timer)
+    {
+        nextUpdate = timer;
     }
 }

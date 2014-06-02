@@ -22,11 +22,14 @@ public:
     inline virtual BehaviorTree*    getBTree() const;                 // returns the root node of the behavior tree
 
     // Collision Handilng
-    virtual void onBeginContact(b2Fixture* other, b2Contact* contact);
-    virtual void onEndContact(b2Fixture* other, b2Contact* contact);
+    virtual void                    onBeginContact(b2Fixture* other, b2Contact* contact);
+    virtual void                    onEndContact(b2Fixture* other, b2Contact* contact);
+
+    // Miscellanseous
+    virtual void                    takeDamage(float damage);         // updates health
 
 protected:
-    virtual void                    buildBehaviorTree() = 0;              // builds the behavior tree
+    virtual void                    buildBehaviorTree() = 0;          // builds the behavior tree
 
     // Setters
     virtual void                    setHealth(float health);          // sets the health
@@ -47,6 +50,7 @@ protected:
     Vector2f                        velocity;                         // the velocity of the enemy
     Color                           color;                            // the color of the enemy
     BehaviorTree*                   bTree;                            // the behavior tree of the enemy
+    float                           bTreeFrequency;                   // how many seconds until the next update in the behavior tree
 
     // temporary so Guerra can write behaviors
     RectangleShape                  rectShape;                        // the shape of the enemy

@@ -87,6 +87,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="IsNearPlayer.cpp" />
     <ClCompile Include="IsPlayerShooting.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MeleeEnemy.cpp" />
@@ -128,6 +129,7 @@
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameWorld.hpp" />
     <ClInclude Include="Gun.hpp" />
+    <ClInclude Include="IsNearPlayer.hpp" />
     <ClInclude Include="IsPlayerShooting.hpp" />
     <ClInclude Include="MeleeEnemy.hpp" />
     <ClInclude Include="PlayerMovement.hpp" />

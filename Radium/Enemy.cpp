@@ -1,6 +1,7 @@
 #include "Enemy.hpp"
 #include "Game.hpp"
 #include "SquareRigidbody.hpp"
+#include "Bullet.hpp"
 
 Enemy::Enemy(Vector2f position)
 {
@@ -23,6 +24,10 @@ void Enemy::onDraw(RenderTarget& target, RenderStates states) const
 void Enemy::onUpdate(Time dt)
 {
     getBTree()->update(dt);
+    if (health <= 0)
+    {
+        destroy();
+    }
 }
 
 void Enemy::onBeginContact(b2Fixture* other, b2Contact* contact)
@@ -33,6 +38,12 @@ void Enemy::onBeginContact(b2Fixture* other, b2Contact* contact)
 void Enemy::onEndContact(b2Fixture* other, b2Contact* contact)
 {
 
+}
+
+void Enemy::takeDamage(float damage)
+{
+    health -= damage;
+    std::cout << "health: " << health << std::endl;
 }
 
 #pragma region
