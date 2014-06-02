@@ -2,14 +2,34 @@
 #include "Enemy.hpp"
 #include "CircleRigidbody.hpp"
 
-Bullet::Bullet(sf::Vector2f position, sf::Vector2f velocity) : Entity(), mLifetime(1.0f)
+Bullet::Bullet(float damage)
+{
+    // Set Damage
+    mDamage = damage;
+
+    // SFML Circle Object
+    circle = CircleShape(2.0f, 10);
+    circle.setOrigin(2.0f, 2.0f);
+    circle.setFillColor(Color::Magenta);
+
+    // Rigidbody Component
+    CircleRigidbody* rigidbody = addComponent<CircleRigidbody>();
+    rigidbody->createBody(Rigidbody::dynamicBody);
+    rigidbody->setShape(circle);
+    rigidbody->body->SetBullet(true);
+}
+
+Bullet::Bullet(sf::Vector2f position, sf::Vector2f velocity, float damage) : Entity(), mLifetime(1.0f)
 {
     // Set mVelocity
     mVelocity = b2Vec2(velocity.x, velocity.y);
 
+    // Set Damage
+    mDamage = damage;
+
     // SFML Circle Object
-    circle = CircleShape(5.0f, 10.0f);
-    circle.setOrigin(5.0f, 5.0f);
+    circle = CircleShape(2.0f, 10);
+    circle.setOrigin(2.0f, 2.0f);
     circle.setFillColor(Color::Magenta);
 
     // Set Position
@@ -44,7 +64,7 @@ void Bullet::onBeginContact(b2Fixture* other, b2Contact* contact)
     Enemy* enemyPtr = dynamic_cast<Enemy*>(entityPtr);
     if (enemyPtr != nullptr)
     {
-        enemyPtr->takeDamage(10.0f);
+        enemyPtr->takeDamage(mDamage);
     }
     destroy();
 }

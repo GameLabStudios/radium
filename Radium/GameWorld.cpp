@@ -160,5 +160,4 @@ void GameWorld::buildScene()
     //std::unique_ptr<Enemy> enemy(new Enemy(mSpawnPosition.x + 10, mSpawnPosition.y + 10));
     //enemy->setPosition(Vector2f(mSpawnPosition.x + 10, mSpawnPosition.y + 10));
     //mSceneLayers[Background]->attachChild(std::move(enemy));
-
 }

@@ -58,9 +58,6 @@
     <Filter Include="Header Files\AI\Conditions">
       <UniqueIdentifier>{9fd97a90-6109-4db7-ae99-e0fec25d363d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Components\Guns">
-      <UniqueIdentifier>{38c49958-643e-44a5-befc-2d24bef089b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Components\Rigidbodies">
       <UniqueIdentifier>{5b63a097-11ad-4c54-870f-a66c41fd0f48}</UniqueIdentifier>
     </Filter>
@@ -162,14 +159,8 @@
     <ClCompile Include="Gun.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="TestGun.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MeleeEnemy.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
@@ -185,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="IsNearPlayer.cpp">
       <Filter>Source Files\AI\Conditions</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,12 +275,6 @@
     <ClInclude Include="Box2DCallbackManager.hpp">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Gun.hpp">
-      <Filter>Header Files\Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="TestGun.hpp">
-      <Filter>Header Files\Components\Guns</Filter>
-    </ClInclude>
     <ClInclude Include="CircleRigidbody.hpp">
       <Filter>Header Files\Components\Rigidbodies</Filter>
     </ClInclude>
@@ -319,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="IsNearPlayer.hpp">
       <Filter>Header Files\AI\Conditions</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.hpp">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

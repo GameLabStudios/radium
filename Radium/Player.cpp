@@ -7,7 +7,7 @@
 #include "Game.hpp"
 #include "CircleRigidbody.hpp"
 #include "PlayerMovement.hpp"
-#include "TestGun.hpp"
+#include "Gun.hpp"
 
 Player::Player(Vector2f position)
 {
@@ -40,7 +40,7 @@ Player::Player(Vector2f position)
     addComponent<PlayerMovement>();
 
     // Add Gun Component!
-    addComponent<TestGun>();
+    addComponent<Gun>();
 }
 
 void Player::onDraw(RenderTarget& target, RenderStates states) const
