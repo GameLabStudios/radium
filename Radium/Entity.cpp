@@ -115,6 +115,7 @@ void Entity::onDestroy()
 
 void Entity::onUpdate(sf::Time dt)
 {
+    std::cout << "base entity onUpdate";
     // This function is intentionally left blank
 }
 

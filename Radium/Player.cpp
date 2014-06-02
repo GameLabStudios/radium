@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include <iostream>
 #include <string>
 #include "Player.hpp"
@@ -5,9 +7,7 @@
 #include "Game.hpp"
 #include "CircleRigidbody.hpp"
 #include "PlayerMovement.hpp"
-
-#define _USE_MATH_DEFINES
-#include <math.h>
+#include "TestGun.hpp"
 
 Player::Player(Vector2f position)
 {
@@ -37,6 +37,9 @@ Player::Player(Vector2f position)
 
     // player movement component
     addComponent<PlayerMovement>();
+
+    // Add Gun Component!
+    addComponent<TestGun>();
 }
 
 void Player::onDraw(RenderTarget& target, RenderStates states) const
@@ -121,5 +124,4 @@ void Player::changeAbility(int num)
 
 void Player::onBeginContact(b2Fixture* other, b2Contact* contact)
 {
-    std::cout << "playa hit!\n";
 }

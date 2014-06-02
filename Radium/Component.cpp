@@ -6,6 +6,10 @@ Component::Component(Entity* entity)
     mDestructionFlag = false;
 }
 
+Component::~Component()
+{
+}
+
 void Component::destroy()
 {
     mDestructionFlag = true;

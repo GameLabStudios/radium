@@ -44,3 +44,13 @@ void Square::onFixedUpdate(Time dt)
 {
 
 }
+
+void Square::onBeginContact(b2Fixture* other, b2Contact* contact)
+{
+    Entity* entity = static_cast<Entity*>(other->GetBody()->GetUserData());
+    Player* player = dynamic_cast<Player*>(entity);
+    if (player != nullptr)
+    {
+        destroy();
+    }
+}
