@@ -13,9 +13,13 @@ public:
                     Rigidbody(Entity* entity);
     virtual         ~Rigidbody();
     void            createBody(type bodyType);
+    void            canRotate(bool canRotate);
     virtual void    onFixedUpdate(sf::Time dt);
 
 public:
     b2Body* body;
     b2BodyDef bodyDef;
+
+private:
+    bool mCanRotate;
 };

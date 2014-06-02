@@ -11,7 +11,9 @@ public:
 
 private:
     virtual void        onUpdate(sf::Time dt);
+    virtual void        onFixedUpdate(sf::Time dt);
     void                handleInput();
+    void                fireGun();
 
 private:
     std::vector<Bullet> mBullets;
@@ -19,4 +21,6 @@ private:
 
     unsigned            mMaxAmmo;
     unsigned            mAmmo;
+    const float         mCooldown;
+    float               mCooldownCounter;
 };

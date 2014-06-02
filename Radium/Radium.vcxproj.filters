@@ -168,6 +168,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="MeleeEnemy.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>

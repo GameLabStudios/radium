@@ -34,6 +34,7 @@ Player::Player(Vector2f position)
     CircleRigidbody* rigidbody = addComponent<CircleRigidbody>();
     rigidbody->createBody(Rigidbody::dynamicBody);
     rigidbody->setShape(circle);
+    rigidbody->canRotate(false);
 
     // player movement component
     addComponent<PlayerMovement>();
@@ -59,6 +60,7 @@ void Player::onUpdate(Time dt)
 
 	float angle = atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x);
 	setRotation((float)((angle * 180.0f) / M_PI));
+    rigidbody->body->SetTransform(rigidbody->body->GetPosition(), angle);
 	
     if (Mouse::isButtonPressed(Mouse::Right))
     {

@@ -55,6 +55,18 @@ void GameWorld::update(Time dt)
     // TODO: Detach this code from the GameWorld and set-up Camera class possibly, or at least have code within the update loop do this.
     mWorldView.setCenter(mPlayer->getPosition());
 
+    // Attach Objects to Scene Queue
+    if (!mParentQueue.empty())
+    {
+        SceneNode* parent = mParentQueue.front();
+        mParentQueue.pop();
+
+        SceneNode::Ptr child = std::move(mChildQueue.front());
+        mChildQueue.pop();
+
+        parent->attachChild(std::move(child));
+    }
+
     // Call Base update(dt)
     World::update(dt);
 }
@@ -98,6 +110,14 @@ void GameWorld::toggleDebugDraw()
     mDrawDebug = !mDrawDebug;
 }
 
+SceneNode* GameWorld::attachChildToNode(SceneNode* node, SceneNode::Ptr child)
+{
+    SceneNode* returnPointer = child.get();
+    mChildQueue.push(std::move(child));
+    mParentQueue.push(node);
+    return returnPointer;
+}
+
 void GameWorld::buildScene()
 {
     // Initialize the different layers
@@ -123,11 +143,11 @@ void GameWorld::buildScene()
     mSceneLayers[Background]->attachChild(std::move(meleeEnemy));
 
     // Add dodging enemy to scene (temporary)
-    Vector2f dodgeSpawnPos = mSpawnPosition + Vector2f(250.0f, 80.0f);
-    std::unique_ptr<DodgingEnemy> dodgingEnemy(new DodgingEnemy(dodgeSpawnPos));
-    mDodgingEnemy = dodgingEnemy.get();
-    dodgingEnemy->setPosition(dodgeSpawnPos);
-    mSceneLayers[Background]->attachChild(std::move(dodgingEnemy));
+    //Vector2f dodgeSpawnPos = mSpawnPosition + Vector2f(250.0f, 80.0f);
+    //std::unique_ptr<DodgingEnemy> dodgingEnemy(new DodgingEnemy(dodgeSpawnPos));
+    //mDodgingEnemy = dodgingEnemy.get();
+    //dodgingEnemy->setPosition(dodgeSpawnPos);
+    //mSceneLayers[Background]->attachChild(std::move(dodgingEnemy));
 
     // Add Square to scene on mouseTest
     //std::unique_ptr<Square> square2(new Square());

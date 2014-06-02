@@ -75,6 +75,7 @@
     <ClCompile Include="Ability.cpp" />
     <ClCompile Include="BehaviorTree.cpp" />
     <ClCompile Include="Box2DCallbackManager.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="ChasePlayer.cpp" />
     <ClCompile Include="CircleRigidbody.cpp" />
     <ClCompile Include="Component.cpp" />

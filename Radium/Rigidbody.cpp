@@ -7,6 +7,9 @@
 
 Rigidbody::Rigidbody(Entity* entity) : Component(entity)
 {
+    // Rigidbodies update rotation by default
+    mCanRotate = true;
+
     // Set entity pointer shortcut
     mEntity->rigidbody = this;
 }
@@ -32,7 +35,6 @@ void Rigidbody::createBody(type bodyType)
         bodyDef.type = b2_staticBody;
     }
 
-    std::cout << "world pos: " << position.x << ", " << position.y << std::endl;
     bodyDef.position.Set(position.x * Game::p2m, position.y * Game::p2m);
     body = GameWorld::getInstance()->getb2World()->CreateBody(&bodyDef);
 
@@ -40,11 +42,16 @@ void Rigidbody::createBody(type bodyType)
     body->SetUserData(mEntity);
 }
 
+void Rigidbody::canRotate(bool canRotate)
+{
+    mCanRotate = canRotate;
+}
+
 void Rigidbody::onFixedUpdate(sf::Time dt)
 {
     // note parent doesn't necessarily have a body
     // therefore process of conversion requires this body's position to be in world coordinates
-    float angle = body->GetAngle();
+
 
     // position in meters
     b2Vec2 mPosition = body->GetPosition();
@@ -64,5 +71,11 @@ void Rigidbody::onFixedUpdate(sf::Time dt)
     // setPosition using pixel coordinates
     // since pPosition is local, must add parent's position
     mEntity->setPosition(pPhysicsPosition);
-    mEntity->setRotation((angle * 180.0f) / M_PI);
+    
+    // Update rotation if canRotate flag is set
+    if (mCanRotate)
+    {
+        float angle = body->GetAngle();
+        mEntity->setRotation((angle * 180.0f) / M_PI);
+    }
 }
