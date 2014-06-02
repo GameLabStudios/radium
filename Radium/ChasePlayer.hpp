@@ -3,7 +3,10 @@
 #include <cmath>
 
 using namespace AI;
-
+/*
+* ChasePlayer Action causes the enemy to start
+* chasing towards the player.
+*/
 class ChasePlayer : public Action
 {
 public:

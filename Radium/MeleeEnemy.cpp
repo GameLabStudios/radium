@@ -6,7 +6,7 @@
 MeleeEnemy::MeleeEnemy(Vector2f position) : Enemy(position)
 {
     setHealth(100.0f);
-    setVelocity(Vector2f(1.5f, 1.5f));
+    setVelocity(Vector2f(12.0f, 12.0f));
     bTree = new BehaviorTree();
     buildBehaviorTree();
     setBTree(bTree);

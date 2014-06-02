@@ -29,5 +29,5 @@ void ChasePlayer::doAction()
     targetPos.x = cos(angle) * enemy->getVelocity().x;
     targetPos.y = sin(angle) * enemy->getVelocity().y;
     
-    enemy->rigidbody->body->ApplyLinearImpulse(b2Vec2(targetPos.x, targetPos.y), enemy->rigidbody->body->GetWorldCenter(), true);
+    enemy->rigidbody->body->SetLinearVelocity(b2Vec2(targetPos.x, targetPos.y));
 }
