@@ -3,6 +3,7 @@
 #include <Box2D/Box2D.h>
 #include "Entity.hpp"
 #include "BehaviorTree.hpp"
+#include "Rigidbody.hpp"
 
 using namespace sf;
 using namespace AI;
@@ -22,7 +23,7 @@ public:
     inline virtual BehaviorTree*    getBTree() const;                 // returns the root node of the behavior tree
 
 protected:
-    virtual void                    buildBehaviorTree();            // builds the behavior tree
+    virtual void                    buildBehaviorTree();              // builds the behavior tree
 
     // Setters
     virtual void                    setHealth(float health);          // sets the health
@@ -45,7 +46,6 @@ protected:
     Color                           color;                            // the color of the enemy
     float                           alpha;                            // the transparency of the enemy
     BehaviorTree*                   bTree;                            // the behavior tree of the enemy
-    b2Body*                         mBody;                            // the physics body of the enemy
 
     // temporary so Guerra can write behaviors
     RectangleShape                  rectShape;                        // the shape of the enemy

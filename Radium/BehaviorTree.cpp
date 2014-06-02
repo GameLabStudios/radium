@@ -1,7 +1,5 @@
 #include "BehaviorTree.hpp"
 #include "Action.hpp"
-#include <iostream>
-using namespace std;
 using namespace sf;
 namespace AI
 {
