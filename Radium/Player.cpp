@@ -121,5 +121,5 @@ void Player::changeAbility(int num)
 
 void Player::onBeginContact(b2Fixture* other, b2Contact* contact)
 {
-
+    std::cout << "playa hit!\n";
 }

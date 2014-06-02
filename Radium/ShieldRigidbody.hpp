@@ -3,15 +3,11 @@
 #include <Box2D/Box2D.h>
 #include "Component.hpp"
 #include "Player.hpp"
+#include "SquareRigidbody.hpp"
 
-class ShieldRigidbody : public Component
+class ShieldRigidbody : public SquareRigidbody
 {
-
-
 public:
                     ShieldRigidbody(Entity* entity);
-    void            setShape(RectangleShape shape);
-
-public:
-    b2Body* body;
+    void            onFixedUpdate(sf::Time dt);
 };

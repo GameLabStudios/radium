@@ -18,8 +18,8 @@ Shield::Shield(Vector2f position, float lTime)
     setPosition(position * Game::m2p);
 
     ShieldRigidbody* rigidbody = addComponent<ShieldRigidbody>();
+    rigidbody->createBody(Rigidbody::staticBody);
     rigidbody->setShape(shieldObj);
-
 }
 
 void Shield::onUpdate(Time dt)
@@ -39,5 +39,5 @@ void Shield::onDraw(RenderTarget& target, RenderStates states) const
 
 void Shield::onBeginContact(b2Contact* contact)
 {
-
+    std::cout << "shield hit!\n";
 }

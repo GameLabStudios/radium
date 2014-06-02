@@ -18,7 +18,6 @@ private:
 
 private:
     RectangleShape shieldObj;
-    b2Body* mBody;
     float lifeTime;
     float timer;
     float cooldown;
