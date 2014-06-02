@@ -1,18 +1,21 @@
 #include "MeleeEnemy.hpp"
 #include "ChasePlayer.hpp"
 #include "Player.hpp"
-#include "Box2D\Box2D.h"
 
 MeleeEnemy::MeleeEnemy(Vector2f position) : Enemy(position)
 {
-    setHealth(100.0f);
-    setVelocity(Vector2f(12.0f, 12.0f));
+    health = 100.0f;
+    damage = 20.0f;
+    velocity = Vector2f(12.0f, 12.0f);
+    color = Color::Red;
+    rectShape.setOrigin(20.0f, 20.0f);
+    rectShape.setFillColor(color);
     bTree = new BehaviorTree();
     buildBehaviorTree();
     setBTree(bTree);
 }
 
-void Enemy::buildBehaviorTree()
+void MeleeEnemy::buildBehaviorTree()
 {
     ChasePlayer* chase = new ChasePlayer(bTree, this);
     bTree->setRootNode(chase);
@@ -25,6 +28,7 @@ void MeleeEnemy::onBeginContact(b2Fixture* other, b2Contact* contact)
     if (playerPtr != nullptr)
     {
         destroy();
+        GameWorld::getInstance()->getPlayer()->takeDamage(damage);
     }
 }
 

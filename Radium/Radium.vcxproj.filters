@@ -70,13 +70,13 @@
     <Filter Include="Header Files\Entities\Enemies">
       <UniqueIdentifier>{25b3bdc3-4d29-4e58-a65f-455ea975930f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Enemies">
+      <UniqueIdentifier>{b3d63344-6fbb-4257-b946-8e674d900126}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Entities</Filter>
@@ -92,9 +92,6 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="MeleeEnemy.cpp">
-      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="MouseTest.cpp">
       <Filter>Source Files\Entities</Filter>
@@ -167,6 +164,15 @@
     </ClCompile>
     <ClCompile Include="TestGun.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="MeleeEnemy.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="DodgingEnemy.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +294,9 @@
       <Filter>Header Files\Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="MeleeEnemy.hpp">
+      <Filter>Header Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="DodgingEnemy.hpp">
       <Filter>Header Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

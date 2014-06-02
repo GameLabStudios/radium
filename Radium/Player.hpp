@@ -15,9 +15,6 @@ public:
     void            takeDamage(float damage);
     void            heal(float health);
 
-public:
-    bool            isShooting; //Guerra authored for enemy testing
-
 private:
 	virtual void    onDraw(RenderTarget& target, RenderStates states) const;	
 	virtual void    onUpdate(Time dt);

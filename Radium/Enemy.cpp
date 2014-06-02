@@ -1,14 +1,10 @@
 #include "Enemy.hpp"
 #include "Game.hpp"
 #include "SquareRigidbody.hpp"
-#include <iostream>
 
 Enemy::Enemy(Vector2f position)
 {
     rectShape = RectangleShape(Vector2f(40.0f, 40.0f));
-    rectShape.setOrigin(20.0f, 20.0f);
-    setColor(Color::Red);
-    rectShape.setFillColor(getColor());
     //set position
     setPosition(position);
 
@@ -16,6 +12,8 @@ Enemy::Enemy(Vector2f position)
     rigidbody->createBody(Rigidbody::dynamicBody);
     rigidbody->setShape(rectShape);
 }
+
+/******Public Functions******/
 
 void Enemy::onDraw(RenderTarget& target, RenderStates states) const
 {
@@ -27,7 +25,15 @@ void Enemy::onUpdate(Time dt)
     getBTree()->update(dt);
 }
 
-/******Public Functions******/
+void Enemy::onBeginContact(b2Fixture* other, b2Contact* contact)
+{
+
+}
+
+void Enemy::onEndContact(b2Fixture* other, b2Contact* contact)
+{
+
+}
 
 #pragma region
 float Enemy::getHealth() const
@@ -35,9 +41,9 @@ float Enemy::getHealth() const
     return health;
 }
 
-int Enemy::getNumSides() const
+int Enemy::getDamage() const
 {
-    return numSides;
+    return damage;
 }
 
 Vector2f Enemy::getVelocity() const
@@ -48,11 +54,6 @@ Vector2f Enemy::getVelocity() const
 Color Enemy::getColor() const
 {
     return color;
-}
-
-float Enemy::getAlpha() const
-{
-    return alpha;
 }
 
 BehaviorTree* Enemy::getBTree() const
@@ -69,9 +70,9 @@ void Enemy::setHealth(float health)
     this->health = health;
 }
 
-void Enemy::setNumSides(int numSides)
+void Enemy::setDamage(int numSides)
 {
-    this->numSides = numSides;
+    this->damage = numSides;
 }
 
 void Enemy::setVelocity(Vector2f velocity)
@@ -82,11 +83,6 @@ void Enemy::setVelocity(Vector2f velocity)
 void Enemy::setColor(Color color)
 {
     this->color = color;
-}
-
-void Enemy::setAlpha(float alpha)
-{
-    this->alpha = alpha;
 }
 
 void Enemy::setBTree(BehaviorTree* bTree)

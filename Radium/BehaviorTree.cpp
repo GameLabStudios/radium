@@ -6,7 +6,6 @@ namespace AI
     BehaviorTree::BehaviorTree()
     {
         currentNode = NULL;
-        updateTimer = 0.0f;
     }
 
 

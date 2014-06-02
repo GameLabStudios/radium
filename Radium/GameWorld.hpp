@@ -24,6 +24,7 @@ private:
     static GameWorld*                   sGameWorld;
     Player*                             mPlayer;
     MeleeEnemy*                         mMeleeEnemy;
+    DodgingEnemy*                       mDodgingEnemy;
     b2World*                            mb2World;
     bool                                mDrawDebug;
 };

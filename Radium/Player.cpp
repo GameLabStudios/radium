@@ -77,17 +77,9 @@ void Player::onUpdate(Time dt)
         }
     }
 
-    // Guerra authored for enemy testing...will take out eventually
-    // TODO: Take this shit out.
-    if (Mouse::isButtonPressed(Mouse::Left))
+    if (health <= 0)
     {
-        isShooting = true;
-        //std::cout << "shooting" << std::endl;
-    }
-    else
-    {
-        //std::cout << "not shooting" << std::endl;
-        isShooting = false;
+        destroy();
     }
 }
 
@@ -124,4 +116,9 @@ void Player::changeAbility(int num)
 
 void Player::onBeginContact(b2Fixture* other, b2Contact* contact)
 {
+}
+
+void Player::takeDamage(float damage)
+{
+    health -= damage;
 }

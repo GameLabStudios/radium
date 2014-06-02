@@ -78,6 +78,7 @@
     <ClCompile Include="ChasePlayer.cpp" />
     <ClCompile Include="CircleRigidbody.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="DodgingEnemy.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -116,6 +117,7 @@
     <ClInclude Include="CircleRigidbody.hpp" />
     <ClInclude Include="Component.hpp" />
     <ClInclude Include="Composite.hpp" />
+    <ClInclude Include="DodgingEnemy.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
