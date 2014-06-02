@@ -55,6 +55,18 @@ void GameWorld::update(Time dt)
     // TODO: Detach this code from the GameWorld and set-up Camera class possibly, or at least have code within the update loop do this.
     mWorldView.setCenter(mPlayer->getPosition());
 
+    // Attach Objects to Scene Queue
+    if (!mParentQueue.empty())
+    {
+        SceneNode* parent = mParentQueue.front();
+        mParentQueue.pop();
+
+        SceneNode::Ptr child = std::move(mChildQueue.front());
+        mChildQueue.pop();
+
+        parent->attachChild(std::move(child));
+    }
+
     // Call Base update(dt)
     World::update(dt);
 }
@@ -96,6 +108,14 @@ b2World* GameWorld::getb2World()
 void GameWorld::toggleDebugDraw()
 {
     mDrawDebug = !mDrawDebug;
+}
+
+SceneNode* GameWorld::attachChildToNode(SceneNode* node, SceneNode::Ptr child)
+{
+    SceneNode* returnPointer = child.get();
+    mChildQueue.push(std::move(child));
+    mParentQueue.push(node);
+    return returnPointer;
 }
 
 void GameWorld::buildScene()
