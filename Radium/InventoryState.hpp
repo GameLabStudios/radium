@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "State.hpp"
 #include "World.hpp"
+#include "TextBox.hpp"
 
 using namespace sf;
 
@@ -17,16 +18,14 @@ public:
 
 private:
     // variable for stat box
-    Text                            statsText;
-    RectangleShape*                 statsBox;
-
+    TextBox							statsBox;
+	TextBox							testing;
     Text*                           gunName;        // text for select gun name
     std::vector<Text>               gunStats;       // vector that holds all text for gun attributes
     int                             selectedItem;   // int of selected variable
 
     // variables for main inventory box
-    Text                            mainInvText;
-    RectangleShape*                 mainInvBox;
+    TextBox							mainInvBox;
     RectangleShape*                 invScroll;
     Rect<float>                     scrollBoundBox;
 

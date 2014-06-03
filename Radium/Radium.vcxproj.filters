@@ -67,6 +67,12 @@
     <Filter Include="Header Files\GameMechanics">
       <UniqueIdentifier>{cc8bf96b-b68f-4ca2-9b76-cf78ed68211f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{46acb130-3724-4593-9d93-c57ac0bca9cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{e2ae01f2-71ff-4d87-a76e-3e9909472266}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp">
@@ -167,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="InventoryState.cpp">
       <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="Inventory.hpp">
       <Filter>Header Files\GameMechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBox.hpp">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

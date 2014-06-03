@@ -103,6 +103,7 @@
     <ClCompile Include="StateStack.cpp" />
     <ClCompile Include="TeleportAbility.cpp" />
     <ClCompile Include="TestComponent.cpp" />
+    <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="StateStack.hpp" />
     <ClInclude Include="TeleportAbility.hpp" />
     <ClInclude Include="TestComponent.hpp" />
+    <ClInclude Include="TextBox.hpp" />
     <ClInclude Include="TextComponent.hpp" />
     <ClInclude Include="World.hpp" />
   </ItemGroup>

@@ -22,7 +22,6 @@ public:
 public:
     const TextureHolder&    getTextures() const;
     const FontHolder&       getFonts() const;
-    Inventory&              getInventory() const;
 
 private:
                             Game();
@@ -44,6 +43,4 @@ private:
     Text                    mStatisticsText;
     Time                    mStatisticsUpdateTime;
     std::size_t             mStatisticsNumFrames;
-
-    Inventory               mInventory;
 };

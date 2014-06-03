@@ -29,7 +29,6 @@ mStateStack(State::Context(mWindow, mTextures, mFonts))
     registerStates();
     mStateStack.pushState(States::Game);
 
-    mInventory = Inventory();
 }
 
 void Game::run()

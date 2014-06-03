@@ -8,26 +8,15 @@ InventoryState::InventoryState(StateStack& stack, Context context) : State(stack
 {
     Color bgColor = Color(126, 126, 126, 220);
 
-    statsBox = new RectangleShape(Vector2f(500.0f, 300.0f));
-    statsBox->setPosition(Vector2f(200.0f, 70.0f));
-    statsBox->setFillColor(bgColor);
-
-    statsText.setFont(Game::getInstance().getFonts().get(Fonts::Main));
-    statsText.setPosition(Vector2f(420, 30.0f));
-    statsText.setString("Stats");
-
-    gunName = new Text();
+	statsBox = TextBox(Vector2f(200.0f, 70.0f), Vector2f(500.0f, 300.0f), "Stats");
+	testing = TextBox(Vector2f(220.0f, 90.0f), Vector2f(400.0f, 200.0f), "Temporary");
+    
+	gunName = new Text();
     gunName->setFont(Game::getInstance().getFonts().get(Fonts::Main));
     gunName->setPosition(Vector2f(220.0f, 80.0f));
     gunName->setString("");
 
-    mainInvBox = new RectangleShape(Vector2f(400.0f, 600.0f));
-    mainInvBox->setPosition(Vector2f(getContext().window->getSize().x / 2 + 200, 70.0f));
-    mainInvBox->setFillColor(bgColor);
-
-    mainInvText.setFont(Game::getInstance().getFonts().get(Fonts::Main));
-    mainInvText.setPosition(Vector2f(getContext().window->getSize().x / 2 + 340, 30.0f));
-    mainInvText.setString("Inventory");
+	mainInvBox = TextBox(Vector2f(getContext().window->getSize().x / 2 + 200, 70.0f), Vector2f(400.0f, 600.0f), "Inventory");
 
     invScroll = new RectangleShape(Vector2f(10.0f, 30.0f));
     invScroll->setPosition(Vector2f(getContext().window->getSize().x / 2 + 580, 95.0f));
@@ -71,17 +60,13 @@ void InventoryState::draw()
 {
     getContext().window->setView(getContext().window->getDefaultView());
 
-    getContext().window->draw(*statsBox);
-    getContext().window->draw(statsText);
+	statsBox.draw(getContext().window);
+	testing.draw(getContext().window);
     getContext().window->draw(*gunName);
 
-    getContext().window->draw(*mainInvBox);
+	mainInvBox.draw(getContext().window);
     getContext().window->draw(*invScroll); 
-    getContext().window->draw(mainInvText);
-    
-
-    
-
+   
     getContext().window->setView(*invView);
     for (unsigned i = 0; i < inventoryList.size(); i++)
     {
