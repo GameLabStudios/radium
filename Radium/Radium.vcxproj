@@ -118,6 +118,7 @@
     <ClInclude Include="Bullet.hpp" />
     <ClInclude Include="ChasePlayer.hpp" />
     <ClInclude Include="CircleRigidbody.hpp" />
+    <ClInclude Include="CollisionFilters.hpp" />
     <ClInclude Include="Component.hpp" />
     <ClInclude Include="Composite.hpp" />
     <ClInclude Include="DodgeBullets.hpp" />

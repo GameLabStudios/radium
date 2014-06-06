@@ -40,6 +40,8 @@ private:
     virtual void        fixedUpdateCurrent(Time dt);
     void                handleDestructionChildren();
     virtual void        handleDestructionCurrent();
+    void                handleRemovalChildren();
+    void                handleRemovalCurrent();
 
 private:
     std::vector<Ptr>    mChildren;

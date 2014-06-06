@@ -11,21 +11,15 @@ Gun::Gun(Entity* entity) : Component(entity)
     mCooldownCounter = 0.0f;
 
     // Default Gun Parameters
-    mSpreadAngle = 0.0f;
+    mBurst = true;
+    mBurstAmount = 20;
+
+    mSpreadAngle = 30.0f;
     mDamage = 20.0f;
-    mRecoil = 0.0f;
-    mBulletSpeed = 12.0f;
+    mBulletSpeed = 10.0f;
+    mBulletLife = 2.0f;
     mArmorPen = 3;
-    mCooldown = 0.2f;
-}
-
-Gun::Gun(Entity* entity, std::string parameters) : Component(entity)
-{
-    // Parse Parameters String
-    parseParameters(parameters);
-
-    mFiring = false;
-    mCooldownCounter = 0.0f;
+    mCooldown = 0.5f;
 }
 
 void Gun::onUpdate(sf::Time dt)
@@ -45,9 +39,23 @@ void Gun::onFixedUpdate(sf::Time dt)
         }
     }
 
+    // Check if gun is firinga and ready to fire.
     if (mFiring && mCooldownCounter == 0.0f)
     {
-        fireGun();
+        // If gun is bursty
+        if (mBurst)
+        {
+            // then fire the gun multiple times.
+            for (unsigned i = 0; i < mBurstAmount; i++)
+            {
+                fireGun();
+            }
+        }
+        // Else just fire once.
+        else
+        {
+            fireGun();
+        }
     }
 }
 
@@ -70,21 +78,25 @@ void Gun::handleInput()
     }
 }
 
-void Gun::parseParameters(std::string parameters)
+void Gun::randomizeGun()
 {
-    // Read in hex values
-    unsigned values[6];
-    for (int i = 0; i < 6; i++)
+    // Calculate random float values
+    float floatValues[7];
+    for (int i = 0; i < 7; i++)
     {
-        values[i] = std::stoul(parameters.substr(i * 2, 2), nullptr, 16);
+        floatValues[i] = ((float)rand() / RAND_MAX);
     }
 
-    // Calculate float values
-    float floatValues[6];
-    for (int i = 0; i < 6; i++)
+    // Determine if burst
+    if (floatValues[5] < 0.4f)
     {
-        floatValues[i] = values[i] / 255.0f;
+        mBurst = true;
     }
+    else
+    {
+        mBurst = false;
+    }
+    std::cout << "Burst: " << ((mBurst) ? "true" : "false") << std::endl;
 
     // Calculate Spread Angle
     mSpreadAngle = 45.0f * floatValues[0];
@@ -94,41 +106,25 @@ void Gun::parseParameters(std::string parameters)
     mDamage = 100.0f * floatValues[1];
     std::cout << "Damage: " << mDamage << std::endl;
 
-    // Calculate Recoil
-    mRecoil = 40.0f * floatValues[2];
-    std::cout << "Recoil: " << mRecoil << std::endl;
-
     // Calculate Bullet Speed
-    mBulletSpeed = 30.0f * floatValues[3] + 10.0f;
+    mBulletSpeed = 30.0f * floatValues[2] + 10.0f;
     std::cout << "Bullet Speed: " << mBulletSpeed << std::endl;
 
     // Calculate Armor Pen
-    mArmorPen = (unsigned)ceil(5.0f * floatValues[4]);
+    mArmorPen = (unsigned)ceil(5.0f * floatValues[3]);
     std::cout << "Armor Pen: " << mArmorPen << std::endl;
 
     // Calculate Cooldown
-    mCooldown = 1.0f * floatValues[5];
+    mCooldown = 1.0f * floatValues[4];
     std::cout << "Cooldown: " << mCooldown << std::endl;
-}
 
-void Gun::equipGun()
-{
-    // Create all Bullets
-    for (unsigned i = 0; i < 10; i++)
+    // Calculate Burst Amount
+    if (mBurst)
     {
-        mBullets.push_back(new Bullet(mDamage));
+        // Value between 10 and 40
+        mBurstAmount = ceil(floatValues[6] * 30) + 10;
+        std::cout << "Burst Amount: " << mBurstAmount << std::endl;
     }
-}
-
-void Gun::unEquipGun()
-{
-    // Destory all bullets
-    for (unsigned i = 0; i < 10; i++)
-    {
-        mBullets[i]->destroy();
-    }
-    // Clear pointers from vector
-    mBullets.clear();
 }
 
 float Gun::getSpreadAngle() const
@@ -139,11 +135,6 @@ float Gun::getSpreadAngle() const
 float Gun::getDamage() const
 {
     return mDamage;
-}
-
-float Gun::getRecoil() const
-{
-    return mRecoil;
 }
 
 float Gun::getBulletSpeed() const
@@ -169,28 +160,37 @@ bool Gun::getFiring() const
 void Gun::fireGun()
 {
     // If there are unused bullets
-    if (mUsedBullets < mBullets.size())
+    if (mUsedBullets < 1000)
     {
         // Set Cooldown Counter
         mCooldownCounter = mCooldown;
 
-        float angle = GameWorld::getInstance()->getPlayer()->getRotation();
+        // Get entity angle
+        float angle = mEntity->getRotation();
+        
+        // Add Spread
+        angle += (((float)rand() / RAND_MAX) * mSpreadAngle) - mSpreadAngle / 2.0f;
+
+        // Calculate direction
         sf::Vector2f direction(cos((float)(angle * M_PI) / 180.0f), sin((float)(angle * M_PI) / 180.0f));
 
-        // Get Bullet from Vector
-        Bullet* newBullet = mBullets[mUsedBullets];
-        newBullet->rigidbody->body->SetActive(true);
-        mUsedBullets++;
+        // Create a new Bullet
+        Bullet* newBullet = new Bullet(mDamage);
+
+        // Set Bullet Lifetime
+        newBullet->setLifetime(mBulletLife);
 
         // Set Bullet Transform
         sf::Vector2f spawnPosition = mEntity->getPosition() + direction * 30.0f;
+        newBullet->setPosition(spawnPosition);
         newBullet->rigidbody->body->SetTransform(b2Vec2(spawnPosition.x * Game::p2m, spawnPosition.y * Game::p2m), (float)(angle * M_PI) / 180.0f);
 
         // Set Bullet Velocity
         b2Vec2 velocity(direction.x * mBulletSpeed, direction.y * mBulletSpeed);
+        sf::Vector2f velocitySFML(velocity.x, velocity.y);
         newBullet->rigidbody->body->SetLinearVelocity(velocity);
 
         // Add Bullet to Scene
-        GameWorld::getInstance()->attachChildToNode(GameWorld::getInstance()->getPlayer()->getParent(), SceneNode::Ptr(newBullet));
+        GameWorld::getInstance()->attachChildToNode(mEntity->getParent(), SceneNode::Ptr(newBullet));
     }
 }

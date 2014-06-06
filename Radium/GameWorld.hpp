@@ -17,7 +17,8 @@ public:
     b2World*                                getb2World();
     void                                    toggleDebugDraw();
 
-    SceneNode*                              attachChildToNode(SceneNode* node, std::unique_ptr<SceneNode> child);
+    SceneNode*                              attachChildToNode(SceneNode* node, SceneNode::Ptr child);
+    void                                    detachChildFromNode(SceneNode* node, SceneNode* child);
 
 private:
                                             GameWorld(RenderWindow& window);
@@ -27,9 +28,11 @@ private:
     static GameWorld*                       sGameWorld;
     Player*                                 mPlayer;
     MeleeEnemy*                             mMeleeEnemy;
-    DodgingEnemy*                       mDodgingEnemy;
+    DodgingEnemy*                           mDodgingEnemy;
     b2World*                                mb2World;
     bool                                    mDrawDebug;
-    std::queue<SceneNode::Ptr>  mChildQueue;
-    std::queue<SceneNode*>                  mParentQueue;
+    std::queue<SceneNode::Ptr>              mAddChildQueue;
+    std::queue<SceneNode*>                  mAddParentQueue;
+    std::queue<SceneNode*>                  mRemoveChildQueue;
+    std::queue<SceneNode*>                  mRemoveParentQueue;
 };

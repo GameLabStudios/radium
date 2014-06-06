@@ -25,7 +25,6 @@ void Rigidbody::createBody(type bodyType)
     sf::Vector2f position = mEntity->getWorldPosition();
 
     // Create Box2D Body
-    bodyDef;
     if (bodyType == dynamicBody)
     {
         bodyDef.type = b2_dynamicBody;
@@ -40,11 +39,19 @@ void Rigidbody::createBody(type bodyType)
 
     // Store reference to entity in body
     body->SetUserData(mEntity);
+
+
 }
 
 void Rigidbody::canRotate(bool canRotate)
 {
     mCanRotate = canRotate;
+}
+
+void Rigidbody::setBits(uint16 categoryBits, uint16 maskBits)
+{
+    mCategoryBits = categoryBits;
+    mMaskBits = maskBits;
 }
 
 void Rigidbody::onFixedUpdate(sf::Time dt)

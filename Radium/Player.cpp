@@ -8,6 +8,7 @@
 #include "CircleRigidbody.hpp"
 #include "PlayerMovement.hpp"
 #include "Gun.hpp"
+#include "CollisionFilters.hpp"
 
 Player::Player(Vector2f position)
 {
@@ -32,6 +33,7 @@ Player::Player(Vector2f position)
 
     // rigidbody component
     CircleRigidbody* rigidbody = addComponent<CircleRigidbody>();
+    rigidbody->setBits(Collision::PLAYER, ~Collision::PLAYER_BULLETS ^ Collision::SHIELD);
     rigidbody->createBody(Rigidbody::dynamicBody);
     rigidbody->setShape(circle);
     rigidbody->canRotate(false);
@@ -102,8 +104,9 @@ void Player::handleEvent(const Event& event)
         {
             GameWorld::getInstance()->toggleDebugDraw();
         }
-        if (event.key.code == Keyboard::A)
+        if (event.key.code == Keyboard::R)
         {
+            getComponent<Gun>()->randomizeGun();
         }
     }
     else if (event.type == Event::KeyReleased)

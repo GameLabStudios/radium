@@ -9,10 +9,7 @@ class Gun : public Component
 {
 public:
                                         Gun(Entity* entity);
-                                        Gun(Entity* entity, std::string parameters);
-    void                                parseParameters(std::string parameters);
-    void                                equipGun();
-    void                                unEquipGun();
+    void                                randomizeGun();
 
     // Getters
     float                               getSpreadAngle() const;
@@ -32,9 +29,13 @@ private:
 private:
     float                               mSpreadAngle;
     float                               mDamage;
-    float                               mRecoil;
     float                               mBulletSpeed;
+    float                               mBulletLife;
     unsigned                            mArmorPen;
+
+    bool                                mBurst;
+    unsigned                            mBurstAmount;
+
     float                               mCooldown;
     bool                                mFiring;
     float                               mCooldownCounter;

@@ -19,5 +19,7 @@ void CircleRigidbody::setShape(CircleShape shape)
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &dynamicCircle;
     fixtureDef.density = 1.0f;
+    fixtureDef.filter.categoryBits = mCategoryBits;
+    fixtureDef.filter.maskBits = mMaskBits;
     body->CreateFixture(&fixtureDef);
 }

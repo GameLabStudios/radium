@@ -56,15 +56,27 @@ void GameWorld::update(Time dt)
     mWorldView.setCenter(mPlayer->getPosition());
 
     // Attach Objects to Scene Queue
-    if (!mParentQueue.empty())
+    if (!mAddParentQueue.empty())
     {
-        SceneNode* parent = mParentQueue.front();
-        mParentQueue.pop();
+        SceneNode* parent = mAddParentQueue.front();
+        mAddParentQueue.pop();
 
-        SceneNode::Ptr child = std::move(mChildQueue.front());
-        mChildQueue.pop();
+        SceneNode::Ptr child = std::move(mAddChildQueue.front());
+        mAddChildQueue.pop();
 
         parent->attachChild(std::move(child));
+    }
+
+    // Detach Object from Scene
+    if (!mRemoveParentQueue.empty())
+    {
+        SceneNode* parent = mRemoveParentQueue.front();
+        mRemoveParentQueue.pop();
+
+        SceneNode* child = mRemoveChildQueue.front();
+        mRemoveChildQueue.pop();
+
+        parent->detachChild(*child);
     }
 
     // Call Base update(dt)
@@ -113,9 +125,15 @@ void GameWorld::toggleDebugDraw()
 SceneNode* GameWorld::attachChildToNode(SceneNode* node, SceneNode::Ptr child)
 {
     SceneNode* returnPointer = child.get();
-    mChildQueue.push(std::move(child));
-    mParentQueue.push(node);
+    mAddChildQueue.push(std::move(child));
+    mAddParentQueue.push(node);
     return returnPointer;
+}
+
+void GameWorld::detachChildFromNode(SceneNode* node, SceneNode* child)
+{
+    mRemoveChildQueue.push(child);
+    mRemoveParentQueue.push(node);
 }
 
 void GameWorld::buildScene()

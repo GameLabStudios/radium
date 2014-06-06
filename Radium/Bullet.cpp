@@ -1,6 +1,9 @@
 #include "Bullet.hpp"
 #include "Enemy.hpp"
 #include "CircleRigidbody.hpp"
+#include "Gun.hpp"
+#include "GameWorld.hpp"
+#include "CollisionFilters.hpp"
 
 Bullet::Bullet(float damage)
 {
@@ -14,6 +17,7 @@ Bullet::Bullet(float damage)
 
     // Rigidbody Component
     CircleRigidbody* rigidbody = addComponent<CircleRigidbody>();
+    rigidbody->setBits(Collision::PLAYER_BULLETS, ~Collision::PLAYER_BULLETS ^ Collision::SHIELD);
     rigidbody->createBody(Rigidbody::dynamicBody);
     rigidbody->setShape(circle);
     rigidbody->body->SetBullet(true);
@@ -39,9 +43,15 @@ Bullet::Bullet(sf::Vector2f position, sf::Vector2f velocity, float damage) : Ent
     CircleRigidbody* rigidbody = addComponent<CircleRigidbody>();
     rigidbody->createBody(Rigidbody::dynamicBody);
     rigidbody->setShape(circle);
+    rigidbody->body->SetBullet(true);
 
     // Set Velocity
     rigidbody->body->SetLinearVelocity(mVelocity);
+}
+
+void Bullet::setLifetime(float time)
+{
+    mLifetime = time;
 }
 
 void Bullet::onDraw(RenderTarget& target, RenderStates states) const

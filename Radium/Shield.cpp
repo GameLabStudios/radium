@@ -5,6 +5,7 @@
 #include "GameWorld.hpp"
 #include "Game.hpp"
 #include "ShieldRigidbody.hpp"
+#include "CollisionFilters.hpp"
 
 Shield::Shield(Vector2f position, float lTime)
 {
@@ -18,22 +19,20 @@ Shield::Shield(Vector2f position, float lTime)
     setPosition(position * Game::m2p);
 
     ShieldRigidbody* rigidbody = addComponent<ShieldRigidbody>();
+    rigidbody->setBits(Collision::SHIELD, ~Collision::PLAYER ^ Collision::PLAYER_BULLETS);
     rigidbody->createBody(Rigidbody::staticBody);
     rigidbody->setShape(shieldObj);
 }
 
 void Shield::onUpdate(Time dt)
 {
-    //std::cout << "World pos: " << getWorldPosition().x << ", " << getWorldPosition().y << std::endl;
-    //std::cout << "rot: " << GameWorld::getInstance()->getPlayer()->getRotation() << std::endl;
     ShieldRigidbody* shield = getComponent<ShieldRigidbody>();
     b2Vec2 physicsPosition = b2Vec2(getWorldPosition().x * Game::p2m, getWorldPosition().y * Game::p2m);
-    shield->body->SetTransform(physicsPosition, (M_PI * GameWorld::getInstance()->getPlayer()->getRotation()) / 180.0f );//GameWorld::getInstance()->getPlayer()->getRotation());
+    shield->body->SetTransform(physicsPosition, (M_PI * GameWorld::getInstance()->getPlayer()->getRotation()) / 180.0f );
     shield->body->SetActive(true);
 }
 
 void Shield::onDraw(RenderTarget& target, RenderStates states) const
 {
-    //std::cout << "pos: " << getPosition().x << ", "<< getPosition().y <<std::endl;
     target.draw(shieldObj, states);
 }
