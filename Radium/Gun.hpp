@@ -19,12 +19,14 @@ public:
     unsigned                            getArmorPen() const;
     float                               getCooldown() const;
     bool                                getFiring() const;
+    void                                removeBullet(Bullet* bullet);
 
 private:
     virtual void                        onUpdate(sf::Time dt);
     virtual void                        onFixedUpdate(sf::Time dt);
     virtual void                        fireGun();
     void                                handleInput();
+    void                                updateBullets();
 
 private:
     float                               mSpreadAngle;

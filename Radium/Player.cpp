@@ -44,6 +44,7 @@ Player::Player(Vector2f position)
 
     // Add Gun Component!
     addComponent<Gun>();
+
     TextComponent* textBox = addComponent<TextComponent>();
     textBox->setSize(Vector2f(40,40));
     textBox->setText("Player");

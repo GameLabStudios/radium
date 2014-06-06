@@ -5,7 +5,7 @@
 #include "GameWorld.hpp"
 #include "CollisionFilters.hpp"
 
-Bullet::Bullet(float damage)
+Bullet::Bullet(Gun* gun, float damage) : mGun(gun)
 {
     // Set Damage
     mDamage = damage;
@@ -21,32 +21,6 @@ Bullet::Bullet(float damage)
     rigidbody->createBody(Rigidbody::dynamicBody);
     rigidbody->setShape(circle);
     rigidbody->body->SetBullet(true);
-}
-
-Bullet::Bullet(sf::Vector2f position, sf::Vector2f velocity, float damage) : Entity(), mLifetime(1.0f)
-{
-    // Set mVelocity
-    mVelocity = b2Vec2(velocity.x, velocity.y);
-
-    // Set Damage
-    mDamage = damage;
-
-    // SFML Circle Object
-    circle = CircleShape(2.0f, 10);
-    circle.setOrigin(2.0f, 2.0f);
-    circle.setFillColor(Color::Magenta);
-
-    // Set Position
-    setPosition(position);
-
-    // Rigidbody Component
-    CircleRigidbody* rigidbody = addComponent<CircleRigidbody>();
-    rigidbody->createBody(Rigidbody::dynamicBody);
-    rigidbody->setShape(circle);
-    rigidbody->body->SetBullet(true);
-
-    // Set Velocity
-    rigidbody->body->SetLinearVelocity(mVelocity);
 }
 
 void Bullet::setLifetime(float time)
@@ -66,6 +40,11 @@ void Bullet::onUpdate(sf::Time dt)
     {
         destroy();
     }
+}
+
+void Bullet::onDestroy()
+{
+    mGun->removeBullet(this);
 }
 
 void Bullet::onBeginContact(b2Fixture* other, b2Contact* contact)
