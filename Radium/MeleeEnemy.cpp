@@ -1,24 +1,37 @@
 #include "MeleeEnemy.hpp"
 #include "ChasePlayer.hpp"
+#include "Player.hpp"
 
 MeleeEnemy::MeleeEnemy(Vector2f position) : Enemy(position)
 {
-    setHealth(100.0f);
-    setVelocity(Vector2f(1.5f, 1.5f));
+    health = 100.0f;
+    damage = 20.0f;
+    bTreeFrequency = 4.0f;
+    velocity = Vector2f(12.0f, 12.0f);
+    color = Color::Red;
+    rectShape.setOrigin(20.0f, 20.0f);
+    rectShape.setFillColor(color);
     bTree = new BehaviorTree();
     buildBehaviorTree();
     setBTree(bTree);
 }
 
-void Enemy::buildBehaviorTree()
+void MeleeEnemy::buildBehaviorTree()
 {
-    ChasePlayer* chase = new ChasePlayer(bTree);
+    ChasePlayer* chase = new ChasePlayer(bTree, this);
     bTree->setRootNode(chase);
+    bTree->setUpdateFrequency(bTreeFrequency);
 }
 
 void MeleeEnemy::onBeginContact(b2Fixture* other, b2Contact* contact)
 {
-
+    Entity* entityPtr = static_cast<Entity*>(other->GetBody()->GetUserData());
+    Player* playerPtr = dynamic_cast<Player*>(entityPtr);
+    if (playerPtr != nullptr)
+    {
+        destroy();
+        GameWorld::getInstance()->getPlayer()->takeDamage(damage);
+    }
 }
 
 void MeleeEnemy::onEndContact(b2Fixture* other, b2Contact* contact)

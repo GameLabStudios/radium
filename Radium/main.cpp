@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include <stdexcept>
+#include <time.h>
 #ifdef _DEBUG
 #include <iostream>
 #endif
@@ -12,6 +13,7 @@ int main()
     try
     {
 #endif
+        srand((unsigned)time(NULL));
         Game& game = Game::getInstance();
         game.run();
 #if _DEBUG

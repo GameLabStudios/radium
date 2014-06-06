@@ -3,6 +3,7 @@
 #include <Box2D/Box2D.h>
 #include "Entity.hpp"
 #include "BehaviorTree.hpp"
+#include "Rigidbody.hpp"
 
 using namespace sf;
 using namespace AI;
@@ -15,21 +16,26 @@ public:
 
     // Getters
     inline virtual float            getHealth() const;                // returns the health
-    inline virtual int              getNumSides() const;              // returns the number
+    inline virtual int              getDamage() const;                // returns the amount of damage this enemy deals
     inline virtual Vector2f         getVelocity() const;              // returns the velocity
     inline virtual Color            getColor() const;                 // returns the color
-    inline virtual float            getAlpha() const;                 // returns the alpha transparency
     inline virtual BehaviorTree*    getBTree() const;                 // returns the root node of the behavior tree
 
+    // Collision Handilng
+    virtual void                    onBeginContact(b2Fixture* other, b2Contact* contact);
+    virtual void                    onEndContact(b2Fixture* other, b2Contact* contact);
+
+    // Miscellanseous
+    virtual void                    takeDamage(float damage);         // updates health
+
 protected:
-    virtual void                    buildBehaviorTree();            // builds the behavior tree
+    virtual void                    buildBehaviorTree() = 0;          // builds the behavior tree
 
     // Setters
     virtual void                    setHealth(float health);          // sets the health
-    virtual void                    setNumSides(int numSides);        // sets the number of sides
+    virtual void                    setDamage(int numSides);          // sets the amount of damage
     virtual void                    setVelocity(Vector2f velocity);   // sets the velocity
     virtual void                    setColor(Color color);            // sets the color
-    virtual void                    setAlpha(float alpha);            // sets the alpha transparency
     virtual void                    setBTree(BehaviorTree* bTree);    // sets the behavior tree
 
 private:
@@ -40,12 +46,11 @@ private:
 // Variables
 protected:
     float                           health;                           // represents size
-    int                             numSides;                         // represents amount of damage
+    int                             damage;                           // represents amount of damage
     Vector2f                        velocity;                         // the velocity of the enemy
     Color                           color;                            // the color of the enemy
-    float                           alpha;                            // the transparency of the enemy
     BehaviorTree*                   bTree;                            // the behavior tree of the enemy
-    b2Body*                         mBody;                            // the physics body of the enemy
+    float                           bTreeFrequency;                   // how many seconds until the next update in the behavior tree
 
     // temporary so Guerra can write behaviors
     RectangleShape                  rectShape;                        // the shape of the enemy

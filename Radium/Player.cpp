@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include <iostream>
 #include <string>
 #include "Player.hpp"
@@ -5,10 +7,9 @@
 #include "Game.hpp"
 #include "CircleRigidbody.hpp"
 #include "PlayerMovement.hpp"
+#include "Gun.hpp"
 #include "TextComponent.hpp"
-
-#define _USE_MATH_DEFINES
-#include <math.h>
+#include "CollisionFilters.hpp"
 
 Player::Player(Vector2f position)
 {
@@ -33,12 +34,16 @@ Player::Player(Vector2f position)
 
     // rigidbody component
     CircleRigidbody* rigidbody = addComponent<CircleRigidbody>();
+    rigidbody->setBits(Collision::PLAYER, ~Collision::PLAYER_BULLETS ^ Collision::SHIELD);
     rigidbody->createBody(Rigidbody::dynamicBody);
     rigidbody->setShape(circle);
+    rigidbody->canRotate(false);
 
     // player movement component
     addComponent<PlayerMovement>();
 
+    // Add Gun Component!
+    addComponent<Gun>();
     TextComponent* textBox = addComponent<TextComponent>();
     textBox->setSize(Vector2f(40,40));
     textBox->setText("Player");
@@ -62,6 +67,7 @@ void Player::onUpdate(Time dt)
 
 	float angle = atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x);
 	setRotation((float)((angle * 180.0f) / M_PI));
+    rigidbody->body->SetTransform(rigidbody->body->GetPosition(), angle);
 
     if (Mouse::isButtonPressed(Mouse::Right))
     {
@@ -80,17 +86,18 @@ void Player::onUpdate(Time dt)
         }
     }
 
-    // Guerra authored for enemy testing...will take out eventually
-    // TODO: Take this shit out.
     if (Mouse::isButtonPressed(Mouse::Left))
     {
         isShooting = true;
-        //std::cout << "shooting" << std::endl;
     }
     else
     {
-        //std::cout << "not shooting" << std::endl;
         isShooting = false;
+    }
+
+    if (health <= 0)
+    {
+        destroy();
     }
 }
 
@@ -110,8 +117,9 @@ void Player::handleEvent(const Event& event)
         {
             GameWorld::getInstance()->getState().requestStackPush(States::Inventory);
         }
-        if (event.key.code == Keyboard::A)
+        if (event.key.code == Keyboard::R)
         {
+            getComponent<Gun>()->randomizeGun();
         }
     }
 
@@ -136,5 +144,15 @@ void Player::changeAbility(int num)
 
 void Player::onBeginContact(b2Fixture* other, b2Contact* contact)
 {
-    std::cout << "playa hit!\n";
+}
+
+void Player::takeDamage(float damage)
+{
+    health -= damage;
+    std::cout << "health: " << health << std::endl;
+}
+
+bool Player::getIsShooting()
+{
+    return isShooting;
 }

@@ -11,11 +11,18 @@ public:
 
 public:
                     Rigidbody(Entity* entity);
-                    ~Rigidbody();
+    virtual         ~Rigidbody();
     void            createBody(type bodyType);
+    void            canRotate(bool canRotate);
+    void            setBits(uint16 categoryBits, uint16 maskBits);
     virtual void    onFixedUpdate(sf::Time dt);
 
 public:
     b2Body* body;
     b2BodyDef bodyDef;
+
+protected:
+    uint16 mCategoryBits;
+    uint16 mMaskBits;
+    bool mCanRotate;
 };

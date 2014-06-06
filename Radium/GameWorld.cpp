@@ -55,6 +55,30 @@ void GameWorld::update(Time dt)
     // TODO: Detach this code from the GameWorld and set-up Camera class possibly, or at least have code within the update loop do this.
     mWorldView.setCenter(mPlayer->getPosition());
 
+    // Attach Objects to Scene Queue
+    if (!mAddParentQueue.empty())
+    {
+        SceneNode* parent = mAddParentQueue.front();
+        mAddParentQueue.pop();
+
+        SceneNode::Ptr child = std::move(mAddChildQueue.front());
+        mAddChildQueue.pop();
+
+        parent->attachChild(std::move(child));
+    }
+
+    // Detach Object from Scene
+    if (!mRemoveParentQueue.empty())
+    {
+        SceneNode* parent = mRemoveParentQueue.front();
+        mRemoveParentQueue.pop();
+
+        SceneNode* child = mRemoveChildQueue.front();
+        mRemoveChildQueue.pop();
+
+        parent->detachChild(*child);
+    }
+
     // Call Base update(dt)
     World::update(dt);
 }
@@ -103,6 +127,20 @@ void GameWorld::toggleDebugDraw()
     mDrawDebug = !mDrawDebug;
 }
 
+SceneNode* GameWorld::attachChildToNode(SceneNode* node, SceneNode::Ptr child)
+{
+    SceneNode* returnPointer = child.get();
+    mAddChildQueue.push(std::move(child));
+    mAddParentQueue.push(node);
+    return returnPointer;
+}
+
+void GameWorld::detachChildFromNode(SceneNode* node, SceneNode* child)
+{
+    mRemoveChildQueue.push(child);
+    mRemoveParentQueue.push(node);
+}
+
 void GameWorld::buildScene()
 {
     // Initialize the different layers
@@ -120,12 +158,19 @@ void GameWorld::buildScene()
     player->setPosition(mSpawnPosition);
     mSceneLayers[Background]->attachChild(std::move(player));
 
-    // Add enemy to scene (temporary)
+    // Add melee enemy to scene (temporary)
     Vector2f enemySpawnPos = mSpawnPosition + Vector2f(300.0f, 40.0f);
     std::unique_ptr<MeleeEnemy> meleeEnemy(new MeleeEnemy(enemySpawnPos));
     mMeleeEnemy = meleeEnemy.get();
     meleeEnemy->setPosition(enemySpawnPos);
     mSceneLayers[Background]->attachChild(std::move(meleeEnemy));
+
+    // Add dodging enemy to scene (temporary)
+    Vector2f dodgeSpawnPos = mSpawnPosition + Vector2f(250.0f, 80.0f);
+    std::unique_ptr<DodgingEnemy> dodgingEnemy(new DodgingEnemy(dodgeSpawnPos));
+    mDodgingEnemy = dodgingEnemy.get();
+    dodgingEnemy->setPosition(dodgeSpawnPos);
+    mSceneLayers[Background]->attachChild(std::move(dodgingEnemy));
 
     // Add Square to scene on mouseTest
     //std::unique_ptr<Square> square2(new Square());
@@ -138,5 +183,4 @@ void GameWorld::buildScene()
     //std::unique_ptr<Enemy> enemy(new Enemy(mSpawnPosition.x + 10, mSpawnPosition.y + 10));
     //enemy->setPosition(Vector2f(mSpawnPosition.x + 10, mSpawnPosition.y + 10));
     //mSceneLayers[Background]->attachChild(std::move(enemy));
-
 }

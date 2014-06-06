@@ -58,28 +58,40 @@
     <Filter Include="Header Files\AI\Conditions">
       <UniqueIdentifier>{9fd97a90-6109-4db7-ae99-e0fec25d363d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\States">
-      <UniqueIdentifier>{28f93f5a-7ed1-441b-85bc-1c845ca53887}</UniqueIdentifier>
+    <Filter Include="Header Files\Components\Rigidbodies">
+      <UniqueIdentifier>{5b63a097-11ad-4c54-870f-a66c41fd0f48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\States">
-      <UniqueIdentifier>{cd793250-e1ea-4fb1-bbcd-1ea1ba1034d1}</UniqueIdentifier>
+    <Filter Include="Header Files\Entities\Bullets">
+      <UniqueIdentifier>{4bb09e30-b7c5-46d0-a3ea-62284aa8fec8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GameMechanics">
-      <UniqueIdentifier>{cc8bf96b-b68f-4ca2-9b76-cf78ed68211f}</UniqueIdentifier>
+    <Filter Include="Header Files\Entities\Enemies">
+      <UniqueIdentifier>{25b3bdc3-4d29-4e58-a65f-455ea975930f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Enemies">
+      <UniqueIdentifier>{b3d63344-6fbb-4257-b946-8e674d900126}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\UI">
-      <UniqueIdentifier>{46acb130-3724-4593-9d93-c57ac0bca9cb}</UniqueIdentifier>
+      <UniqueIdentifier>{c6975adb-6ea5-4737-bf8d-8ed8239fcc3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{e4b960eb-0753-4755-a830-76384bd6e8cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Mechanics">
+      <UniqueIdentifier>{9822a389-1721-4aa4-9387-400a585f66db}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\UI">
-      <UniqueIdentifier>{e2ae01f2-71ff-4d87-a76e-3e9909472266}</UniqueIdentifier>
+      <UniqueIdentifier>{0c2d56e5-09cf-4e35-87c9-5311813ffe56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mechanics">
+      <UniqueIdentifier>{be29887d-d5b0-44f0-9529-fa52ad363138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{a6814fe4-f6df-4c8f-ad43-1a4a11aa650d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Entities</Filter>
@@ -95,9 +107,6 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="MeleeEnemy.cpp">
-      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="MouseTest.cpp">
       <Filter>Source Files\Entities</Filter>
@@ -165,23 +174,47 @@
     <ClCompile Include="Box2DCallbackManager.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="TextComponent.cpp">
+    <ClCompile Include="Gun.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="PauseState.cpp">
-      <Filter>Source Files\States</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="InventoryState.cpp">
-      <Filter>Source Files\States</Filter>
+    <ClCompile Include="MeleeEnemy.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="TextBox.cpp">
-      <Filter>Source Files\UI</Filter>
+    <ClCompile Include="DodgingEnemy.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="IsPlayerShooting.cpp">
+      <Filter>Source Files\AI\Conditions</Filter>
+    </ClCompile>
+    <ClCompile Include="DodgeBullets.cpp">
+      <Filter>Source Files\AI\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="IsNearPlayer.cpp">
+      <Filter>Source Files\AI\Conditions</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="InventoryState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
     <ClCompile Include="ScrollBox.cpp">
       <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,13 +224,7 @@
     <ClInclude Include="TestComponent.hpp">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.hpp">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.hpp">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="MeleeEnemy.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="MouseTest.hpp">
@@ -254,19 +281,7 @@
     <ClInclude Include="TeleportAbility.hpp">
       <Filter>Header Files\Abilities</Filter>
     </ClInclude>
-    <ClInclude Include="Rigidbody.hpp">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SquareRigidbody.hpp">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleRigidbody.hpp">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerMovement.hpp">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="ShieldRigidbody.hpp">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="BehaviorNode.hpp">
@@ -296,26 +311,65 @@
     <ClInclude Include="Box2DCallbackManager.hpp">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="TextComponent.hpp">
+    <ClInclude Include="CircleRigidbody.hpp">
+      <Filter>Header Files\Components\Rigidbodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Rigidbody.hpp">
+      <Filter>Header Files\Components\Rigidbodies</Filter>
+    </ClInclude>
+    <ClInclude Include="ShieldRigidbody.hpp">
+      <Filter>Header Files\Components\Rigidbodies</Filter>
+    </ClInclude>
+    <ClInclude Include="SquareRigidbody.hpp">
+      <Filter>Header Files\Components\Rigidbodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.hpp">
+      <Filter>Header Files\Entities\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.hpp">
+      <Filter>Header Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="MeleeEnemy.hpp">
+      <Filter>Header Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="DodgingEnemy.hpp">
+      <Filter>Header Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="IsPlayerShooting.hpp">
+      <Filter>Header Files\AI\Conditions</Filter>
+    </ClInclude>
+    <ClInclude Include="DodgeBullets.hpp">
+      <Filter>Header Files\AI\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="IsNearPlayer.hpp">
+      <Filter>Header Files\AI\Conditions</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.hpp">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="PauseState.hpp">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="InventoryState.hpp">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Inventory.hpp">
-      <Filter>Header Files\GameMechanics</Filter>
-    </ClInclude>
-    <ClInclude Include="TextBox.hpp">
-      <Filter>Header Files\UI</Filter>
+    <ClInclude Include="CollisionFilters.hpp">
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Button.hpp">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Inventory.hpp">
+      <Filter>Header Files\Mechanics</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryState.hpp">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.hpp">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
     <ClInclude Include="ScrollBox.hpp">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBox.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.hpp">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

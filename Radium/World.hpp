@@ -4,6 +4,7 @@
 #include "SceneNode.hpp"
 #include "Player.hpp"
 #include "MeleeEnemy.hpp"
+#include "DodgingEnemy.hpp"
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
 #include <SFML/Graphics/Texture.hpp>

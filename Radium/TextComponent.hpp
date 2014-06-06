@@ -5,7 +5,6 @@ class TextComponent : public Component
 {
 public:
                 TextComponent(Entity* entity);
-                ~TextComponent();
 void            setText(String txt);
 void            setSize(Vector2f size);
 virtual void    onDraw(sf::RenderTarget& target, sf::RenderStates states) const;

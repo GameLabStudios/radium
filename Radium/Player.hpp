@@ -14,9 +14,7 @@ public:
     void            handleEvent(const sf::Event& event);
     void            takeDamage(float damage);
     void            heal(float health);
-
-public:
-    bool            isShooting; //Guerra authored for enemy testing
+    bool            getIsShooting();
 
 private:
 	virtual void    onDraw(RenderTarget& target, RenderStates states) const;	
@@ -33,5 +31,6 @@ private:
     Ability*        abilities[3];
     int             abilityEquipped;
     Vector2f        direction;
+    bool            isShooting;
     Text            text;
 };
