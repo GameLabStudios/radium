@@ -32,6 +32,18 @@ void Shield::onUpdate(Time dt)
     shield->body->SetActive(true);
 }
 
+void Shield::onFixedUpdate(Time dt)
+{
+    if (lifeTime >= 0)
+    {
+        lifeTime -= dt.asSeconds();
+    }
+    else
+    {
+        destroy();
+    }
+}
+
 void Shield::onDraw(RenderTarget& target, RenderStates states) const
 {
     target.draw(shieldObj, states);

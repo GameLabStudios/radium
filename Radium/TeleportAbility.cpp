@@ -14,7 +14,7 @@ void TeleportAbility::useAbility(float rad)
     if (timer <= 0)
     {
         timer = cooldown;
-        b2Vec2 jump = b2Vec2((cos(rad) * 10.0f), (sin(rad) * -10.0f));
+        b2Vec2 jump = b2Vec2((cos(rad) * 10.0f), (sin(rad) * 10.0f));
         mEntity->rigidbody->body->SetTransform(mEntity->rigidbody->body->GetPosition() + jump, 0.0f);
     }
 }
