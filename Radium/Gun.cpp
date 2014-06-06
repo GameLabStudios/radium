@@ -4,7 +4,7 @@
 #include "Game.hpp"
 #include "GameWorld.hpp"
 
-Gun::Gun(Entity* entity) : Component(entity)
+Gun::Gun(Entity* entity) : Component(entity), mBullets()
 {
     // Configure firing and cooldown counter
     mFiring = false;
@@ -25,6 +25,7 @@ Gun::Gun(Entity* entity) : Component(entity)
 void Gun::onUpdate(sf::Time dt)
 {
     handleInput();
+    updateBullets();
 }
 
 void Gun::onFixedUpdate(sf::Time dt)
@@ -75,6 +76,15 @@ void Gun::handleInput()
         {
             mFiring = false;
         }
+    }
+}
+
+void Gun::updateBullets()
+{
+    std::vector<Bullet*> attractors;
+    for (Bullet* bullet : mBullets)
+    {
+
     }
 }
 
@@ -157,6 +167,25 @@ bool Gun::getFiring() const
     return mFiring;
 }
 
+void Gun::removeBullet(Bullet* bullet)
+{
+    // Search for bullet
+    for (std::vector<Bullet*>::iterator it = mBullets.begin(); it != mBullets.end();)
+    {
+        Bullet* iBullet = *it;
+        if (iBullet == bullet)
+        {
+            it = mBullets.erase(it);
+        }
+
+        // Handle moving iterator here to avoid out of bounds error
+        if (it != mBullets.end())
+        {
+            ++it;
+        }
+    }
+}
+
 bool Gun::getBurst() const
 {
     return mBurst;
@@ -196,7 +225,10 @@ void Gun::fireGun()
         sf::Vector2f direction(cos((float)(angle * M_PI) / 180.0f), sin((float)(angle * M_PI) / 180.0f));
 
         // Create a new Bullet
-        Bullet* newBullet = new Bullet(mDamage);
+        Bullet* newBullet = new Bullet(this, mDamage);
+        
+        // Store the new Bullet
+        mBullets.push_back(newBullet);
 
         // Set Bullet Lifetime
         newBullet->setLifetime(mBulletLife);

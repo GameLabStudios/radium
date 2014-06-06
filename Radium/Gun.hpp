@@ -21,6 +21,7 @@ public:
     bool                                getBurst() const;
     float                               getBurstAmount() const;
     bool                                getFiring() const;
+    void                                removeBullet(Bullet* bullet);
 
     void                                createGun(float, float, float, float, float, bool, float);
 
@@ -29,6 +30,7 @@ private:
     virtual void                        onFixedUpdate(sf::Time dt);
     virtual void                        fireGun();
     void                                handleInput();
+    void                                updateBullets();
 
 private:
     float                               mSpreadAngle;

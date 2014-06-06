@@ -48,6 +48,7 @@ Player::Player(Vector2f position)
 
     // Add Gun Component!
     addComponent<Gun>();
+
     std::string gunName = "Gun " + std::to_string(mGunCounter);
     mGunCounter++;
     mInventory.addItem(gunName, getComponent<Gun>()->getDamage(), getComponent<Gun>()->getSpreadAngle(),
