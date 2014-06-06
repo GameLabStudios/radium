@@ -13,7 +13,7 @@ DodgingEnemy::DodgingEnemy(Vector2f position) : Enemy(position)
 {
     mHealth = 80.0f;
     mDamage = 30.0f;
-    mBTreeFrequency = 1.0f;
+    mBTreeFrequency = 0.5f;
     mVelocity = Vector2f(5.0f, 5.0f);
     mColor = Color::Blue;
     mRectShape.setOrigin(20.0f, 20.0f);

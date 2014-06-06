@@ -103,6 +103,7 @@
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShieldAbility.cpp" />
     <ClCompile Include="ShieldRigidbody.cpp" />
+    <ClCompile Include="ShooterEnemy.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="SquareRigidbody.cpp" />
     <ClCompile Include="State.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Shield.hpp" />
     <ClInclude Include="ShieldAbility.hpp" />
     <ClInclude Include="ShieldRigidbody.hpp" />
+    <ClInclude Include="ShooterEnemy.hpp" />
     <ClInclude Include="Square.hpp" />
     <ClInclude Include="SquareRigidbody.hpp" />
     <ClInclude Include="State.hpp" />

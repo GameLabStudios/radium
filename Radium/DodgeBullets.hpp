@@ -9,9 +9,11 @@ public:
     virtual void doAction();
 
 private:
-    Enemy* mEnemy;
-    float mAngleFromMouse;
-    Vector2f mMousePosition;
-    Vector2f mTargetPos;
+    Enemy*      mEnemy;
+    float       mEnemyAngleFromMouse;
+    float       mEnemyAngleFromPlayer;
+    float       mMouseAngleFromPlayer;
+    Vector2f    mMousePosition;
+    Vector2f    mTargetPos;
 };
 

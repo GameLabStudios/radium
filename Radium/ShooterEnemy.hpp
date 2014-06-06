@@ -3,20 +3,23 @@
 #include <Box2D\Box2D.h>
 #include "Entity.hpp"
 #include "Enemy.hpp"
+#include "Gun.hpp"
 
 /*
-* The Dodging Enemy chases the player and
-* attacks similar to the Melee Enemy at a slower
-* speed, however it has the capability of dodging
-* bullets, making it harder to kill.
+* The Shooter Enemy is a ranged enemy that
+* has the ability to shoot a gun at the player,
+* capable of causing more damage to the player
+* from a distance than the Melee or Doding Enemies.
 */
-
-class DodgingEnemy : public Enemy
+class ShooterEnemy : public Enemy
 {
 public:
-    DodgingEnemy(Vector2f position);
+    ShooterEnemy(Vector2f position);
     virtual void buildBehaviorTree();
     virtual void onBeginContact(b2Fixture* other, b2Contact* contact);
     virtual void onEndContact(b2Fixture* other, b2Contact* contact);
+
+private:
+    Gun* mGun;
 };
 
