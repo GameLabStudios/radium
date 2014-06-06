@@ -4,7 +4,7 @@
 #include "Player.hpp"
 
 
-EnemyBullet::EnemyBullet(float damage) : Bullet(damage)
+EnemyBullet::EnemyBullet(Gun* gun, float damage) : Bullet(gun, damage)
 {
 }
 

@@ -4,6 +4,7 @@
 #include "SquareRigidbody.hpp"
 #include "Bullet.hpp"
 #include "GameWorld.hpp"
+#include "CollisionFilters.hpp"
 #include <cmath>
 
 Enemy::Enemy(Vector2f position)
@@ -20,6 +21,7 @@ Enemy::Enemy(Vector2f position)
     setPosition(position);
 
     SquareRigidbody* rigidbody = addComponent<SquareRigidbody>();
+    rigidbody->setBits(Collision::ENEMIES, ~Collision::ENEMY_BULLETS);
     rigidbody->createBody(Rigidbody::dynamicBody);
     rigidbody->setShape(mRectShape);
 }

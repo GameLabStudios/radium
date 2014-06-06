@@ -3,7 +3,7 @@
 class EnemyBullet : public Bullet
 {
 public:
-    EnemyBullet(float damage);
+    EnemyBullet(Gun* gun, float damage);
     void makeRigidBody() override;
     void EnemyBullet::onBeginContact(b2Fixture* other, b2Contact* contact);
 };

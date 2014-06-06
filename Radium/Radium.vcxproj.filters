@@ -222,17 +222,17 @@
     <ClCompile Include="AttractBullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShooterEnemy.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
+    <ClCompile Include="EnemyBullet.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AgileShooter.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShooterEnemy.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ShootPlayer.cpp">
-      <Filter>Source Files\AI\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyBullet.cpp">
-      <Filter>Source Files\Entities</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,17 +395,17 @@
     <ClInclude Include="AttactBullet.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShooterEnemy.hpp">
-      <Filter>Header Files\Entities\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="AgileShooter.hpp">
-      <Filter>Header Files\Entities\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="ShootPlayer.hpp">
-      <Filter>Header Files\AI\Actions</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnemyBullet.hpp">
-      <Filter>Header Files\Entities\Bullets</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShooterEnemy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootPlayer.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

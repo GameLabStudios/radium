@@ -205,10 +205,6 @@ void Gun::setEnemyOwned(bool enemyOwned)
     mEnemyOwned = enemyOwned;
 }
 
-        }
-    }
-}
-
 bool Gun::getBurst() const
 {
     return mBurst;
@@ -251,11 +247,11 @@ void Gun::fireGun()
         Bullet* newBullet;
         if (mEnemyOwned)
         {
-            newBullet = new EnemyBullet(mDamage);
+            newBullet = new EnemyBullet(this, mDamage);
         }
         else
         {
-            newBullet = new Bullet(mDamage);
+            newBullet = new Bullet(this, mDamage);
         }
         
         // Store the new Bullet
