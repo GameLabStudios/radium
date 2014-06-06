@@ -6,23 +6,6 @@
 
 InventoryState::InventoryState(StateStack& stack, Context context) : State(stack, context)
 {
-    Color bgColor = Color(126, 126, 126, 220);
-
-	statsBox = TextBox(Vector2f(200.0f, 70.0f), Vector2f(500.0f, 300.0f), "Stats");
-	testing = TextBox(Vector2f(220.0f, 90.0f), Vector2f(400.0f, 200.0f), "Temporary");
-    
-	gunName = new Text();
-    gunName->setFont(Game::getInstance().getFonts().get(Fonts::Main));
-    gunName->setPosition(Vector2f(220.0f, 80.0f));
-    gunName->setString("");
-
-	mainInvBox = TextBox(Vector2f(getContext().window->getSize().x / 2 + 200, 70.0f), Vector2f(400.0f, 600.0f), "Inventory");
-
-    invScroll = new RectangleShape(Vector2f(10.0f, 30.0f));
-    invScroll->setPosition(Vector2f(getContext().window->getSize().x / 2 + 580, 95.0f));
-
-    invView = new View(FloatRect(0.0f, 0.0f, 1280.0f, 720.0f));
-    invView->setViewport(FloatRect(0.68f, 0.13f, 0.75f, 0.75f));
 
     for (int i = 0; i < 20; i++)
     {
@@ -32,110 +15,76 @@ InventoryState::InventoryState(StateStack& stack, Context context) : State(stack
     }
 
     Vector2f tmpPosText = Vector2f(20.0f, 20.0f);
-    Vector2f tmpPosBox = Vector2f(0.0f, 0.0f);
+    Vector2f tmpPos = Vector2f(0.0f, 0.0f);
 
-    for(String name : tempList)
+    for (String name : tempList)
     {
-        Text addItem = Text();
-        addItem.setFont(Game::getInstance().getFonts().get(Fonts::Main));
-        addItem.setString(name);
-        addItem.setPosition(tmpPosText);
-        
-        RectangleShape* box = new RectangleShape(Vector2f(450, 80));
-        box->setPosition(tmpPosBox);
-        box->setFillColor(Color(180, 180, 180, 180));
 
-        Rect<float>* boundingBox = new Rect<float>(tmpPosBox, Vector2f(450, 80));
-
-        tmpPosText += Vector2f(0.0f, 100.0f);
-        tmpPosBox += Vector2f(0.0f, 100.0f);
+        Button addItem = Button(tmpPos, Vector2f(450, 80), name);
         inventoryList.push_back(addItem);
-        invBoxes.push_back(box);
-        touchBoxes.push_back(boundingBox);
+        tmpPos += Vector2f(0.0f, 100.0f);
     }
-}
 
+	statsBox = TextBox(Vector2f(200.0f, 70.0f), Vector2f(500.0f, 300.0f), "Stats");
+    
+	gunName = new Text();
+    gunName->setFont(Game::getInstance().getFonts().get(Fonts::Main));
+    gunName->setPosition(Vector2f(220.0f, 80.0f));
+    gunName->setString("");
+
+    equip1Box = TextBox(Vector2f(90.f, 420.f), Vector2f(320.f, 250.f), "Slot 1");
+    equip2Box = TextBox(Vector2f(500.f, 420.f), Vector2f(320.f, 250.f), "Slot 2");
+
+
+	mainInvBox = ScrollBox(Vector2f(getContext().window->getSize().x / 2 + 200, 70.0f), Vector2f(400.0f, 600.0f), "Inventory");
+    mainInvBox.createView(FloatRect(0, 0, 1280, 720), FloatRect(0.68f, 0.13f, 0.75f, 0.75f));
+    mainInvBox.addItems(inventoryList);
+
+    selectedItem = -1;
+}
 
 void InventoryState::draw()
 {
     getContext().window->setView(getContext().window->getDefaultView());
 
 	statsBox.draw(getContext().window);
-	testing.draw(getContext().window);
     getContext().window->draw(*gunName);
 
+    equip1Box.draw(getContext().window);
+    equip2Box.draw(getContext().window);
+
 	mainInvBox.draw(getContext().window);
-    getContext().window->draw(*invScroll); 
-   
-    getContext().window->setView(*invView);
-    for (unsigned i = 0; i < inventoryList.size(); i++)
-    {
-        getContext().window->draw(*invBoxes[i]);
-        getContext().window->draw(inventoryList[i]);
-    }
 }
 
 bool InventoryState::update(Time dt)
 {
+    mainInvBox.update(dt, getContext().window);
     return false;
 }
 
 bool InventoryState::fixedUpdate(Time dt)
 {
-    for (unsigned i = 0; i < inventoryList.size(); i++)
-    {
-        if (invBoxes[0]->getPosition().y + direction.y <= 0.0f && 
-            invBoxes[invBoxes.size() - 1]->getPosition().y + direction.y >= 640.0f)
-        {
-            inventoryList[i].move(direction);
-            invBoxes[i]->move(direction);
-            touchBoxes[i]->top += direction.y;
-        }
-    }
+    mainInvBox.fixedUpdate(dt);
     return false;
 }
 
 bool InventoryState::handleEvent(const Event& event)
 {
+    mainInvBox.handleEvent(event, getContext().window);
+    
     if (event.type == Event::KeyPressed)
     {
         if (event.key.code == Keyboard::I)
         {
             requestStackPop();
         }
-        if (event.key.code == Keyboard::S)
-        {
-            direction = Vector2f(0.0f, -5.0f);
-        }
-        if (event.key.code == Keyboard::W)
-        {
-            direction = Vector2f(0.0f, 5.0f);
-        }
-    }
-    if (event.type == Event::KeyReleased)
-    {
-        direction = Vector2f(0.0f, 0.0f);
     }
 
-    if (event.type == Event::MouseButtonPressed)
+    if (event.type == Event::MouseButtonReleased)
     {
-        Vector2i mouse = Mouse::getPosition(*(getContext().window));
-        Vector2f mousePos = getContext().window->mapPixelToCoords(mouse, *invView);
-        for (unsigned i = 0; i < touchBoxes.size(); i++)
+        if (mainInvBox.hasSelected())
         {
-            if (touchBoxes[i]->contains(mousePos))
-            {   
-                if (gunName->getString().toAnsiString().compare("") != 0)
-                {   
-                    // if previous item was selected, change that
-                    invBoxes[selectedItem]->setFillColor(Color(180, 180, 180, 180));
-                }
-                gunName->setString(inventoryList[i].getString().toAnsiString());
-                
-                // set the select color of item to black
-                invBoxes[i]->setFillColor(Color::Black);
-                selectedItem = i;
-            }
+            gunName->setString(mainInvBox.getSelected().getString());
         }
     }
 

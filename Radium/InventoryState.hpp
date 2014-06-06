@@ -4,6 +4,8 @@
 #include "State.hpp"
 #include "World.hpp"
 #include "TextBox.hpp"
+#include "ScrollBox.hpp"
+#include "Button.hpp"
 
 using namespace sf;
 
@@ -19,21 +21,20 @@ public:
 private:
     // variable for stat box
     TextBox							statsBox;
-	TextBox							testing;
     Text*                           gunName;        // text for select gun name
     std::vector<Text>               gunStats;       // vector that holds all text for gun attributes
     int                             selectedItem;   // int of selected variable
 
     // variables for main inventory box
-    TextBox							mainInvBox;
+    ScrollBox						mainInvBox;
     RectangleShape*                 invScroll;
     Rect<float>                     scrollBoundBox;
 
-    View*                           invView;        // view of the scrolling inventory
-    Vector2f                        direction;      // directional vector for moving inventory
-    std::vector<Text>               inventoryList;  // vector of inventory objects
-    std::vector<RectangleShape*>    invBoxes;       // display boxes behind the inventory
-    std::vector<Rect<float>*>       touchBoxes;     // bounding boxes for inventory items
+    // variables for equipped box
+    TextBox                         equip1Box;
+    TextBox                         equip2Box;
+
+    std::vector<Button>             inventoryList;  // vector of inventory objects
 
     std::vector<std::string>        tempList;       // temporary list
 };

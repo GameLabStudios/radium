@@ -10,20 +10,26 @@ TextBox::TextBox(Vector2f position, Vector2f size, std::string title)
 {
 	Color defaultColor = Color(126, 126, 126, 220);
 
-	mainBox = new RectangleShape(size);
-	mainBox->setPosition(position);
-	mainBox->setFillColor(defaultColor);
+    // create the box of the text box
+	mMainBox = new RectangleShape(size);
+    mMainBox->setPosition(position);
+    mMainBox->setFillColor(defaultColor);
 
-	mainText.setFont(Game::getInstance().getFonts().get(Fonts::Main));
-	mainText.setString(title);
+    // create the font of the text box
+	mMainText.setFont(Game::getInstance().getFonts().get(Fonts::Main));
+    mMainText.setString(title);
 	float stringLength = title.length() * 30;
-	std::cout << "length : " << stringLength << std::endl;
+
+	//std::cout << "length : " << stringLength << std::endl;
+
+    // set the string position according to the size of the text box and try to center it
 	Vector2f stringPos = Vector2f(position.x + (size.x / 2) - stringLength/4, position.y - 40.0f);
-	mainText.setPosition(stringPos);
+    mMainText.setPosition(stringPos);
 }
 
 void TextBox::draw(RenderWindow* window)
 {
-	window->draw(*mainBox);
-	window->draw(mainText);
+    // draw the box and string
+    window->draw(*mMainBox);
+    window->draw(mMainText);
 }
