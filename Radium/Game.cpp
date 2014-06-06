@@ -2,6 +2,8 @@
 #include "State.hpp"
 #include "StateIdentifiers.hpp"
 #include "GameState.hpp"
+#include "PauseState.hpp"
+#include "InventoryState.hpp"
 #include <string>
 
 const Time Game::TimePerFrame = seconds(1.f / 60.0f);
@@ -26,6 +28,7 @@ mStateStack(State::Context(mWindow, mTextures, mFonts))
     
     registerStates();
     mStateStack.pushState(States::Game);
+
 }
 
 void Game::run()
@@ -102,10 +105,22 @@ void Game::updateStatistics(Time deltaTime)
 void Game::registerStates()
 {
     mStateStack.registerState<GameState>(States::Game);
+    mStateStack.registerState<PauseState>(States::Pause);
+    mStateStack.registerState<InventoryState>(States::Inventory);
 }
 
 Game& Game::getInstance()
 {
     static Game instance;
     return instance;
+}
+
+const TextureHolder& Game::getTextures() const
+{
+    return mTextures;
+}
+
+const FontHolder& Game::getFonts() const
+{
+    return mFonts;
 }

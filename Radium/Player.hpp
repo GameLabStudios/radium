@@ -32,4 +32,5 @@ private:
     int             abilityEquipped;
     Vector2f        direction;
     bool            isShooting;
+    Text            text;
 };

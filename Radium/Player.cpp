@@ -8,6 +8,7 @@
 #include "CircleRigidbody.hpp"
 #include "PlayerMovement.hpp"
 #include "Gun.hpp"
+#include "TextComponent.hpp"
 #include "CollisionFilters.hpp"
 
 Player::Player(Vector2f position)
@@ -43,6 +44,9 @@ Player::Player(Vector2f position)
 
     // Add Gun Component!
     addComponent<Gun>();
+    TextComponent* textBox = addComponent<TextComponent>();
+    textBox->setSize(Vector2f(40,40));
+    textBox->setText("Player");
 }
 
 void Player::onDraw(RenderTarget& target, RenderStates states) const
@@ -50,6 +54,7 @@ void Player::onDraw(RenderTarget& target, RenderStates states) const
 
 	target.draw(circle, states);
     target.draw(line, states);
+
 }
 
 void Player::onFixedUpdate(Time dt)
@@ -63,7 +68,7 @@ void Player::onUpdate(Time dt)
 	float angle = atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x);
 	setRotation((float)((angle * 180.0f) / M_PI));
     rigidbody->body->SetTransform(rigidbody->body->GetPosition(), angle);
-	
+
     if (Mouse::isButtonPressed(Mouse::Right))
     {
         switch (abilityEquipped)
@@ -104,11 +109,20 @@ void Player::handleEvent(const Event& event)
         {
             GameWorld::getInstance()->toggleDebugDraw();
         }
+        if (event.key.code == Keyboard::P)
+        {
+            GameWorld::getInstance()->getState().requestStackPush(States::Pause);
+        }
+        if (event.key.code == Keyboard::I)
+        {
+            GameWorld::getInstance()->getState().requestStackPush(States::Inventory);
+        }
         if (event.key.code == Keyboard::R)
         {
             getComponent<Gun>()->randomizeGun();
         }
     }
+
     else if (event.type == Event::KeyReleased)
     {
         if (event.key.code == Keyboard::Num1)

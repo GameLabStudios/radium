@@ -36,12 +36,12 @@ public:
     virtual bool        fixedUpdate(Time dt) = 0;
     virtual bool		handleEvent(const sf::Event& event) = 0;
 
-
-protected:
     void				requestStackPush(States::ID stateID);
     void				requestStackPop();
     void				requestStateClear();
 
+
+protected:
     Context				getContext() const;
 
 

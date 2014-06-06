@@ -5,6 +5,9 @@ namespace States
     enum ID
     {
         None,
-        Game
+        Game,
+        Pause,
+        Inventory,
+        MainMenu
     };
 }
