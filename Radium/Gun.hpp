@@ -24,6 +24,9 @@ public:
     void                                removeBullet(Bullet* bullet);
 
     void                                createGun(float, float, float, float, float, bool, float);
+    void                                setFiring(bool firing);
+    void                                setPlayerControlled(bool playerControlled);
+    void                                setEnemyOwned(bool enemyOwned);
 
 private:
     virtual void                        onUpdate(sf::Time dt);
@@ -48,4 +51,7 @@ private:
 
     std::vector<Bullet*>                mBullets;
     unsigned                            mUsedBullets;
+
+    bool                                mPlayerControlled;
+    bool                                mEnemyOwned;
 };

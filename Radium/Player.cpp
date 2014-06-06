@@ -47,8 +47,9 @@ Player::Player(Vector2f position)
     mGunCounter = 0;
 
     // Add Gun Component!
-    addComponent<Gun>();
+    Gun* gun = addComponent<Gun>();
 
+    gun->setPlayerControlled(true);
     std::string gunName = "Gun " + std::to_string(mGunCounter);
     mGunCounter++;
     mInventory.addItem(gunName, getComponent<Gun>()->getDamage(), getComponent<Gun>()->getSpreadAngle(),
@@ -111,7 +112,7 @@ void Player::onUpdate(Time dt)
 
     if (health <= 0)
     {
-        destroy();
+        //destroy();
     }
 }
 

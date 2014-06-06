@@ -4,23 +4,23 @@
 
 MeleeEnemy::MeleeEnemy(Vector2f position) : Enemy(position)
 {
-    health = 100.0f;
-    damage = 20.0f;
-    bTreeFrequency = 4.0f;
-    velocity = Vector2f(12.0f, 12.0f);
-    color = Color::Red;
-    rectShape.setOrigin(20.0f, 20.0f);
-    rectShape.setFillColor(color);
-    bTree = new BehaviorTree();
+    mHealth = 100.0f;
+    mDamage = 20.0f;
+    mBTreeFrequency = 4.0f;
+    mVelocity = Vector2f(12.0f, 12.0f);
+    mColor = Color::Red;
+    mRectShape.setOrigin(20.0f, 20.0f);
+    mRectShape.setFillColor(mColor);
+    mBTree = new BehaviorTree();
     buildBehaviorTree();
-    setBTree(bTree);
+    setBTree(mBTree);
 }
 
 void MeleeEnemy::buildBehaviorTree()
 {
-    ChasePlayer* chase = new ChasePlayer(bTree, this);
-    bTree->setRootNode(chase);
-    bTree->setUpdateFrequency(bTreeFrequency);
+    ChasePlayer* chase = new ChasePlayer(mBTree, this, 1.0f);
+    mBTree->setRootNode(chase);
+    mBTree->setUpdateFrequency(mBTreeFrequency);
 }
 
 void MeleeEnemy::onBeginContact(b2Fixture* other, b2Contact* contact)
@@ -30,7 +30,7 @@ void MeleeEnemy::onBeginContact(b2Fixture* other, b2Contact* contact)
     if (playerPtr != nullptr)
     {
         destroy();
-        GameWorld::getInstance()->getPlayer()->takeDamage(damage);
+        GameWorld::getInstance()->getPlayer()->takeDamage(mDamage);
     }
 }
 

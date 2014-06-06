@@ -3,8 +3,8 @@
 
 IsPlayerShooting::IsPlayerShooting(BehaviorTree* bTree, Enemy* enemy)
 {
-    this->enemy = enemy;
-    this->bTree = bTree;
+    this->mEnemy = enemy;
+    this->mBTree = bTree;
     mPlayer = GameWorld::getInstance()->getPlayer();
 }
 
@@ -12,9 +12,13 @@ BNodeStatus IsPlayerShooting::run()
 {
     if (mPlayer->getIsShooting())
     {
-        bTree->currentNode = this;
-        return SUCCESS;
+        mBTree->currentNode = this;
+        mNodeStatus = SUCCESS;
     }
-    bTree->currentNode = this;
-    return FAILURE;
+    else
+    {
+        mNodeStatus = FAILURE;
+    }
+    mBTree->currentNode = this;
+    return mNodeStatus;
 }

@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include "BehaviorTree.hpp"
 #include "Rigidbody.hpp"
+#include "Player.hpp"
 
 using namespace sf;
 using namespace AI;
@@ -45,14 +46,18 @@ private:
 
 // Variables
 protected:
-    float                           health;                           // represents size
-    int                             damage;                           // represents amount of damage
-    Vector2f                        velocity;                         // the velocity of the enemy
-    Color                           color;                            // the color of the enemy
-    BehaviorTree*                   bTree;                            // the behavior tree of the enemy
-    float                           bTreeFrequency;                   // how many seconds until the next update in the behavior tree
+    float                           mHealth;                           // represents size
+    int                             mDamage;                           // represents amount of damage
+    Vector2f                        mVelocity;                         // the velocity of the enemy
+    Color                           mColor;                            // the color of the enemy
+    BehaviorTree*                   mBTree;                            // the behavior tree of the enemy
+    float                           mBTreeFrequency;                   // how many seconds until the next update in the behavior tree
 
     // temporary so Guerra can write behaviors
-    RectangleShape                  rectShape;                        // the shape of the enemy
+    RectangleShape                  mRectShape;                        // the shape of the enemy
+    RectangleShape                  mLine;
+
+private:
+    Player*                         mPlayer;
 };
 

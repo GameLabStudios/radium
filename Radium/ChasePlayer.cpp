@@ -1,39 +1,40 @@
 #include "ChasePlayer.hpp"
 #include "Rigidbody.hpp"
-#include <iostream>
+#include "Game.hpp"
 using namespace AI;
 
-ChasePlayer::ChasePlayer(BehaviorTree* bTree, Enemy* enemy) : Action(bTree)
+ChasePlayer::ChasePlayer(BehaviorTree* bTree, Enemy* enemy, float range) : Action(bTree)
 {
-    this->enemy = enemy;
-    mPlayer = GameWorld::getInstance()->getPlayer();
+    this->mEnemy = enemy;
+    this->mPlayer = GameWorld::getInstance()->getPlayer();
+    this->mRange = range * Game::m2p;
 }
 
 BNodeStatus ChasePlayer::run()
 {
     if (b2Distance(b2Vec2(mPlayer->getPosition().x, mPlayer->getPosition().y),
-        b2Vec2(enemy->getPosition().x, enemy->getPosition().y)) < 1.0f)
+        b2Vec2(mEnemy->getPosition().x, mEnemy->getPosition().y)) < mRange)
     {
-        nodeStatus = SUCCESS;
+        mNodeStatus = SUCCESS;
     }
     else
     {
-        nodeStatus = RUNNING;
+        mNodeStatus = RUNNING;
     }
-    bTree->currentNode = this;
-    return nodeStatus;
+    mBTree->currentNode = this;
+    return mNodeStatus;
 }
 
 void ChasePlayer::doAction()
 {
     // get the angle from the player to the enemy
-    angle = atan2(mPlayer->getPosition().y - enemy->getPosition().y,
-        mPlayer->getPosition().x - enemy->getPosition().x);
+    mAngle = atan2(mPlayer->getPosition().y - mEnemy->getPosition().y,
+        mPlayer->getPosition().x - mEnemy->getPosition().x);
     
     // get the x and y coordinates correlating to that angle
-    targetPos.x = cos(angle) * enemy->getVelocity().x;
-    targetPos.y = sin(angle) * enemy->getVelocity().y;
+    mTargetPos.x = cos(mAngle) * mEnemy->getVelocity().x;
+    mTargetPos.y = sin(mAngle) * mEnemy->getVelocity().y;
     
     // move the enemy towards that bitch
-    enemy->rigidbody->body->SetLinearVelocity(b2Vec2(targetPos.x, targetPos.y));
+    mEnemy->rigidbody->body->SetLinearVelocity(b2Vec2(mTargetPos.x, mTargetPos.y));
 }

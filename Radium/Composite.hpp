@@ -8,11 +8,11 @@ namespace AI
     public:
         void addChild(BehaviorNode* child)
         {
-            children.push_back(child);
+            mChildren.push_back(child);
         }
 
     protected:
         typedef std::vector<BehaviorNode*> Behaviors;
-        Behaviors children;
+        Behaviors mChildren;
     };
 }

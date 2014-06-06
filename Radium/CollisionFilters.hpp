@@ -9,7 +9,7 @@ namespace Collision
         WALLS           = 0x0004,
         ENEMIES         = 0x0008,
         PLAYER_BULLETS  = 0x0010,
-        ENEMIES_BULLETS = 0x0020,
+        ENEMY_BULLETS   = 0x0020,
         SHIELD          = 0x0040
     };
 }

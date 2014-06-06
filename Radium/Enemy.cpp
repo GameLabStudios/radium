@@ -1,30 +1,47 @@
+#define _USE_MATH_DEFINES
 #include "Enemy.hpp"
 #include "Game.hpp"
 #include "SquareRigidbody.hpp"
 #include "Bullet.hpp"
+#include "GameWorld.hpp"
+#include <cmath>
 
 Enemy::Enemy(Vector2f position)
 {
-    rectShape = RectangleShape(Vector2f(40.0f, 40.0f));
+    mRectShape = RectangleShape(Vector2f(40.0f, 40.0f));
+    
+    mLine = RectangleShape(Vector2f(20.0f, 5.0f));
+    mLine.setOrigin(10.0f, 2.5f);
+    mLine.setPosition(mLine.getPosition() + Vector2f(10.0f, 0.0f));
+
+    mPlayer = GameWorld::getInstance()->getPlayer();
+
     //set position
     setPosition(position);
 
     SquareRigidbody* rigidbody = addComponent<SquareRigidbody>();
     rigidbody->createBody(Rigidbody::dynamicBody);
-    rigidbody->setShape(rectShape);
+    rigidbody->setShape(mRectShape);
 }
 
 /******Public Functions******/
 
 void Enemy::onDraw(RenderTarget& target, RenderStates states) const
 {
-    target.draw(rectShape, states);
+    target.draw(mRectShape, states);
+    target.draw(mLine, states);
 }
 
 void Enemy::onUpdate(Time dt)
 {
+    Vector2f playerPosition = mPlayer->getPosition();
+
+    float angle = atan2(playerPosition.y - getPosition().y, playerPosition.x - getPosition().x);
+    setRotation((float)((angle*180.0f) / M_PI));
+    rigidbody->body->SetTransform(rigidbody->body->GetPosition(), angle);
+
     getBTree()->update(dt);
-    if (health <= 0)
+    if (mHealth <= 0)
     {
         destroy();
     }
@@ -42,34 +59,33 @@ void Enemy::onEndContact(b2Fixture* other, b2Contact* contact)
 
 void Enemy::takeDamage(float damage)
 {
-    health -= damage;
-    std::cout << "health: " << health << std::endl;
+    mHealth -= damage;
 }
 
 #pragma region
 float Enemy::getHealth() const
 {
-    return health;
+    return mHealth;
 }
 
 int Enemy::getDamage() const
 {
-    return damage;
+    return mDamage;
 }
 
 Vector2f Enemy::getVelocity() const
 {
-    return velocity;
+    return mVelocity;
 }
 
 Color Enemy::getColor() const
 {
-    return color;
+    return mColor;
 }
 
 BehaviorTree* Enemy::getBTree() const
 {
-    return bTree;
+    return mBTree;
 }
 #pragma endregion Getters
 
@@ -78,27 +94,27 @@ BehaviorTree* Enemy::getBTree() const
 #pragma region
 void Enemy::setHealth(float health)
 {
-    this->health = health;
+    this->mHealth = health;
 }
 
 void Enemy::setDamage(int numSides)
 {
-    this->damage = numSides;
+    this->mDamage = numSides;
 }
 
 void Enemy::setVelocity(Vector2f velocity)
 {
-    this->velocity = velocity;
+    this->mVelocity = velocity;
 }
 
 void Enemy::setColor(Color color)
 {
-    this->color = color;
+    this->mColor = color;
 }
 
 void Enemy::setBTree(BehaviorTree* bTree)
 {
-    this->bTree = bTree;
+    this->mBTree = bTree;
 }
 #pragma endregion Setters
 

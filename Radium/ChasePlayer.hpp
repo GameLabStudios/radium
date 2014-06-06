@@ -10,13 +10,14 @@ using namespace AI;
 class ChasePlayer : public Action
 {
 public:
-    ChasePlayer(BehaviorTree* bTree, Enemy* enemy);
-    virtual BNodeStatus run();  // inherited from BehaviorNode
-    virtual void   doAction(); // inherited from Action
+    ChasePlayer(BehaviorTree* bTree, Enemy* enemy, float range);
+    virtual BNodeStatus run();      // inherited from BehaviorNode
+    virtual void        doAction(); // inherited from Action
 
 private:
-    float           angle;      // angle towards the player
-    Vector2f        targetPos;  // the target position the enemy will head towards based on the angle from the player
-    Enemy*          enemy;      // the enemy performing this action
+    float           mAngle;      // angle towards the player
+    float           mRange;      // range to the targetPos
+    Vector2f        mTargetPos;  // the target position the enemy will head towards based on the angle from the player
+    Enemy*          mEnemy;      // the enemy performing this action
 };
 

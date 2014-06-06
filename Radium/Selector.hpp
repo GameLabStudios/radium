@@ -8,7 +8,7 @@ namespace AI
         virtual BNodeStatus run() override
         {
             BNodeStatus status;
-            for (BehaviorNode* child : children)
+            for (BehaviorNode* child : mChildren)
             {
                 status = child->run();
 

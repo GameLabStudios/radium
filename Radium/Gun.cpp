@@ -3,6 +3,7 @@
 #include "Gun.hpp"
 #include "Game.hpp"
 #include "GameWorld.hpp"
+#include "EnemyBullet.hpp"
 
 Gun::Gun(Entity* entity) : Component(entity), mBullets()
 {
@@ -24,8 +25,11 @@ Gun::Gun(Entity* entity) : Component(entity), mBullets()
 
 void Gun::onUpdate(sf::Time dt)
 {
-    handleInput();
+    if (mPlayerControlled)
+    {
+        handleInput();
     updateBullets();
+    }
 }
 
 void Gun::onFixedUpdate(sf::Time dt)
@@ -183,6 +187,25 @@ void Gun::removeBullet(Bullet* bullet)
         {
             ++it;
         }
+    }	
+}
+
+void Gun::setFiring(bool firing)
+{
+    mFiring = firing;
+}
+
+void Gun::setPlayerControlled(bool playerControlled)
+{
+    mPlayerControlled = playerControlled;
+}
+
+void Gun::setEnemyOwned(bool enemyOwned)
+{
+    mEnemyOwned = enemyOwned;
+}
+
+        }
     }
 }
 
@@ -223,13 +246,25 @@ void Gun::fireGun()
 
         // Calculate direction
         sf::Vector2f direction(cos((float)(angle * M_PI) / 180.0f), sin((float)(angle * M_PI) / 180.0f));
-
+        
         // Create a new Bullet
-        Bullet* newBullet = new Bullet(this, mDamage);
+        Bullet* newBullet;
+        if (mEnemyOwned)
+        {
+            newBullet = new EnemyBullet(mDamage);
+        }
+        else
+        {
+            newBullet = new Bullet(mDamage);
+        }
         
         // Store the new Bullet
         mBullets.push_back(newBullet);
 
+
+        //TODO: Make Rigidbody, p.s. This is really fucking stupid
+        newBullet->makeRigidBody();
+        
         // Set Bullet Lifetime
         newBullet->setLifetime(mBulletLife);
 

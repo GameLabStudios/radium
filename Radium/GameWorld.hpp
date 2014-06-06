@@ -32,6 +32,8 @@ private:
     Player*                     mPlayer;
     MeleeEnemy*                 mMeleeEnemy;
     DodgingEnemy*               mDodgingEnemy;
+    ShooterEnemy*                           mShooterEnemy;
+    AgileShooter*                           mAgileShooter;
     b2World*                    mb2World;
     bool                        mDrawDebug;
 
