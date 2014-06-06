@@ -18,7 +18,11 @@ public:
     float                               getBulletSpeed() const;
     unsigned                            getArmorPen() const;
     float                               getCooldown() const;
+    bool                                getBurst() const;
+    float                               getBurstAmount() const;
     bool                                getFiring() const;
+
+    void                                createGun(float, float, float, float, float, bool, float);
 
 private:
     virtual void                        onUpdate(sf::Time dt);

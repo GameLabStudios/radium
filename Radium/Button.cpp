@@ -20,7 +20,7 @@ Button::Button(Vector2f position, Vector2f size, std::string title)
 
     mButtonText.setFont(Game::getInstance().getFonts().get(Fonts::Main));
     mButtonText.setString(title);
-    mButtonText.setPosition(position + Vector2f(20.0f, 20.0f));
+    mButtonText.setPosition(position + Vector2f(20.0f, mButtonBox->getSize().y/6));
 
     selected = false;
     hover = false;
@@ -88,6 +88,17 @@ void Button::fixedUpdate(Time dt)
 void Button::setColor(Color color)
 {
     mButtonBox->setFillColor(color);
+    defaultColor = color;
+}
+
+void Button::setHoverColor(Color color)
+{
+    hoverColor = color;
+}
+
+void Button::setSelectColor(Color color)
+{
+    selectedColor = color;
 }
 
 void Button::setSize(Vector2f size)
@@ -126,6 +137,11 @@ void Button::gotDeSelected()
     mButtonBox->setFillColor(defaultColor);
 }
 
+void Button::addData(gun gunData)
+{
+    mData = gunData;
+}
+
 const Vector2f Button::getSize() const
 {
     return mButtonBox->getSize();
@@ -139,6 +155,11 @@ const Vector2f Button::getPosition() const
 const std::string Button::getString() const
 {
     return mButtonText.getString().toAnsiString();
+}
+
+const gun Button::getData() const
+{
+    return mData;
 }
 
 const bool Button::isSelected() const

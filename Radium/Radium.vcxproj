@@ -88,6 +88,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="InventoryState.cpp" />
     <ClCompile Include="IsNearPlayer.cpp" />
     <ClCompile Include="IsPlayerShooting.cpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameWorld.hpp" />
     <ClInclude Include="Gun.hpp" />
+    <ClInclude Include="GunProperties.hpp" />
     <ClInclude Include="Inventory.hpp" />
     <ClInclude Include="InventoryState.hpp" />
     <ClInclude Include="IsNearPlayer.hpp" />

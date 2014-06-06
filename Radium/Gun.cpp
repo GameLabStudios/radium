@@ -157,6 +157,27 @@ bool Gun::getFiring() const
     return mFiring;
 }
 
+bool Gun::getBurst() const
+{
+    return mBurst;
+}
+
+float Gun::getBurstAmount() const
+{
+    return mBurstAmount;
+}
+
+void Gun::createGun(float dmg, float sprd, float btSpd, float amrPen, float cd, bool burst, float burstAmt)
+{
+    mDamage = dmg;
+    mSpreadAngle = sprd;
+    mBulletSpeed = btSpd;
+    mArmorPen = amrPen;
+    mCooldown = cd;
+    mBurst = burst;
+    mBurstAmount = burstAmt;
+}
+
 void Gun::fireGun()
 {
     // If there are unused bullets

@@ -42,11 +42,24 @@ Player::Player(Vector2f position)
     // player movement component
     addComponent<PlayerMovement>();
 
+    // Inventory Mechanic
+    mInventory = Inventory();
+    mGunCounter = 0;
+
     // Add Gun Component!
     addComponent<Gun>();
+    std::string gunName = "Gun " + std::to_string(mGunCounter);
+    mGunCounter++;
+    mInventory.addItem(gunName, getComponent<Gun>()->getDamage(), getComponent<Gun>()->getSpreadAngle(),
+        getComponent<Gun>()->getBulletSpeed(), getComponent<Gun>()->getArmorPen(), getComponent<Gun>()->getCooldown(),
+        getComponent<Gun>()->getBurst(), getComponent<Gun>()->getBurstAmount());
+    mGun1 = mInventory.getGun();
+
     TextComponent* textBox = addComponent<TextComponent>();
     textBox->setSize(Vector2f(40,40));
     textBox->setText("Player");
+
+    
 }
 
 void Player::onDraw(RenderTarget& target, RenderStates states) const
@@ -120,7 +133,26 @@ void Player::handleEvent(const Event& event)
         if (event.key.code == Keyboard::R)
         {
             getComponent<Gun>()->randomizeGun();
+            std::string gunName = "Gun " + std::to_string(mGunCounter);
+            mGunCounter++;
+            mInventory.addItem(gunName, getComponent<Gun>()->getDamage(), getComponent<Gun>()->getSpreadAngle(),
+                getComponent<Gun>()->getBulletSpeed(), getComponent<Gun>()->getArmorPen(), getComponent<Gun>()->getCooldown(),
+                getComponent<Gun>()->getBurst(), getComponent<Gun>()->getBurstAmount());
+            mGun1 = mInventory.getGun();
         }
+        /*if (event.key.code == Keyboard::C)
+        {
+            std::vector<gun> tempInv = mInventory.getInv();
+            for (unsigned i = 0; i < tempInv.size(); i++)
+            {
+                std::cout << "Gun name : " << tempInv[i].name << std::endl;
+                std::cout << "Damage : " << tempInv[i].damage << std::endl;
+                std::cout << "Spread : " << tempInv[i].spread << std::endl;
+                std::cout << "Bullet Speed : " << tempInv[i].bulletSpeed << std::endl;
+                std::cout << "Armor Pen : " << tempInv[i].armorPen << std::endl;
+                std::cout << "Cooldown : " << tempInv[i].cooldown << std::endl;
+            }
+        }*/
     }
 
     else if (event.type == Event::KeyReleased)
@@ -156,3 +188,21 @@ bool Player::getIsShooting()
 {
     return isShooting;
 }
+
+const Inventory Player::getInventory() const
+{
+    return mInventory;
+}
+
+void Player::equipGun(gun gunData)
+{
+    getComponent<Gun>()->createGun(gunData.damage, gunData.spread, gunData.bulletSpeed, 
+        gunData.armorPen, gunData.cooldown, gunData.burst, gunData.burstAmount);
+    mGun1 = gunData;
+}
+
+const gun Player::getEquippedGun1() const
+{
+    return mGun1;
+}
+

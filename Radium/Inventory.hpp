@@ -1,14 +1,17 @@
 #pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
+#include "GunProperties.hpp"
 
 class Inventory
 {
+
 public:
-                                            Inventory();
-    void                                    addItem();
-    const std::vector<std::string>          getInv() const;
+                                    Inventory();
+    void                            addItem(std::string, float, float, float, float, float, bool, float );
+    const std::vector<gun>          getInv() const;
+    const gun                       getGun() const;
 
 private:
-    std::vector<std::string>                inv;
+    std::vector<gun>                mInv;
 };

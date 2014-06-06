@@ -5,6 +5,8 @@
 #include "Ability.hpp"
 #include "TeleportAbility.hpp"
 #include "ShieldAbility.hpp"
+#include "Inventory.hpp"
+
 using namespace sf;
 
 class Player : public Entity
@@ -15,6 +17,11 @@ public:
     void            takeDamage(float damage);
     void            heal(float health);
     bool            getIsShooting();
+
+    const Inventory getInventory() const;
+    void            equipGun(gun gunData);
+    const gun       getEquippedGun1() const;
+
 
 private:
 	virtual void    onDraw(RenderTarget& target, RenderStates states) const;	
@@ -33,4 +40,8 @@ private:
     Vector2f        direction;
     bool            isShooting;
     Text            text;
+
+    Inventory       mInventory;
+    int             mGunCounter;
+    gun             mGun1;
 };

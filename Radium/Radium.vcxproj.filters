@@ -216,6 +216,9 @@
     <ClCompile Include="TextComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Source Files\Mechanics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.hpp">
@@ -370,6 +373,9 @@
     </ClInclude>
     <ClInclude Include="TextComponent.hpp">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GunProperties.hpp">
+      <Filter>Header Files\Mechanics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
