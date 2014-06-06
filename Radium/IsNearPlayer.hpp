@@ -11,9 +11,9 @@ public:
     virtual BNodeStatus run();
 
 private:
-    BehaviorTree* bTree;
-    BNodeStatus nodeStatus;
+    BehaviorTree* mBTree;
+    BNodeStatus mNodeStatus;
     Player* mPlayer;
-    Enemy* enemy;
+    Enemy* mEnemy;
 };
 

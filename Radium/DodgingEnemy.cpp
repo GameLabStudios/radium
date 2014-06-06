@@ -11,26 +11,26 @@
 
 DodgingEnemy::DodgingEnemy(Vector2f position) : Enemy(position)
 {
-    health = 80.0f;
-    damage = 30.0f;
-    bTreeFrequency = 1.0f;
-    velocity = Vector2f(5.0f, 5.0f);
-    color = Color::Blue;
-    rectShape.setOrigin(20.0f, 20.0f);
-    rectShape.setFillColor(color);
-    bTree = new BehaviorTree();
+    mHealth = 80.0f;
+    mDamage = 30.0f;
+    mBTreeFrequency = 1.0f;
+    mVelocity = Vector2f(5.0f, 5.0f);
+    mColor = Color::Blue;
+    mRectShape.setOrigin(20.0f, 20.0f);
+    mRectShape.setFillColor(mColor);
+    mBTree = new BehaviorTree();
     buildBehaviorTree();
-    setBTree(bTree);
+    setBTree(mBTree);
 }
 
 void DodgingEnemy::buildBehaviorTree()
 {
     Selector* topSelector = new Selector();
     Sequence* dodgeSequence = new Sequence();
-    IsNearPlayer* nearPlayer = new IsNearPlayer(bTree, this);
-    IsPlayerShooting* playerShooting = new IsPlayerShooting(bTree, this);
-    DodgeBullets* dodge = new DodgeBullets(bTree, this);
-    ChasePlayer* chase = new ChasePlayer(bTree, this);
+    IsNearPlayer* nearPlayer = new IsNearPlayer(mBTree, this);
+    IsPlayerShooting* playerShooting = new IsPlayerShooting(mBTree, this);
+    DodgeBullets* dodge = new DodgeBullets(mBTree, this);
+    ChasePlayer* chase = new ChasePlayer(mBTree, this);
 
     topSelector->addChild(dodgeSequence);
     topSelector->addChild(chase);
@@ -39,8 +39,8 @@ void DodgingEnemy::buildBehaviorTree()
     dodgeSequence->addChild(playerShooting);
     dodgeSequence->addChild(dodge);
 
-    bTree->setRootNode(topSelector);
-    bTree->setUpdateFrequency(bTreeFrequency);
+    mBTree->setRootNode(topSelector);
+    mBTree->setUpdateFrequency(mBTreeFrequency);
 }
 
 void DodgingEnemy::onBeginContact(b2Fixture* other, b2Contact* contact)
@@ -50,7 +50,7 @@ void DodgingEnemy::onBeginContact(b2Fixture* other, b2Contact* contact)
     if (playerPtr != nullptr)
     {
         destroy();
-        GameWorld::getInstance()->getPlayer()->takeDamage(damage);
+        GameWorld::getInstance()->getPlayer()->takeDamage(mDamage);
     }
 }
 

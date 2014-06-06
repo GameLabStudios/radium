@@ -11,6 +11,6 @@ namespace AI
         virtual BNodeStatus  run() = 0;
 
     private:
-        BNodeStatus          status;
+        BNodeStatus          mStatus;
     };
 }

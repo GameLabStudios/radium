@@ -4,25 +4,25 @@
 
 DodgeBullets::DodgeBullets(BehaviorTree* bTree, Enemy* enemy) : Action(bTree)
 {
-    this->enemy = enemy;
+    this->mEnemy = enemy;
     mPlayer = GameWorld::getInstance()->getPlayer();
 }
 
 BNodeStatus DodgeBullets::run()
 {
-    nodeStatus = SUCCESS;
-    bTree->currentNode = this;
-    return nodeStatus;
+    mNodeStatus = SUCCESS;
+    mBTree->currentNode = this;
+    return mNodeStatus;
 }
 
 void DodgeBullets::doAction()
 {
-    mousePosition = GameWorld::getInstance()->getMousePosition();
-    angleFromMouse = atan2(mousePosition.y - enemy->getPosition().y,
-        mousePosition.x - enemy->getPosition().x);
+    mMousePosition = GameWorld::getInstance()->getMousePosition();
+    mAngleFromMouse = atan2(mMousePosition.y - mEnemy->getPosition().y,
+        mMousePosition.x - mEnemy->getPosition().x);
 
-    targetPos.x = cos(angleFromMouse + M_PI) * enemy->getVelocity().x * 3;
-    targetPos.y = sin(angleFromMouse + M_PI) * enemy->getVelocity().y * 3;
+    mTargetPos.x = cos(mAngleFromMouse + M_PI) * mEnemy->getVelocity().x * 3;
+    mTargetPos.y = sin(mAngleFromMouse + M_PI) * mEnemy->getVelocity().y * 3;
 
-    enemy->rigidbody->body->SetLinearVelocity(b2Vec2(targetPos.x, targetPos.y));
+    mEnemy->rigidbody->body->SetLinearVelocity(b2Vec2(mTargetPos.x, mTargetPos.y));
 }

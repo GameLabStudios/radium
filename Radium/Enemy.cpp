@@ -5,26 +5,26 @@
 
 Enemy::Enemy(Vector2f position)
 {
-    rectShape = RectangleShape(Vector2f(40.0f, 40.0f));
+    mRectShape = RectangleShape(Vector2f(40.0f, 40.0f));
     //set position
     setPosition(position);
 
     SquareRigidbody* rigidbody = addComponent<SquareRigidbody>();
     rigidbody->createBody(Rigidbody::dynamicBody);
-    rigidbody->setShape(rectShape);
+    rigidbody->setShape(mRectShape);
 }
 
 /******Public Functions******/
 
 void Enemy::onDraw(RenderTarget& target, RenderStates states) const
 {
-    target.draw(rectShape, states);
+    target.draw(mRectShape, states);
 }
 
 void Enemy::onUpdate(Time dt)
 {
     getBTree()->update(dt);
-    if (health <= 0)
+    if (mHealth <= 0)
     {
         destroy();
     }
@@ -42,34 +42,33 @@ void Enemy::onEndContact(b2Fixture* other, b2Contact* contact)
 
 void Enemy::takeDamage(float damage)
 {
-    health -= damage;
-    std::cout << "health: " << health << std::endl;
+    mHealth -= damage;
 }
 
 #pragma region
 float Enemy::getHealth() const
 {
-    return health;
+    return mHealth;
 }
 
 int Enemy::getDamage() const
 {
-    return damage;
+    return mDamage;
 }
 
 Vector2f Enemy::getVelocity() const
 {
-    return velocity;
+    return mVelocity;
 }
 
 Color Enemy::getColor() const
 {
-    return color;
+    return mColor;
 }
 
 BehaviorTree* Enemy::getBTree() const
 {
-    return bTree;
+    return mBTree;
 }
 #pragma endregion Getters
 
@@ -78,27 +77,27 @@ BehaviorTree* Enemy::getBTree() const
 #pragma region
 void Enemy::setHealth(float health)
 {
-    this->health = health;
+    this->mHealth = health;
 }
 
 void Enemy::setDamage(int numSides)
 {
-    this->damage = numSides;
+    this->mDamage = numSides;
 }
 
 void Enemy::setVelocity(Vector2f velocity)
 {
-    this->velocity = velocity;
+    this->mVelocity = velocity;
 }
 
 void Enemy::setColor(Color color)
 {
-    this->color = color;
+    this->mColor = color;
 }
 
 void Enemy::setBTree(BehaviorTree* bTree)
 {
-    this->bTree = bTree;
+    this->mBTree = bTree;
 }
 #pragma endregion Setters
 

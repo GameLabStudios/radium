@@ -4,23 +4,23 @@
 
 IsNearPlayer::IsNearPlayer(BehaviorTree* bTree, Enemy* enemy)
 {
-    this->bTree = bTree;
-    this->enemy = enemy;
+    this->mBTree = bTree;
+    this->mEnemy = enemy;
     mPlayer = GameWorld::getInstance()->getPlayer();
 }
 
 BNodeStatus IsNearPlayer::run()
 {
     if (b2Distance(b2Vec2(mPlayer->getPosition().x, mPlayer->getPosition().y),
-        b2Vec2(enemy->getPosition().x, enemy->getPosition().y)) < 12.0f * Game::m2p)
+        b2Vec2(mEnemy->getPosition().x, mEnemy->getPosition().y)) < 12.0f * Game::m2p)
     {
-        nodeStatus = SUCCESS;
+        mNodeStatus = SUCCESS;
     }
     else
     {
-        nodeStatus = FAILURE;
+        mNodeStatus = FAILURE;
     }
-    bTree->currentNode = this;
-    return nodeStatus;
+    mBTree->currentNode = this;
+    return mNodeStatus;
 }
 

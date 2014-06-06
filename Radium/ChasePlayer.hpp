@@ -15,8 +15,8 @@ public:
     virtual void   doAction(); // inherited from Action
 
 private:
-    float           angle;      // angle towards the player
-    Vector2f        targetPos;  // the target position the enemy will head towards based on the angle from the player
-    Enemy*          enemy;      // the enemy performing this action
+    float           mAngle;      // angle towards the player
+    Vector2f        mTargetPos;  // the target position the enemy will head towards based on the angle from the player
+    Enemy*          mEnemy;      // the enemy performing this action
 };
 
