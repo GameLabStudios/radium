@@ -43,7 +43,8 @@ Player::Player(Vector2f position)
     addComponent<PlayerMovement>();
 
     // Add Gun Component!
-    addComponent<Gun>();
+    Gun* gun = addComponent<Gun>();
+    gun->setPlayerControlled(true);
     TextComponent* textBox = addComponent<TextComponent>();
     textBox->setSize(Vector2f(40,40));
     textBox->setText("Player");
@@ -97,7 +98,7 @@ void Player::onUpdate(Time dt)
 
     if (health <= 0)
     {
-        destroy();
+        //destroy();
     }
 }
 

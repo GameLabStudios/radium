@@ -1,11 +1,21 @@
+#define _USE_MATH_DEFINES
 #include "Enemy.hpp"
 #include "Game.hpp"
 #include "SquareRigidbody.hpp"
 #include "Bullet.hpp"
+#include "GameWorld.hpp"
+#include <cmath>
 
 Enemy::Enemy(Vector2f position)
 {
     mRectShape = RectangleShape(Vector2f(40.0f, 40.0f));
+    
+    mLine = RectangleShape(Vector2f(20.0f, 5.0f));
+    mLine.setOrigin(10.0f, 2.5f);
+    mLine.setPosition(mLine.getPosition() + Vector2f(10.0f, 0.0f));
+
+    mPlayer = GameWorld::getInstance()->getPlayer();
+
     //set position
     setPosition(position);
 
@@ -19,10 +29,17 @@ Enemy::Enemy(Vector2f position)
 void Enemy::onDraw(RenderTarget& target, RenderStates states) const
 {
     target.draw(mRectShape, states);
+    target.draw(mLine, states);
 }
 
 void Enemy::onUpdate(Time dt)
 {
+    Vector2f playerPosition = mPlayer->getPosition();
+
+    float angle = atan2(playerPosition.y - getPosition().y, playerPosition.x - getPosition().x);
+    setRotation((float)((angle*180.0f) / M_PI));
+    rigidbody->body->SetTransform(rigidbody->body->GetPosition(), angle);
+
     getBTree()->update(dt);
     if (mHealth <= 0)
     {

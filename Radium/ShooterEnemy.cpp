@@ -1,6 +1,11 @@
 #include "ShooterEnemy.hpp"
 #include "Player.hpp"
 #include "GameWorld.hpp"
+#include "Selector.hpp"
+#include "Sequence.hpp"
+#include "IsNearPlayer.hpp"
+#include "ChasePlayer.hpp"
+#include "ShootPlayer.hpp"
 
 
 ShooterEnemy::ShooterEnemy(Vector2f position) : Enemy(position)
@@ -11,16 +16,32 @@ ShooterEnemy::ShooterEnemy(Vector2f position) : Enemy(position)
     mColor = Color::Yellow;
     mRectShape.setOrigin(20.0f, 20.0f);
     mRectShape.setFillColor(mColor);
+    mShootRange = 20.0f;
+
     mBTree = new BehaviorTree();
     buildBehaviorTree();
     setBTree(mBTree);
 
     mGun = addComponent<Gun>();
+    mGun->setEnemyOwned(true);
 }
 
 void ShooterEnemy::buildBehaviorTree()
 {
+    Selector* topSelector = new Selector();
+    Sequence* sequence = new Sequence();
+    IsNearPlayer* inShootRange = new IsNearPlayer(mBTree, this, mShootRange);
+    ShootPlayer* shoot = new ShootPlayer(mBTree, this);
+    ChasePlayer* chase = new ChasePlayer(mBTree, this, mShootRange);
 
+    topSelector->addChild(sequence);
+    topSelector->addChild(chase);
+
+    sequence->addChild(inShootRange);
+    sequence->addChild(shoot);
+    
+    mBTree->setRootNode(topSelector);
+    mBTree->setUpdateFrequency(mBTreeFrequency);
 }
 
 void ShooterEnemy::onBeginContact(b2Fixture* other, b2Contact* contact)

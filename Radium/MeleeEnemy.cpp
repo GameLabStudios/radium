@@ -18,7 +18,7 @@ MeleeEnemy::MeleeEnemy(Vector2f position) : Enemy(position)
 
 void MeleeEnemy::buildBehaviorTree()
 {
-    ChasePlayer* chase = new ChasePlayer(mBTree, this);
+    ChasePlayer* chase = new ChasePlayer(mBTree, this, 1.0f);
     mBTree->setRootNode(chase);
     mBTree->setUpdateFrequency(mBTreeFrequency);
 }

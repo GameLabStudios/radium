@@ -7,13 +7,14 @@
 class IsNearPlayer : public BehaviorNode
 {
 public:
-    IsNearPlayer(BehaviorTree* bTree, Enemy* enemy);
+    IsNearPlayer(BehaviorTree* bTree, Enemy* enemy, float range);
     virtual BNodeStatus run();
 
 private:
-    BehaviorTree* mBTree;
-    BNodeStatus mNodeStatus;
-    Player* mPlayer;
-    Enemy* mEnemy;
+    BehaviorTree*   mBTree;
+    BNodeStatus     mNodeStatus;
+    Player*         mPlayer;
+    Enemy*          mEnemy;
+    float           mRange;
 };
 

@@ -18,5 +18,8 @@ public:
     virtual void buildBehaviorTree();
     virtual void onBeginContact(b2Fixture* other, b2Contact* contact);
     virtual void onEndContact(b2Fixture* other, b2Contact* contact);
+
+private:
+    float mDodgingRange;
 };
 

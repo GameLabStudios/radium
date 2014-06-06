@@ -73,6 +73,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ability.cpp" />
+    <ClCompile Include="AgileShooter.cpp" />
     <ClCompile Include="BehaviorTree.cpp" />
     <ClCompile Include="Box2DCallbackManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -82,6 +83,7 @@
     <ClCompile Include="DodgeBullets.cpp" />
     <ClCompile Include="DodgingEnemy.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBullet.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -104,6 +106,7 @@
     <ClCompile Include="ShieldAbility.cpp" />
     <ClCompile Include="ShieldRigidbody.cpp" />
     <ClCompile Include="ShooterEnemy.cpp" />
+    <ClCompile Include="ShootPlayer.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="SquareRigidbody.cpp" />
     <ClCompile Include="State.cpp" />
@@ -117,6 +120,7 @@
   <ItemGroup>
     <ClInclude Include="Ability.hpp" />
     <ClInclude Include="Action.hpp" />
+    <ClInclude Include="AgileShooter.hpp" />
     <ClInclude Include="BehaviorNode.hpp" />
     <ClInclude Include="BehaviorTree.hpp" />
     <ClInclude Include="Box2DCallbackManager.hpp" />
@@ -129,6 +133,7 @@
     <ClInclude Include="DodgeBullets.hpp" />
     <ClInclude Include="DodgingEnemy.hpp" />
     <ClInclude Include="Enemy.hpp" />
+    <ClInclude Include="EnemyBullet.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
@@ -155,6 +160,7 @@
     <ClInclude Include="ShieldAbility.hpp" />
     <ClInclude Include="ShieldRigidbody.hpp" />
     <ClInclude Include="ShooterEnemy.hpp" />
+    <ClInclude Include="ShootPlayer.hpp" />
     <ClInclude Include="Square.hpp" />
     <ClInclude Include="SquareRigidbody.hpp" />
     <ClInclude Include="State.hpp" />

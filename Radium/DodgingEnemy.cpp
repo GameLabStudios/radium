@@ -18,19 +18,22 @@ DodgingEnemy::DodgingEnemy(Vector2f position) : Enemy(position)
     mColor = Color::Blue;
     mRectShape.setOrigin(20.0f, 20.0f);
     mRectShape.setFillColor(mColor);
+
     mBTree = new BehaviorTree();
     buildBehaviorTree();
     setBTree(mBTree);
+
+    mDodgingRange = 12.0f;
 }
 
 void DodgingEnemy::buildBehaviorTree()
 {
     Selector* topSelector = new Selector();
     Sequence* dodgeSequence = new Sequence();
-    IsNearPlayer* nearPlayer = new IsNearPlayer(mBTree, this);
+    IsNearPlayer* nearPlayer = new IsNearPlayer(mBTree, this, mDodgingRange);
     IsPlayerShooting* playerShooting = new IsPlayerShooting(mBTree, this);
     DodgeBullets* dodge = new DodgeBullets(mBTree, this);
-    ChasePlayer* chase = new ChasePlayer(mBTree, this);
+    ChasePlayer* chase = new ChasePlayer(mBTree, this, 1.0f);
 
     topSelector->addChild(dodgeSequence);
     topSelector->addChild(chase);

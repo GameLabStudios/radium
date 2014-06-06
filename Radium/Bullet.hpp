@@ -13,8 +13,9 @@ public:
     virtual void onUpdate(sf::Time dt);
     virtual void onDraw(RenderTarget& target, RenderStates states) const;
     virtual void onBeginContact(b2Fixture* other, b2Contact* contact);
+    virtual void makeRigidBody();
 
-private:
+protected:
     CircleShape circle;
     b2Vec2 mVelocity;
     float mLifetime;

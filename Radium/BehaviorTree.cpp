@@ -27,7 +27,7 @@ namespace AI
         if (treeStatus == RUNNING || treeStatus == SUCCESS)
         {
             Action* actionPtr = dynamic_cast<Action*>(currentNode);
-            if (currentNode != nullptr)
+            if (actionPtr != nullptr)
             {
                 actionPtr->doAction();
             }

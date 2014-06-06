@@ -19,6 +19,9 @@ public:
     unsigned                            getArmorPen() const;
     float                               getCooldown() const;
     bool                                getFiring() const;
+    void                                setFiring(bool firing);
+    void                                setPlayerControlled(bool playerControlled);
+    void                                setEnemyOwned(bool enemyOwned);
 
 private:
     virtual void                        onUpdate(sf::Time dt);
@@ -42,4 +45,7 @@ private:
 
     std::vector<Bullet*>                mBullets;
     unsigned                            mUsedBullets;
+
+    bool                                mPlayerControlled;
+    bool                                mEnemyOwned;
 };

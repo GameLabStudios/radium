@@ -3,6 +3,7 @@
 #include "Gun.hpp"
 #include "Game.hpp"
 #include "GameWorld.hpp"
+#include "EnemyBullet.hpp"
 
 Gun::Gun(Entity* entity) : Component(entity)
 {
@@ -24,7 +25,10 @@ Gun::Gun(Entity* entity) : Component(entity)
 
 void Gun::onUpdate(sf::Time dt)
 {
-    handleInput();
+    if (mPlayerControlled)
+    {
+        handleInput();
+    }
 }
 
 void Gun::onFixedUpdate(sf::Time dt)
@@ -157,6 +161,21 @@ bool Gun::getFiring() const
     return mFiring;
 }
 
+void Gun::setFiring(bool firing)
+{
+    mFiring = firing;
+}
+
+void Gun::setPlayerControlled(bool playerControlled)
+{
+    mPlayerControlled = playerControlled;
+}
+
+void Gun::setEnemyOwned(bool enemyOwned)
+{
+    mEnemyOwned = enemyOwned;
+}
+
 void Gun::fireGun()
 {
     // If there are unused bullets
@@ -175,8 +194,19 @@ void Gun::fireGun()
         sf::Vector2f direction(cos((float)(angle * M_PI) / 180.0f), sin((float)(angle * M_PI) / 180.0f));
 
         // Create a new Bullet
-        Bullet* newBullet = new Bullet(mDamage);
+        Bullet* newBullet;
+        if (mEnemyOwned)
+        {
+            newBullet = new EnemyBullet(mDamage);
+        }
+        else
+        {
+            newBullet = new Bullet(mDamage);
+        }
 
+        //TODO: Make Rigidbody, p.s. This is really fucking stupid
+        newBullet->makeRigidBody();
+        
         // Set Bullet Lifetime
         newBullet->setLifetime(mBulletLife);
 

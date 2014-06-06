@@ -1,18 +1,19 @@
 #include "ChasePlayer.hpp"
 #include "Rigidbody.hpp"
-#include <iostream>
+#include "Game.hpp"
 using namespace AI;
 
-ChasePlayer::ChasePlayer(BehaviorTree* bTree, Enemy* enemy) : Action(bTree)
+ChasePlayer::ChasePlayer(BehaviorTree* bTree, Enemy* enemy, float range) : Action(bTree)
 {
     this->mEnemy = enemy;
-    mPlayer = GameWorld::getInstance()->getPlayer();
+    this->mPlayer = GameWorld::getInstance()->getPlayer();
+    this->mRange = range * Game::m2p;
 }
 
 BNodeStatus ChasePlayer::run()
 {
     if (b2Distance(b2Vec2(mPlayer->getPosition().x, mPlayer->getPosition().y),
-        b2Vec2(mEnemy->getPosition().x, mEnemy->getPosition().y)) < 1.0f)
+        b2Vec2(mEnemy->getPosition().x, mEnemy->getPosition().y)) < mRange)
     {
         mNodeStatus = SUCCESS;
     }

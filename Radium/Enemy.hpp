@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include "BehaviorTree.hpp"
 #include "Rigidbody.hpp"
+#include "Player.hpp"
 
 using namespace sf;
 using namespace AI;
@@ -54,5 +55,9 @@ protected:
 
     // temporary so Guerra can write behaviors
     RectangleShape                  mRectShape;                        // the shape of the enemy
+    RectangleShape                  mLine;
+
+private:
+    Player*                         mPlayer;
 };
 

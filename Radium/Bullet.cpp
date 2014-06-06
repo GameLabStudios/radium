@@ -14,7 +14,10 @@ Bullet::Bullet(float damage)
     circle = CircleShape(2.0f, 10);
     circle.setOrigin(2.0f, 2.0f);
     circle.setFillColor(Color::Magenta);
+}
 
+void Bullet::makeRigidBody()
+{
     // Rigidbody Component
     CircleRigidbody* rigidbody = addComponent<CircleRigidbody>();
     rigidbody->setBits(Collision::PLAYER_BULLETS, ~Collision::PLAYER_BULLETS ^ Collision::SHIELD);
@@ -76,5 +79,6 @@ void Bullet::onBeginContact(b2Fixture* other, b2Contact* contact)
     {
         enemyPtr->takeDamage(mDamage);
     }
+
     destroy();
 }

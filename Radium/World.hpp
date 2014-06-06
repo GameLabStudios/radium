@@ -5,6 +5,8 @@
 #include "Player.hpp"
 #include "MeleeEnemy.hpp"
 #include "DodgingEnemy.hpp"
+#include "ShooterEnemy.hpp"
+#include "AgileShooter.hpp"
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
 #include <SFML/Graphics/Texture.hpp>
